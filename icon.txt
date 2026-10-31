@@ -1,0 +1,120 @@
+======================================================================
+PHOSPHOR ICONS MAPPING FROM starter/storefromt.html
+======================================================================
+
+1. STUDIO INDEX LOGO (Platform Header)
+   HTML:
+   <i class="ph-fill ph-diamonds-four header-icon"></i> // icon for the studio index logo diamond kind of
+   React Component (@phosphor-icons/react):
+   <DiamondsFour weight="fill" className="header-icon" />
+
+
+2. COLLECTION HEADING (Product Catalog Section)
+   HTML:
+   <i class="ph ph-squares-four text-amber-400 text-2xl"></i> // 4-squares icon next to "Collection" title
+   React Component (@phosphor-icons/react):
+   <SquaresFour className="text-amber-400 text-2xl" />
+
+
+3. FLOATING CART BUTTON (Bottom-Right Action Button)
+   HTML:
+   <i class="ph-fill ph-shopping-cart-simple text-2xl group-hover:-rotate-12 transition-transform"></i> // shopping cart icon on floating action button
+   React Component (@phosphor-icons/react):
+   <ShoppingCartSimple weight="fill" className="text-2xl group-hover:-rotate-12 transition-transform" />
+
+
+4. "CREATE YOURS" FOOTER CTA LINK
+   HTML:
+   <i class="ph-bold ph-arrow-up-right text-amber-400"></i> // diagonal arrow pointing up-right in footer CTA
+   React Component (@phosphor-icons/react):
+   <ArrowUpRight weight="bold" className="text-amber-400" />
+
+
+5. CART DRAWER HEADER
+   HTML:
+   <i class="ph-fill ph-shopping-bag text-amber-400"></i> // shopping bag icon in the drawer header next to "Your Cart"
+   React Component (@phosphor-icons/react):
+   <ShoppingBag weight="fill" className="text-amber-400" />
+
+
+6. CART DRAWER CLOSE BUTTON
+   HTML:
+   <i class="ph-bold ph-x"></i> // close "X" icon to close the slide-out cart drawer
+   React Component (@phosphor-icons/react):
+   <X weight="bold" />
+
+
+7. EMPTY CART STATE
+   HTML:
+   <i class="ph-thin ph-shopping-cart text-6xl mb-4 opacity-50"></i> // large outline shopping cart icon when cart is empty
+   React Component (@phosphor-icons/react):
+   <ShoppingCart weight="thin" className="text-6xl mb-4 opacity-50" />
+
+
+8. CART FOOTER CHECKOUT (WhatsApp Button)
+   HTML:
+   <i class="ph-fill ph-whatsapp-logo text-xl"></i> // official WhatsApp logo for "Complete Order via WhatsApp"
+   React Component (@phosphor-icons/react):
+   <WhatsappLogo weight="fill" className="text-xl" />
+
+
+9. CART ITEM QUANTITY: DECREASE OR DELETE (Cart List)
+   HTML:
+   <i class="ph-bold ph-trash text-red-400"></i> // red trash can icon shown when item quantity is 1 (to delete item)
+   <i class="ph-bold ph-minus"></i> // minus icon shown when item quantity is > 1 (to decrease quantity)
+   React Component (@phosphor-icons/react):
+   <Trash weight="bold" className="text-red-400" />
+   <Minus weight="bold" />
+
+
+10. CART ITEM QUANTITY: INCREASE (Cart List)
+    HTML:
+    <i class="ph-bold ph-plus"></i> // plus icon inside quantity controls in cart drawer
+    React Component (@phosphor-icons/react):
+    <Plus weight="bold" />
+
+
+11. VERIFIED VENDOR BADGE (Vendor Avatar Profile)
+    HTML:
+    <i class="ph-fill ph-check-circle text-emerald-500 text-xl"></i> // green circular checkmark badge on verified seller profile photo
+    React Component (@phosphor-icons/react):
+    <CheckCircle weight="fill" className="text-emerald-500 text-xl" />
+
+
+12. PRODUCT CARD "ADD TO CART" BUTTON
+    HTML:
+    <i class="ph-bold ph-plus text-lg transition-transform group-hover/btn:rotate-90"></i> // bold plus icon on each product's "Add to Cart" button
+    React Component (@phosphor-icons/react):
+    <Plus weight="bold" className="text-lg transition-transform group-hover/btn:rotate-90" />
+
+
+13. TOAST NOTIFICATION (Added to Cart Popup)
+    HTML:
+    <i class="ph-fill ph-check-circle text-xl"></i> // checkmark inside "Added to cart" floating popup toast
+    React Component (@phosphor-icons/react):
+    <CheckCircle weight="fill" className="text-xl" />
+
+
+======================================================================
+REACT IMPORT SNIPPET (For your .tsx components)
+======================================================================
+import {
+  DiamondsFour,
+  SquaresFour,
+  ShoppingCartSimple,
+  ArrowUpRight,
+  ShoppingBag,
+  X,
+  ShoppingCart,
+  WhatsappLogo,
+  Trash,
+  Minus,
+  Plus,
+  CheckCircle
+} from '@phosphor-icons/react';
+
+
+
+
+
+https://share.gemini.google/54SJVp1XhfvD

@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Index — @amaka_wears Official Storefront</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans, Syne & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- ==========================================================================
+         100% PURE VANILLA CSS (WELL-COMMENTED FOR LEARNING — NO TAILWIND)
+         ========================================================================== -->
+    <style>
+        /* --------------------------------------------------------------------------
+           1. CSS VARIABLES (:root) — COLORS, FONTS & SPACING
+           -------------------------------------------------------------------------- */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-surface: #121214;
+            --bg-glass: rgba(18, 18, 20, 0.78);
+
+            /* Your Signature Bronze/Olive Card Tones from loading.html */
+            --card-bronze-bg: rgba(115, 107, 77, 0.13);
+            /* #736b4d21 */
+            --card-bronze-border: rgba(78, 73, 54, 0.59);
+            /* #4e493696 */
+            --tag-olive-fill: #39341f;
+
+            /* Brand Accents */
+            --amber-400: #fbbf24;
+            --amber-500: #f59e0b;
+            --amber-glow: rgba(251, 191, 36, 0.35);
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --emerald-glow: rgba(16, 185, 129, 0.35);
+
+            /* Neutral Text & Borders */
+            --text-white: #fafafa;
+            --text-muted: #a3a3a3;
+            --text-dim: #737373;
+            --border-neutral: rgba(38, 38, 38, 0.85);
+            --border-light: rgba(163, 163, 163, 0.25);
+
+            /* Typography */
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Syne', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Layout Widths */
+            --container-max: 1180px;
+            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* When switched to "Day 61 Expired / Deranked Free Tier" mode */
+        body.deranked-mode {
+            --amber-400: #a3a3a3;
+            --emerald-500: #525252;
+            --emerald-glow: rgba(82, 82, 82, 0.15);
+            --card-bronze-bg: rgba(38, 38, 38, 0.25);
+            --card-bronze-border: rgba(64, 64, 64, 0.5);
+            --tag-olive-fill: #1f1f1f;
+        }
+
+        /* --------------------------------------------------------------------------
+           2. BASE RESET & SCROLLBARS
+           -------------------------------------------------------------------------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+            color: inherit;
+            background: none;
+            border: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        img,
+        svg {
+            display: block;
+        }
+
+        /* Subtle Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 99px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--amber-400);
+        }
+
+        /* --------------------------------------------------------------------------
+           3. PURE CSS @KEYFRAMES ANIMATIONS
+           -------------------------------------------------------------------------- */
+        @keyframes pulseTag {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.82;
+                transform: scale(0.98);
+            }
+        }
+
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bagPop {
+            0% {
+                transform: scale(1);
+            }
+
+            40% {
+                transform: scale(1.14) rotate(-5deg);
+            }
+
+            75% {
+                transform: scale(0.95) rotate(3deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes badgeGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 16px 4px rgba(16, 185, 129, 0.35);
+            }
+        }
+
+        @keyframes shimmerPass {
+            0% {
+                transform: translateX(-130%) skewX(-20deg);
+            }
+
+            100% {
+                transform: translateX(220%) skewX(-20deg);
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           4. REVERSE TRIAL SIMULATOR BAR (TOP ADMIN BAR FOR YOU TO TEST)
+           -------------------------------------------------------------------------- */
+        .trial-simulator-bar {
+            background: #111115;
+            border-bottom: 1px solid #26262b;
+            padding: 8px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 12px;
+            position: relative;
+            z-index: 50;
+        }
+
+        .simulator-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .simulator-toggle-group {
+            display: inline-flex;
+            background: #070709;
+            padding: 3px;
+            border-radius: 999px;
+            border: 1px solid #27272a;
+        }
+
+        .sim-btn {
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+        }
+
+        .sim-btn.active-trial {
+            background: rgba(16, 185, 129, 0.16);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .sim-btn.expired-trial {
+            background: rgba(239, 68, 68, 0.16);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+        }
+
+        /* Expired Warning Banner (Hidden during active trial) */
+        .deranked-notice-banner {
+            display: none;
+            background: rgba(245, 158, 11, 0.1);
+            border-bottom: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fde68a;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        body.deranked-mode .deranked-notice-banner {
+            display: block;
+        }
+
+        /* --------------------------------------------------------------------------
+           5. TOP STUDIO INDEX BRAND HEADER (FROM YOUR loading.html)
+           -------------------------------------------------------------------------- */
+        .studio-header {
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-neutral);
+            padding: 18px 20px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .studio-header-title {
+            font-size: 12px;
+            letter-spacing: 2.4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1;
+            transform: scaleY(1.1);
+            color: #d4d4d8;
+        }
+
+        /* --------------------------------------------------------------------------
+           6. UPGRADED SELLER INFO & INTEGRATED DESKTOP CART CONSOLE
+              - Mobile: Centered Stacked Layout with Radial Spotlight
+              - Desktop (>= 768px): Wide Horizontal Bento Card with Cart on the Right!
+           -------------------------------------------------------------------------- */
+        .seller-stage-wrapper {
+            position: relative;
+            width: 100%;
+            padding: 28px 0 20px;
+            /* Fix C: Ambient Spotlight Behind Amaka's Profile */
+            background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.11) 0%, rgba(251, 191, 36, 0.05) 35%, transparent 70%);
+        }
+
+        .seller-bento-container {
+            width: 92%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 24px;
+            padding: 24px 20px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(24, 24, 28, 0.72) 0%, rgba(14, 14, 17, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle top gold highlight line on the seller card */
+        .seller-bento-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--amber-400), transparent);
+            opacity: 0.55;
+        }
+
+        /* Left Side: Avatar + Store Details */
+        .seller-identity-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            max-width: 620px;
+        }
+
+        /* Profile Picture Wrapper with Verified Seal Badge */
+        .avatar-ring-wrapper {
+            position: relative;
+            background-color: #171717;
+            padding: 4px;
+            border-radius: 9999px;
+            width: fit-content;
+            border: 1px solid #262626;
+            transition: all 0.35s ease;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.18);
+        }
+
+        .avatar-ring-wrapper:hover {
+            box-shadow: 0 0 32px var(--emerald-glow);
+            border-color: var(--emerald-500);
+            transform: scale(1.03);
+        }
+
+        .seller-avatar-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 9999px;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        /* THE VERIFIED BADGE KINI (Bottom-Right of Avatar) */
+        .verified-badge-seal {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 10;
+            width: 28px;
+            height: 28px;
+            border-radius: 9999px;
+            border: 2px solid var(--bg-dark);
+            background-color: var(--emerald-500);
+            color: #052e16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: badgeGlow 2.5s infinite;
+            transition: all 0.3s ease;
+        }
+
+        /* In Deranked Free Mode, the badge turns grey and stops glowing */
+        body.deranked-mode .verified-badge-seal {
+            background-color: #404040;
+            color: #a3a3a3;
+            animation: none;
+        }
+
+        .seller-text-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .seller-name-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .seller-store-title {
+            color: #f9fafb;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .seller-handle-tag {
+            color: var(--amber-400);
+            font-weight: 600;
+            font-size: 14px;
+            font-family: var(--font-mono);
+            margin-top: 2px;
+        }
+
+        .seller-bio-copy {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 8px;
+            max-width: 460px;
+            line-height: 1.55;
+        }
+
+        /* Trust Pills under Seller Bio */
+        .seller-trust-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .trust-pill {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 11px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #d4d4d8;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .trust-pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--emerald-500);
+        }
+
+        /* Right Side: Integrated Bag / Cart Console inside Seller Header */
+        .seller-cart-console {
+            width: 100%;
+            max-width: 340px;
+            background: rgba(10, 10, 12, 0.85);
+            border: 1px solid var(--card-bronze-border);
+            border-radius: 18px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        .console-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .console-bag-identity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .console-bag-icon-box {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            color: var(--amber-400);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .console-bag-icon-box.pop-anim {
+            animation: bagPop 0.45s var(--ease-smooth);
+        }
+
+        .console-count-pill {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--emerald-500);
+            color: #052e16;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0a0a0a;
+        }
+
+        .console-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .console-subtotal {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .console-actions-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .console-checkout-btn {
+            flex: 1;
+            background: var(--amber-400);
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 11px 14px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .console-checkout-btn:hover {
+            background: #fde047;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px -5px var(--amber-glow);
+        }
+
+        .console-whatsapp-btn {
+            width: 42px;
+            height: 40px;
+            border-radius: 11px;
+            background: rgba(16, 185, 129, 0.14);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: var(--emerald-500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .console-whatsapp-btn:hover {
+            background: var(--emerald-500);
+            color: #052e16;
+        }
+
+        /* --------------------------------------------------------------------------
+           DESKTOP BREAKPOINT (>= 768px):
+           Transforms the centered Seller Info into a wide horizontal Bento bar!
+           -------------------------------------------------------------------------- */
+        @media (min-width: 768px) {
+            .seller-bento-container {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+                padding: 30px 36px;
+            }
+
+            .seller-identity-group {
+                flex-direction: row;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .seller-avatar-img {
+                width: 108px;
+                height: 108px;
+            }
+
+            .seller-text-details {
+                align-items: flex-start;
+            }
+
+            .seller-name-row {
+                justify-content: flex-start;
+            }
+
+            .seller-store-title {
+                font-size: 28px;
+            }
+
+            .seller-trust-pills {
+                justify-content: flex-start;
+            }
+
+            .seller-cart-console {
+                width: 320px;
+                flex-shrink: 0;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           7. COLLECTIONS HEADER & RESPONSIVE PRODUCT GRID
+           -------------------------------------------------------------------------- */
+        .collections-section {
+            width: 92%;
+            max-width: var(--container-max);
+            margin: 12px auto 110px;
+        }
+
+        .collections-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .collections-title-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .collections-heading {
+            color: #f9fafb;
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .collections-count-pill {
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            border-radius: 999px;
+            padding: 4px 14px;
+            font-size: 12px;
+            font-family: var(--font-mono);
+        }
+
+        /* Responsive Product Grid:
+           - 1 column on tiny phones
+           - 2 columns on standard phones (>= 375px, matching your fmq)
+           - 3 columns on tablets (>= 640px, matching your smq)
+           - 4 columns on wide desktop (>= 1024px) so there is zero awkward empty space! */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 370px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+        }
+
+        @media (min-width: 680px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           8. UPGRADED PRODUCT CARD (KEEPING YOUR BRONZE BORDER & CURVED SVG TAG)
+           -------------------------------------------------------------------------- */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--card-bronze-bg);
+            border: 2px solid var(--card-bronze-border);
+            border-radius: 18px;
+            padding: 8px 8px 12px;
+            transition: transform 0.35s var(--ease-smooth), border-color 0.3s ease, box-shadow 0.35s ease;
+            animation: cardEntrance 0.55s var(--ease-smooth) backwards;
+            position: relative;
+        }
+
+        /* Fix D: Card Hover Lift & Gold Border Glow */
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--amber-400);
+            box-shadow: 0 18px 38px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(251, 191, 36, 0.12);
+        }
+
+        /* Image Container */
+        .product-image-frame {
+            width: 100%;
+            height: 256px;
+            /* h-64 from your loading.html */
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+            background-color: #18181b;
+        }
+
+        .product-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.6s var(--ease-smooth);
+        }
+
+        .product-card:hover .product-photo {
+            transform: scale(1.07);
+        }
+
+        /* Subtle bottom gradient fade inside image so it melts into the card */
+        .product-image-vignette {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.72) 0%, transparent 45%);
+            pointer-events: none;
+        }
+
+        /* YOUR SIGNATURE CURVED SVG PRICE BANNER FROM loading.html */
+        .curved-price-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 12px;
+            animation: pulseTag 2.4s ease-in-out infinite;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+        }
+
+        .curved-price-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .curved-price-svg path {
+            fill: var(--tag-olive-fill);
+            stroke: var(--amber-400);
+            stroke-width: 1.2;
+        }
+
+        .curved-price-text {
+            position: relative;
+            z-index: 10;
+            color: var(--amber-400);
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.03em;
+        }
+
+        /* Fix B: Single-Line Clamped Product Title so all cards align evenly */
+        .product-name-text {
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 8px 6px;
+            text-align: center;
+            width: 100%;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
+
+        /* Fix A: Upgraded "+ Add to Bag" Button */
+        .add-bag-btn {
+            background-color: #f5f5f5;
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 11.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            border-radius: 10px;
+            padding: 10px 12px;
+            width: 92%;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .add-bag-btn:hover {
+            background-color: var(--amber-400);
+            color: #0a0a0a;
+            box-shadow: 0 10px 25px -8px var(--amber-glow);
+        }
+
+        .add-bag-btn:active {
+            transform: scale(0.95);
+        }
+
+        .add-bag-btn.just-added {
+            background-color: var(--emerald-500);
+            color: #052e16;
+        }
+
+        /* --------------------------------------------------------------------------
+           9. FLOATING QUICK-BAG PILL (FOR MOBILE & DEEP SCROLLING)
+           -------------------------------------------------------------------------- */
+        .floating-bag-fab {
+            position: fixed;
+            bottom: 74px;
+            right: 20px;
+            z-index: 45;
+            background: linear-gradient(135deg, #18181c 0%, #0a0a0c 100%);
+            border: 1px solid var(--amber-400);
+            color: var(--text-white);
+            padding: 10px 16px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(251, 191, 36, 0.2);
+            transition: transform 0.25s ease;
+        }
+
+        .floating-bag-fab:hover {
+            transform: translateY(-3px) scale(1.03);
+        }
+
+        .fab-count {
+            background: var(--amber-400);
+            color: #0a0a0a;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 999px;
+        }
+
+        /* --------------------------------------------------------------------------
+           10. ARCHITECTURAL BENTO MONOLITH FOOTER (ZERO REPETITION, PURE CSS)
+           -------------------------------------------------------------------------- */
+        @keyframes borderBeamRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes statusDotPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+            }
+
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+        }
+
+        /* Minimal Floating SaaS Pill (No developer credits repeated here) */
+        .floating-credit-pill {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 45;
+            background: rgba(12, 12, 15, 0.88);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 6px 8px 6px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+            transition: opacity 0.4s ease, transform 0.4s var(--ease-smooth);
+        }
+
+        .floating-credit-pill.hide-dock {
+            opacity: 0;
+            transform: translate(-50%, 36px);
+            pointer-events: none;
+        }
+
+        .dock-copy {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dock-copy strong {
+            color: var(--text-white);
+            font-weight: 700;
+        }
+
+        .dock-action-btn {
+            background: rgba(251, 191, 36, 0.14);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            color: var(--amber-400);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+        }
+
+        .dock-action-btn:hover {
+            background: var(--amber-400);
+            color: #0a0a0a;
+        }
+
+        /* Main Architectural Footer Wrapper */
+        .monolith-footer {
+            position: relative;
+            background: radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.06) 0%, rgba(16, 185, 129, 0.03) 35%, #050507 75%);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 64px 0 36px;
+            overflow: hidden;
+        }
+
+        /* Top Laser Accent Line */
+        .monolith-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--amber-400), var(--emerald-500), transparent);
+            opacity: 0.65;
+        }
+
+        .monolith-container {
+            width: 92%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ZONE A: Interactive Storefront Handle Claimer Card */
+        .claimer-bento-bar {
+            background: linear-gradient(135deg, rgba(22, 22, 27, 0.9) 0%, rgba(12, 12, 15, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 22px;
+            padding: 26px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: flex-start;
+            box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        .claimer-copy-group {
+            max-width: 520px;
+        }
+
+        .claimer-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--emerald-500);
+            margin-bottom: 6px;
+        }
+
+        .claimer-title {
+            font-family: var(--font-display);
+            font-size: clamp(18px, 2.4vw, 24px);
+            font-weight: 800;
+            color: var(--text-white);
+            letter-spacing: -0.02em;
+        }
+
+        .claimer-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .claimer-input-shell {
+            width: 100%;
+            max-width: 460px;
+            background: #070709;
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            border-radius: 14px;
+            padding: 6px 6px 6px 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .claimer-input-shell:focus-within {
+            border-color: var(--amber-400);
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.18);
+        }
+
+        .domain-prefix {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            color: var(--text-dim);
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .handle-live-input {
+            flex: 1;
+            min-width: 0;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--amber-400);
+            outline: none;
+        }
+
+        .handle-live-input::placeholder {
+            color: #52525b;
+            font-weight: 400;
+        }
+
+        .reserve-handle-btn {
+            background: var(--amber-400);
+            color: #0a0a0a;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .reserve-handle-btn:hover {
+            background: #fde047;
+            transform: translateY(-1px);
+        }
+
+        .claimer-feedback {
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+            color: #34d399;
+            margin-top: 6px;
+            display: none;
+        }
+
+        /* ZONE B: Asymmetric 2-Column Bento Row */
+        .monolith-bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* Left Card: Verified WhatsApp Commerce Protocol */
+        .protocol-bento-card {
+            background: rgba(16, 16, 20, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 22px;
+            padding: 26px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .protocol-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 14px;
+        }
+
+        .protocol-card-title {
+            font-size: 13px;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #d4d4d8;
+            font-weight: 700;
+        }
+
+        .protocol-tag {
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            color: var(--amber-400);
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            padding: 3px 9px;
+            border-radius: 99px;
+        }
+
+        .protocol-pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .pillar-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 12px 14px;
+        }
+
+        .pillar-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--emerald-500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pillar-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .pillar-desc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            line-height: 1.45;
+        }
+
+        /* Right Card: The Singular Creator Signature Vault (Holographic Obsidian Plaque) */
+        .creator-vault-outer {
+            position: relative;
+            border-radius: 22px;
+            padding: 1.5px;
+            overflow: hidden;
+            background: rgba(251, 191, 36, 0.18);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Animated Rotating Gold/Emerald Conic Light Beam */
+        .creator-vault-outer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent 0%, transparent 65%, var(--amber-400) 82%, var(--emerald-500) 95%, transparent 100%);
+            animation: borderBeamRotate 7s linear infinite;
+        }
+
+        .creator-vault-inner {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            background: radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.12) 0%, #09090c 65%);
+            border-radius: 20.5px;
+            padding: 26px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .vault-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .anon-crest-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(251, 191, 36, 0.45);
+            color: var(--amber-400);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.2);
+        }
+
+        .vault-serial-tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .vault-courtesy-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--amber-400);
+            font-weight: 700;
+        }
+
+        .vault-signature-headline {
+            font-family: var(--font-display);
+            font-size: clamp(19px, 2.2vw, 24px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-top: 6px;
+            background: linear-gradient(95deg, #ffffff 0%, #fde68a 60%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .vault-Craft-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .vault-seal-bar {
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: #d4d4d8;
+        }
+
+        /* ZONE C: Horizon Status Bar */
+        .horizon-status-bar {
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .status-indicator-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 4px 12px;
+            border-radius: 999px;
+        }
+
+        .live-emerald-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--emerald-500);
+            animation: statusDotPulse 2s infinite;
+        }
+
+        .back-top-btn {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.25s ease;
+        }
+
+        .back-top-btn:hover {
+            color: var(--amber-400);
+            border-color: rgba(251, 191, 36, 0.4);
+            transform: translateY(-2px);
+        }
+
+        @media (min-width: 768px) {
+            .claimer-bento-bar {
+                flex-direction: row;
+                align-items: center;
+                padding: 28px 34px;
+            }
+
+            .protocol-pillars-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 960px) {
+            .monolith-bento-grid {
+                grid-template-columns: 1.35fr 1fr;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           11. SLIDE-OUT SHOPPING BAG DRAWER
+           -------------------------------------------------------------------------- */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bag-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            width: 100%;
+            max-width: 430px;
+            background: #0e0e12;
+            border-left: 1px solid #27272a;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.38s var(--ease-smooth);
+        }
+
+        .bag-drawer.open {
+            transform: translateX(0);
+        }
+
+        .bag-drawer-header {
+            padding: 20px 22px;
+            border-bottom: 1px solid #1f1f23;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bag-drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .bag-item-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #141419;
+            border: 1px solid #26262e;
+            border-radius: 12px;
+            padding: 10px;
+        }
+
+        .bag-item-img {
+            width: 56px;
+            height: 64px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .bag-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bag-item-title {
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bag-item-price {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--amber-400);
+            margin: 2px 0 6px;
+        }
+
+        .qty-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qty-box {
+            display: inline-flex;
+            align-items: center;
+            background: #09090b;
+            border: 1px solid #27272a;
+            border-radius: 6px;
+        }
+
+        .qty-btn {
+            width: 24px;
+            height: 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .qty-num {
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+            padding: 0 8px;
+        }
+
+        .checkout-fields {
+            background: #131318;
+            border: 1px solid #26262e;
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .field-input {
+            width: 100%;
+            background: #08080a;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 12.5px;
+            color: var(--text-white);
+        }
+
+        .bag-drawer-footer {
+            padding: 18px 22px;
+            border-top: 1px solid #1f1f23;
+            background: #09090c;
+        }
+
+        .whatsapp-order-btn {
+            width: 100%;
+            background: var(--emerald-500);
+            color: #042f1e;
+            font-weight: 800;
+            font-size: 13.5px;
+            padding: 14px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==========================================================================
+         1. REVERSE TRIAL SIMULATOR BAR (TEST 60-DAY PRO TRIAL VS DERANKED FREE TIER)
+         ========================================================================== -->
+    <div class="trial-simulator-bar">
+        <span class="simulator-label">
+            <span>⚡ Reverse Trial Simulator:</span>
+        </span>
+        <div class="simulator-toggle-group">
+            <button id="btn-trial-active" class="sim-btn active-trial" onclick="setTrialState(false)">
+                Day 1–60: Active Trial (Verified Badge + Gold Glow)
+            </button>
+            <button id="btn-trial-expired" class="sim-btn" onclick="setTrialState(true)">
+                Day 61: Expired / Deranked Free Tier
+            </button>
+        </div>
+    </div>
+
+    <!-- Deranked Warning Banner (Shows only when Day 61 Expired Mode is clicked) -->
+    <div class="deranked-notice-banner">
+        ⚠️ <strong>60-Day Pro Trial Expired:</strong> Verified Seal &amp; Gold Showroom Aura have been deactivated. <u
+            style="cursor:pointer;" onclick="setTrialState(false)">Upgrade to Pro (₦3,500/mo)</u> to restore instant
+        buyer trust.
+    </div>
+
+    <!-- ==========================================================================
+         2. TOP STUDIO INDEX HEADER (YOUR EXACT SVG LOGO FROM loading.html)
+         ========================================================================== -->
+    <header class="studio-header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#a3a3a3" viewBox="0 0 256 256">
+            <path
+                d="M82.34,69.66a8,8,0,0,1,0-11.32l40-40a8,8,0,0,1,11.32,0l40,40a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32,0Zm51.32,76.68a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0,0-11.32Zm104-24-40-40a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40A8,8,0,0,0,237.66,122.34Zm-128,0-40-40a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40A8,8,0,0,0,109.66,122.34Z">
+            </path>
+        </svg>
+        <h4 class="studio-header-title">Studio Index</h4>
+    </header>
+
+    <!-- ==========================================================================
+         3. UPGRADED SELLER INFO & DESKTOP INTEGRATED SHOPPING BAG CONSOLE
+         ========================================================================== -->
+    <section class="seller-stage-wrapper">
+        <div class="seller-bento-container">
+
+            <!-- Left Side: Avatar + Verified Badge Kini + Store Info -->
+            <div class="seller-identity-group">
+                <div class="avatar-ring-wrapper">
+                    <img alt="Amaka's Premium Fits Profile" class="seller-avatar-img"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80">
+                    <!-- THE EXACT VERIFIED BADGE SVG KINI -->
+                    <span id="verified-badge" class="verified-badge-seal" title="Verified Studio Index Merchant">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.72,225.86,102.82Zm-52.2,6.84-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z">
+                            </path>
+                        </svg>
+                    </span>
+                </div>
+
+                <div class="seller-text-details">
+                    <div class="seller-name-row">
+                        <h1 class="seller-store-title">Amaka's Premium Fits</h1>
+                    </div>
+                    <p class="seller-handle-tag">@amaka_wears</p>
+                    <p class="seller-bio-copy">
+                        Curated luxury thrifts and premium streetwear. Delivery nationwide.
+                    </p>
+                    <div class="seller-trust-pills">
+                        <span class="trust-pill">
+                            <span class="trust-pill-dot"></span>
+                            <span id="trust-status-text">Verified Merchant</span>
+                        </span>
+                        <span class="trust-pill">🚚 Nationwide Dispatch</span>
+                        <span class="trust-pill">⚡ Instant WhatsApp Invoice</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Integrated Shopping Bag Console (Fixes Desktop Empty Space!) -->
+            <div class="seller-cart-console">
+                <div class="console-top-row">
+                    <div class="console-bag-identity">
+                        <div id="console-bag-icon" class="console-bag-icon-box">
+                            <!-- Clean Shopping Bag SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H80V96a8,8,0,0,0,16,0V80h64V96a8,8,0,0,0,16,0V80h40Z">
+                                </path>
+                            </svg>
+                            <span id="console-bag-count" class="console-count-pill">0</span>
+                        </div>
+                        <div>
+                            <div class="console-label">Your Shopping Bag</div>
+                            <div id="console-bag-subtotal" class="console-subtotal">₦0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="console-actions-row">
+                    <button class="console-checkout-btn" onclick="toggleBagDrawer(true)">
+                        <span>Open Bag &amp; Checkout</span>
+                    </button>
+                    <button class="console-whatsapp-btn" onclick="openDirectChat()" title="Chat directly on WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. COLLECTIONS GRID (YOUR SIGNATURE CURVED SVG PRICE TAG + UPGRADED CARDS)
+         ========================================================================== -->
+    <main class="collections-section">
+        <div class="collections-top-bar">
+            <div class="collections-title-left">
+                <!-- Your exact 4-square Collections SVG from loading.html -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fbbf24" viewBox="0 0 256 256">
+                    <path
+                        d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z">
+                    </path>
+                </svg>
+                <h2 class="collections-heading">Collections</h2>
+            </div>
+            <span id="items-count-badge" class="collections-count-pill">12 items</span>
+        </div>
+
+        <!-- Product Grid Container -->
+        <div id="products-grid" class="products-grid"></div>
+    </main>
+
+    <!-- Floating Quick-Bag Button for Mobile / Deep Scroll -->
+    <button class="floating-bag-fab" onclick="toggleBagDrawer(true)" aria-label="View Shopping Bag">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fbbf24" viewBox="0 0 256 256">
+            <path
+                d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H80V96a8,8,0,0,0,16,0V80h64V96a8,8,0,0,0,16,0V80h40Z">
+            </path>
+        </svg>
+        <span style="font-size:12px; font-weight:700;">Bag</span>
+        <span id="fab-bag-count" class="fab-count">0</span>
+    </button>
+
+    <!-- ==========================================================================
+         5. ARCHITECTURAL BENTO MONOLITH FOOTER (ZERO REPETITION)
+         ========================================================================== -->
+    <!-- Minimal Floating Pill while browsing (Hides automatically when footer enters view) -->
+    <div id="floating-credit-pill" class="floating-credit-pill">
+        <span class="dock-copy">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#fbbf24" viewBox="0 0 256 256">
+                <path
+                    d="M82.34,69.66a8,8,0,0,1,0-11.32l40-40a8,8,0,0,1,11.32,0l40,40a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32,0Zm51.32,76.68a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0,0-11.32Zm104-24-40-40a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40A8,8,0,0,0,237.66,122.34Zm-128,0-40-40a8,8,0,0,0-11.32,0l-40,40a8,8,0,0,0,0,11.32l40,40a8,8,0,0,0,11.32,0l40-40A8,8,0,0,0,109.66,122.34Z">
+                </path>
+            </svg>
+            Powered by <strong>Studio Index</strong>
+        </span>
+        <button class="dock-action-btn"
+            onclick="document.getElementById('grand-anon-footer').scrollIntoView({behavior: 'smooth'})">
+            Launch Your Store →
+        </button>
+    </div>
+
+    <footer id="grand-anon-footer" class="monolith-footer">
+        <div class="monolith-container">
+
+            <!-- ZONE A: Interactive Storefront Handle Claimer Card -->
+            <div class="claimer-bento-bar">
+                <div class="claimer-copy-group">
+                    <span class="claimer-eyebrow">● 60-DAY PRO REVERSE TRIAL OPEN</span>
+                    <h3 class="claimer-title">Sell on Instagram or WhatsApp? Claim your luxury link.</h3>
+                    <p class="claimer-sub">Turn chaotic DMs into structured WhatsApp invoices in 60 seconds.</p>
+                </div>
+
+                <div style="width:100%; max-width:460px;">
+                    <div class="claimer-input-shell">
+                        <span class="domain-prefix">studioindex.ng/</span>
+                        <input id="claim-handle-input" type="text" class="handle-live-input"
+                            placeholder="your_brand_name" aria-label="Enter your desired store handle">
+                        <button class="reserve-handle-btn" onclick="reserveStoreHandle()">
+                            Reserve Handle →
+                        </button>
+                    </div>
+                    <div id="claimer-feedback" class="claimer-feedback"></div>
+                </div>
+            </div>
+
+            <!-- ZONE B: Asymmetric 2-Column Bento Row (Protocol + Singular Creator Signature Vault) -->
+            <div class="monolith-bento-grid">
+
+                <!-- Left Bento Card: Verified WhatsApp Commerce Protocol -->
+                <div class="protocol-bento-card">
+                    <div class="protocol-header-row">
+                        <span class="protocol-card-title">Verified Commerce Architecture</span>
+                        <span class="protocol-tag">RLS SECURED</span>
+                    </div>
+
+                    <div class="protocol-pillars-grid">
+                        <div class="pillar-item">
+                            <div class="pillar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M216,40H40A16,16,0,0,0,24,56V208a8,8,0,0,0,11.58,7.15L64,200.94l28.42,14.21a8,8,0,0,0,7.16,0L128,200.94l28.42,14.21a8,8,0,0,0,7.16,0L192,200.94l28.42,14.21A8,8,0,0,0,232,208V56A16,16,0,0,0,216,40ZM176,144H80a8,8,0,0,1,0-16h96a8,8,0,0,1,0,16Zm0-32H80a8,8,0,0,1,0-16h96a8,8,0,0,1,0,16Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="pillar-title">Instant Invoice</div>
+                                <p class="pillar-desc">Auto-formats cart items, Naira totals &amp; delivery zones into
+                                    one WhatsApp dispatch.</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <div class="pillar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm-34.34,69.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="pillar-title">Human Trust First</div>
+                                <p class="pillar-desc">Buyers verify availability &amp; delivery directly with the
+                                    merchant before paying.</p>
+                            </div>
+                        </div>
+
+                        <div class="pillar-item">
+                            <div class="pillar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm40,128H136v16a8,8,0,0,1-16,0V152H104a8,8,0,0,1,0-16h32a12,12,0,0,0,0-24H120a28,28,0,0,1-8-54.83V48a8,8,0,0,1,16,0v8h16a8,8,0,0,1,0,16H112a12,12,0,0,0,0,24h24a28,28,0,0,1,8,54.83V152Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="pillar-title">0% Middleman Cut</div>
+                                <p class="pillar-desc">Merchants keep 100% of every Naira earned with instant local bank
+                                    settlement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Bento Card: The Singular Creator Signature Vault -->
+                <div class="creator-vault-outer">
+                    <div class="creator-vault-inner">
+                        <div class="vault-top-row">
+                            <div class="anon-crest-box" title="Anonymous Devs Official Crest">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M239.75,90.81c0,.11,0,.21-.07.32L217,195a16,16,0,0,1-15.72,13H54.71A16,16,0,0,1,39,195L16.32,91.13c0-.11-.05-.21-.07-.32A16,16,0,0,1,44,77.39l33.67,30.29,35.8-60.4A16,16,0,0,1,142.53,47.28l35.8,60.4L212,77.39a16,16,0,0,1,27.71,13.42Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="vault-serial-tag">EDITION // SI-01</span>
+                        </div>
+
+                        <div>
+                            <div class="vault-courtesy-label">Courtesy of Anonymous Devs Official</div>
+                            <div class="vault-signature-headline">Created by Anonymous Himself</div>
+                            <p class="vault-Craft-note">
+                                Precision-engineered storefront infrastructure built for Nigeria's top-tier social
+                                commerce founders.
+                            </p>
+                        </div>
+
+                        <div class="vault-seal-bar">
+                            <span>AUTHENTIC BUILD</span>
+                            <span style="color:var(--amber-400);">★ VERIFIED ORIGIN</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ZONE C: Horizon Status Bar -->
+            <div class="horizon-status-bar">
+                <span>STUDIO INDEX™ © 2026</span>
+
+                <div class="status-indicator-pill">
+                    <span class="live-emerald-dot"></span>
+                    <span>ALL NODES OPERATIONAL • LAGOS / PH</span>
+                </div>
+
+                <button class="back-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    Back to Top ↑
+                </button>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         6. SLIDE-OUT SHOPPING BAG DRAWER
+         ========================================================================== -->
+    <div id="drawer-overlay" class="drawer-overlay" onclick="toggleBagDrawer(false)"></div>
+
+    <aside id="bag-drawer" class="bag-drawer">
+        <div class="bag-drawer-header">
+            <div style="display:flex; align-items:center; gap:8px; font-weight:700;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fbbf24" viewBox="0 0 256 256">
+                    <path
+                        d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H80V96a8,8,0,0,0,16,0V80h64V96a8,8,0,0,0,16,0V80h40Z">
+                    </path>
+                </svg>
+                <span>Amaka's Shopping Bag</span>
+            </div>
+            <button onclick="toggleBagDrawer(false)" style="color:var(--text-muted); font-size:18px;">✕</button>
+        </div>
+
+        <div class="bag-drawer-body">
+            <div id="bag-items-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+
+            <div class="checkout-fields">
+                <div
+                    style="font-size:11px; font-family:var(--font-mono); color:var(--amber-400); text-transform:uppercase;">
+                    WhatsApp Dispatch Info
+                </div>
+                <input id="customer-name" type="text" class="field-input" placeholder="Your Name (e.g. Chim)">
+                <select id="customer-zone" class="field-input">
+                    <option value="GRA Phase 2 (Port Harcourt)">GRA Phase 2 (Port Harcourt)</option>
+                    <option value="Orazi / Peter Odili (PH)">Orazi / Peter Odili (PH)</option>
+                    <option value="Lekki Phase 1 (Lagos)">Lekki Phase 1 (Lagos)</option>
+                    <option value="Victoria Island (Lagos)">Victoria Island (Lagos)</option>
+                    <option value="Abuja Central / Wuse II">Abuja Central / Wuse II</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="bag-drawer-footer">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:13px; color:var(--text-muted);">Total Due</span>
+                <strong id="drawer-total-amount"
+                    style="font-family:var(--font-mono); font-size:19px; color:var(--amber-400);">₦0</strong>
+            </div>
+            <button class="whatsapp-order-btn" onclick="sendWhatsAppOrder()">
+                <span>Send Official Order to WhatsApp</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ==========================================================================
+         7. JAVASCRIPT ENGINE (YOUR PRODUCTS FROM loading.html + BAG LOGIC)
+         ========================================================================== -->
+    <script>
+        // Your exact products & prices from loading.html paired with live high-fashion photos
+        const AMAKA_PRODUCTS = [
+            { id: 'p1', name: 'Silk Ankara Wrap Dress', price: 35000, img: '../src/assets/products/p1-ankara-wrap.jpg' },
+            { id: 'p2', name: 'Two-Piece Luxury Set', price: 48000, img: '../src/assets/products/p2-two-piece.jpg' },
+            { id: 'p3', name: 'Handcrafted Statement Earrings', price: 12000, img: '../src/assets/products/p3-earrings.jpg' },
+            { id: 'p4', name: 'Emerald Silk Jumpsuit', price: 55000, img: '../src/assets/products/p4-silk-jumpsuit.jpg' },
+            { id: 'p5', name: 'Royal Velvet Corset Gown', price: 75000, img: '../src/assets/products/p5-velvet-gown.jpg' },
+            { id: 'p6', name: 'Satin Backless Maxi Dress', price: 42000, img: '../src/assets/products/p6-satin-dress.jpg' },
+            { id: 'p7', name: 'Boho Summer Print Dress', price: 28000, img: '../src/assets/products/p7-summer-maxi.jpg' },
+            { id: 'p8', name: 'Stiletto Designer Heels', price: 65000, img: '../src/assets/products/p8-designer-heels.jpg' },
+            { id: 'p9', name: 'Genuine Leather Work Tote', price: 50000, img: '../src/assets/products/p9-leather-tote.jpg' },
+            { id: 'p10', name: '18k Gold Layered Necklace', price: 38000, img: '../src/assets/products/p10-gold-necklace.jpg' },
+            { id: 'p11', name: 'French Vanilla Perfume Oil', price: 22000, img: '../src/assets/products/p11-perfume-oil.jpg' },
+            { id: 'p12', name: 'Oud Royal Arabian Oil (12ml)', price: 35000, img: '../src/assets/products/p12-lip-gloss-set.jpg' }
+        ];
+
+        const STORAGE_KEY = 'studio_index_amaka_bag_v1';
+        let bag = [];
+
+        function formatNaira(n) {
+            return '₦' + Number(n).toLocaleString('en-NG');
+        }
+
+        function loadBag() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) bag = JSON.parse(saved);
+            } catch (err) {
+                bag = [];
+            }
+        }
+
+        function saveBag() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(bag));
+            } catch (err) { }
+        }
+
+        // Render Product Cards with your exact curved SVG price tag banner
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            document.getElementById('items-count-badge').textContent = `${AMAKA_PRODUCTS.length} items`;
+
+            grid.innerHTML = AMAKA_PRODUCTS.map((item, index) => `
+                <article class="product-card" style="animation-delay: ${index * 55}ms;">
+                    <div class="product-image-frame">
+                        <img
+                            src="${item.img}"
+                            alt="${item.name}"
+                            class="product-photo"
+                            loading="lazy"
+                            onerror="this.src='https://placehold.co/500x600/18181b/fbbf24?text=${encodeURIComponent(item.name)}'"
+                        >
+                        <div class="product-image-vignette"></div>
+
+                        <!-- YOUR SIGNATURE CURVED SVG PRICE BANNER -->
+                        <div class="curved-price-badge">
+                            <svg class="curved-price-svg" viewBox="0 0 160 40" preserveAspectRatio="none">
+                                <path d="M 20 0 Q 80 10 140 0 A 20 20 0 0 1 140 40 Q 80 30 20 40 A 20 20 0 0 1 20 0 Z"></path>
+                            </svg>
+                            <span class="curved-price-text">${formatNaira(item.price)}</span>
+                        </div>
+                    </div>
+
+                    <p class="product-name-text" title="${item.name}">${item.name}</p>
+
+                    <button id="btn-${item.id}" class="add-bag-btn" onclick="addToBag('${item.id}')">
+                        <span>+ Add to Bag</span>
+                    </button>
+                </article>
+            `).join('');
+        }
+
+        function addToBag(id) {
+            const product = AMAKA_PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            const existing = bag.find(i => i.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                bag.push({ ...product, qty: 1 });
+            }
+
+            saveBag();
+            updateBagUI();
+
+            // Button feedback
+            const btn = document.getElementById(`btn-${id}`);
+            if (btn) {
+                btn.classList.add('just-added');
+                btn.innerHTML = `<span>✓ Added to Bag</span>`;
+                setTimeout(() => {
+                    btn.classList.remove('just-added');
+                    btn.innerHTML = `<span>+ Add to Bag</span>`;
+                }, 800);
+            }
+
+            // Pop animation on the Seller Header's Integrated Bag Console
+            const consoleBox = document.getElementById('console-bag-icon');
+            consoleBox.classList.remove('pop-anim');
+            void consoleBox.offsetWidth;
+            consoleBox.classList.add('pop-anim');
+        }
+
+        function changeQty(id, delta) {
+            const item = bag.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                bag = bag.filter(i => i.id !== id);
+            }
+            saveBag();
+            updateBagUI();
+        }
+
+        function updateBagUI() {
+            const count = bag.reduce((sum, i) => sum + i.qty, 0);
+            const total = bag.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+            document.getElementById('console-bag-count').textContent = count;
+            document.getElementById('fab-bag-count').textContent = count;
+            document.getElementById('console-bag-subtotal').textContent = formatNaira(total);
+            document.getElementById('drawer-total-amount').textContent = formatNaira(total);
+
+            const listEl = document.getElementById('bag-items-list');
+            if (bag.length === 0) {
+                listEl.innerHTML = `
+                    <div style="text-align:center; padding:36px 12px; color:var(--text-muted); font-size:13px;">
+                        Your bag is empty. Tap <strong>+ Add to Bag</strong> on any piece to build your WhatsApp invoice.
+                    </div>
+                `;
+                return;
+            }
+
+            listEl.innerHTML = bag.map(item => `
+                <div class="bag-item-card">
+                    <img src="${item.img}" alt="${item.name}" class="bag-item-img">
+                    <div class="bag-item-info">
+                        <div class="bag-item-title">${item.name}</div>
+                        <div class="bag-item-price">${formatNaira(item.price * item.qty)}</div>
+                        <div class="qty-row">
+                            <div class="qty-box">
+                                <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+                                <span class="qty-num">${item.qty}</span>
+                                <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleBagDrawer(open) {
+            document.getElementById('bag-drawer').classList.toggle('open', open);
+            document.getElementById('drawer-overlay').classList.toggle('open', open);
+        }
+
+        // Toggle between Active 60-Day Trial and Expired Deranked Free Tier
+        function setTrialState(isExpired) {
+            document.body.classList.toggle('deranked-mode', isExpired);
+            const activeBtn = document.getElementById('btn-trial-active');
+            const expiredBtn = document.getElementById('btn-trial-expired');
+            const statusText = document.getElementById('trust-status-text');
+
+            if (isExpired) {
+                activeBtn.className = 'sim-btn';
+                expiredBtn.className = 'sim-btn expired-trial';
+                statusText.textContent = 'Unverified Free Tier';
+            } else {
+                activeBtn.className = 'sim-btn active-trial';
+                expiredBtn.className = 'sim-btn';
+                statusText.textContent = 'Verified Merchant';
+            }
+        }
+
+        function sendWhatsAppOrder() {
+            if (bag.length === 0) return;
+            const name = document.getElementById('customer-name').value.trim() || 'Customer';
+            const zone = document.getElementById('customer-zone').value;
+            const total = bag.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const lines = bag.map(i => `• ${i.qty}x ${i.name} (${formatNaira(i.price * i.qty)})`).join('\n');
+
+            const text =
+                `🛍️ *NEW STUDIO INDEX ORDER*
+*Store:* Amaka's Premium Fits (@amaka_wears)
+*Customer:* ${name}
+*Delivery Zone:* ${zone}
+
+*Items:*
+${lines}
+
+*Total Due:* ${formatNaira(total)}
+_Courtesy of Anonymous Devs Official_`;
+
+            window.open(`https://wa.me/2348012345678?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function openDirectChat() {
+            const text = `Hi Amaka's Premium Fits! I'm browsing your Studio Index store (@amaka_wears).`;
+            window.open(`https://wa.me/2348012345678?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // Interactive Handle Claimer in Footer Zone A
+        function reserveStoreHandle() {
+            const input = document.getElementById('claim-handle-input');
+            const feedback = document.getElementById('claimer-feedback');
+            const cleanHandle = (input.value.trim() || 'your_brand').replace(/[^a-zA-Z0-9_]/g, '').toLowerCase();
+            input.value = cleanHandle;
+
+            feedback.style.display = 'block';
+            feedback.innerHTML = `✓ <strong>studioindex.ng/${cleanHandle}</strong> is available! 60-Day Pro Trial ready to activate.`;
+        }
+
+        // Hide the floating credit pill when the Grand Footer enters view
+        function initFooterObserver() {
+            const pill = document.getElementById('floating-credit-pill');
+            const grandFooter = document.getElementById('grand-anon-footer');
+            if (!('IntersectionObserver' in window)) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    pill.classList.toggle('hide-dock', entry.isIntersecting);
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(grandFooter);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadBag();
+            renderProducts();
+            updateBagUI();
+            initFooterObserver();
+        });
+    </script>
+</body>
+
+</html>

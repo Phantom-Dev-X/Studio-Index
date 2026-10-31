@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDIO INDEX — Luxury Social Commerce Infrastructure</title>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Google Fonts: Syne (Editorial Luxury), Plus Jakarta Sans (Clean UI), JetBrains Mono (Prices & Specs) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ==========================================================================
+         100% PURE VANILLA CSS ARCHITECTURE (ZERO TAILWIND)
+         ========================================================================== -->
+    <style>
+        /* --------------------------------------------------------------------------
+           1. CSS VARIABLES & DESIGN TOKENS (:root)
+           -------------------------------------------------------------------------- */
+        :root {
+            /* Obsidian Luxury Surfaces */
+            --bg-obsidian: #050505;
+            --bg-elevated: #0c0c0e;
+            --bg-card: #101014;
+            --bg-card-hover: #15151b;
+            --bg-glass: rgba(12, 12, 14, 0.78);
+            --bg-glass-heavy: rgba(8, 8, 10, 0.92);
+
+            /* Crisp 1px Structural Borders */
+            --border-subtle: #18181b;
+            --border-mid: #27272a;
+            --border-highlight: rgba(245, 158, 11, 0.38);
+            --border-emerald: rgba(16, 185, 129, 0.35);
+
+            /* Typography Colors */
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+
+            /* Brand Accents: Gold & Emerald */
+            --gold-primary: #f59e0b;
+            --gold-bright: #fbbf24;
+            --gold-soft: rgba(245, 158, 11, 0.12);
+            --emerald-primary: #10b981;
+            --emerald-dark: #059669;
+            --emerald-soft: rgba(16, 185, 129, 0.14);
+            --danger: #ef4444;
+
+            /* Font Families */
+            --font-display: 'Syne', sans-serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Layout & Spacing */
+            --max-container: 1540px;
+            --header-height: 78px;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-pill: 9999px;
+
+            /* Transitions */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* --------------------------------------------------------------------------
+           2. RESET & BASE STYLES
+           -------------------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-obsidian);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--bg-obsidian);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        /* Ambient Background Lighting */
+        .ambient-stage-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(circle at 12% 15%, rgba(245, 158, 11, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 88% 25%, rgba(16, 185, 129, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+        }
+
+        button, input, select {
+            font-family: inherit;
+            color: inherit;
+            border: none;
+            background: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Custom Subtle Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-obsidian);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #26262b;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-primary);
+        }
+
+        /* --------------------------------------------------------------------------
+           3. CUSTOM @KEYFRAMES ANIMATIONS
+           -------------------------------------------------------------------------- */
+        @keyframes cardReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(28px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes shimmerSweep {
+            0% {
+                transform: translateX(-120%) skewX(-20deg);
+            }
+            100% {
+                transform: translateX(220%) skewX(-20deg);
+            }
+        }
+
+        @keyframes pulseGlowGold {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0), inset 0 0 12px rgba(245, 158, 11, 0.08);
+                border-color: rgba(245, 158, 11, 0.35);
+            }
+            50% {
+                box-shadow: 0 0 28px 2px rgba(245, 158, 11, 0.22), inset 0 0 20px rgba(245, 158, 11, 0.16);
+                border-color: rgba(251, 191, 36, 0.8);
+            }
+        }
+
+        @keyframes statusPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.45);
+                opacity: 0.45;
+            }
+        }
+
+        @keyframes bagBounce {
+            0% { transform: scale(1); }
+            35% { transform: scale(1.18) rotate(-6deg); }
+            70% { transform: scale(0.94) rotate(4deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           4. TOP PLATFORM BAR (STICKY LUXURY HEADER)
+           -------------------------------------------------------------------------- */
+        .platform-header {
+            position: sticky;
+            top: 0;
+            z-index: 80;
+            height: var(--header-height);
+            width: 100%;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: border-color 0.3s ease;
+        }
+
+        .header-inner {
+            width: 94%;
+            max-width: 1600px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        /* Brand Logo */
+        .brand-identity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .brand-monogram {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1c1c21 0%, #09090b 100%);
+            border: 1px solid var(--border-highlight);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-bright);
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
+        }
+
+        .brand-text-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .brand-tag {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: var(--gold-soft);
+            color: var(--gold-bright);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            letter-spacing: 0.05em;
+        }
+
+        .brand-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* Live Vendor Switcher Bar */
+        .vendor-switcher-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #09090b;
+            padding: 5px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-subtle);
+            overflow-x: auto;
+            max-width: 100%;
+            scrollbar-width: none;
+        }
+        .vendor-switcher-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .vendor-switch-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            padding: 0 10px 0 12px;
+            white-space: nowrap;
+            display: none;
+        }
+
+        @media (min-width: 1180px) {
+            .vendor-switch-label {
+                display: inline-block;
+            }
+        }
+
+        .vendor-pill-btn {
+            padding: 7px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: transparent;
+            transition: all 0.25s var(--ease-out-expo);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid transparent;
+        }
+
+        .vendor-pill-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .vendor-pill-btn.active {
+            background: var(--bg-card-hover);
+            color: var(--gold-bright);
+            border-color: var(--border-highlight);
+            box-shadow: 0 2px 12px rgba(245, 158, 11, 0.12);
+        }
+
+        .vendor-pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            transition: background 0.25s ease;
+        }
+
+        .vendor-pill-btn.active .vendor-pill-dot {
+            background: var(--emerald-primary);
+            box-shadow: 0 0 8px var(--emerald-primary);
+        }
+
+        /* Header Right: Shopping Bag Button */
+        .bag-trigger-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 14px 8px 16px;
+            border-radius: var(--radius-pill);
+            background: linear-gradient(180deg, #16161b 0%, #0d0d11 100%);
+            border: 1px solid var(--border-mid);
+            transition: all 0.3s var(--ease-out-expo);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .bag-trigger-btn:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.16);
+        }
+
+        .bag-trigger-btn.animate-bounce {
+            animation: bagBounce 0.5s var(--ease-spring);
+        }
+
+        .bag-icon-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--gold-bright);
+        }
+
+        .bag-subtotal-text {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .bag-subtotal-text {
+                display: inline-block;
+            }
+        }
+
+        .bag-count-badge {
+            min-width: 24px;
+            height: 24px;
+            padding: 0 7px;
+            border-radius: var(--radius-pill);
+            background: var(--emerald-primary);
+            color: #032218;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Mobile Switcher Sub-bar */
+        .mobile-vendor-strip {
+            display: flex;
+            padding: 10px 3%;
+            background: #08080a;
+            border-bottom: 1px solid var(--border-subtle);
+            overflow-x: auto;
+            gap: 8px;
+        }
+
+        @media (min-width: 900px) {
+            .mobile-vendor-strip {
+                display: none;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .header-inner .vendor-switcher-bar {
+                display: none;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           5. EXPANSIVE DESKTOP SPLIT-SCREEN SHOWROOM
+           -------------------------------------------------------------------------- */
+        .showroom-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 94%;
+            max-width: var(--max-container);
+            margin: 0 auto;
+            padding-top: 28px;
+            padding-bottom: 100px;
+        }
+
+        .showroom-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Desktop Split-Screen Architecture (>= 1024px) */
+        @media (min-width: 1024px) {
+            .showroom-wrapper {
+                padding-top: 42px;
+            }
+            .showroom-grid {
+                display: grid;
+                grid-template-columns: 380px 1fr;
+                gap: 48px;
+                align-items: start;
+            }
+        }
+
+        @media (min-width: 1360px) {
+            .showroom-grid {
+                grid-template-columns: 400px 1fr;
+                gap: 56px;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           6. LEFT COLUMN: STICKY VENDOR IDENTITY ATELIER
+           -------------------------------------------------------------------------- */
+        .vendor-atelier-aside {
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .vendor-atelier-aside {
+                position: sticky;
+                top: 106px;
+                height: fit-content;
+            }
+        }
+
+        .vendor-atelier-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75);
+            transition: border-color 0.3s ease;
+        }
+
+        .vendor-atelier-card:hover {
+            border-color: var(--border-mid);
+        }
+
+        /* Cover Aura Banner */
+        .vendor-cover-aura {
+            height: 118px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #271a0c 0%, #091e16 55%, #0c0c0e 100%);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .vendor-cover-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.25;
+            background-image: radial-gradient(rgba(251, 191, 36, 0.45) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        .vendor-status-pill {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 11px;
+            border-radius: var(--radius-pill);
+            background: rgba(5, 5, 5, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-emerald);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--emerald-primary);
+            letter-spacing: 0.04em;
+        }
+
+        .status-live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--emerald-primary);
+            animation: statusPulse 2s infinite;
+        }
+
+        /* Vendor Body Info */
+        .vendor-atelier-body {
+            padding: 0 26px 26px;
+            position: relative;
+        }
+
+        .vendor-avatar-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-top: -44px;
+            margin-bottom: 18px;
+        }
+
+        .vendor-avatar-frame {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--gold-bright), var(--emerald-primary));
+            position: relative;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+        }
+
+        .vendor-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 19px;
+            background: var(--bg-card);
+            display: block;
+        }
+
+        .verified-seal-badge {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-obsidian);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .vendor-tier-tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        .vendor-store-name {
+            font-family: var(--font-display);
+            font-size: 23px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .vendor-handle-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .vendor-handle {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--gold-bright);
+            font-weight: 500;
+        }
+
+        .vendor-location-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .vendor-bio-text {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Store Telemetry / Metrics Grid */
+        .vendor-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 12px;
+            background: #08080a;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+        }
+
+        .metric-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 4px;
+        }
+
+        .metric-box:not(:last-child) {
+            border-right: 1px solid var(--border-subtle);
+        }
+
+        .metric-val {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .metric-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        /* Category Filter Pills inside Atelier */
+        .filter-section-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .category-pills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 22px;
+        }
+
+        .cat-filter-pill {
+            padding: 7px 13px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 500;
+            background: #121216;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s ease;
+        }
+
+        .cat-filter-pill:hover {
+            border-color: var(--border-mid);
+            color: var(--text-primary);
+        }
+
+        .cat-filter-pill.active {
+            background: var(--gold-soft);
+            color: var(--gold-bright);
+            border-color: var(--border-highlight);
+            font-weight: 600;
+        }
+
+        /* Direct WhatsApp Concierge CTA */
+        .whatsapp-concierge-btn {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--emerald-primary) 0%, var(--emerald-dark) 100%);
+            color: #031d14;
+            font-weight: 700;
+            font-size: 13.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
+            transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s ease;
+        }
+
+        .whatsapp-concierge-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.5);
+        }
+
+        .whatsapp-concierge-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transform: translateX(-140%) skewX(-20deg);
+        }
+
+        .whatsapp-concierge-btn:hover::after {
+            animation: shimmerSweep 0.85s ease;
+        }
+
+        /* Copy Store Link Button */
+        .share-link-row {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .copy-store-btn {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            background: #09090b;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .copy-store-btn:hover {
+            border-color: var(--gold-primary);
+            color: var(--text-primary);
+        }
+
+        /* --------------------------------------------------------------------------
+           7. RIGHT COLUMN: EXPANSIVE PRODUCT CATALOG GRID
+           -------------------------------------------------------------------------- */
+        .catalog-main-section {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .catalog-top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 22px;
+            margin-bottom: 26px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .catalog-heading-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .catalog-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--gold-primary);
+        }
+
+        .catalog-main-title {
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .catalog-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-wrap i {
+            position: absolute;
+            left: 13px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .catalog-search-input {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-pill);
+            padding: 9px 16px 9px 36px;
+            font-size: 13px;
+            color: var(--text-primary);
+            width: 220px;
+            transition: all 0.25s ease;
+        }
+
+        .catalog-search-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            width: 260px;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12);
+        }
+
+        .catalog-count-pill {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 8px 13px;
+            border-radius: var(--radius-pill);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        /* Product Grid: 2 columns on mobile/tablet, 3 expansive columns on desktop */
+        .product-catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        @media (min-width: 720px) {
+            .product-catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+                gap: 24px;
+            }
+        }
+
+        @media (min-width: 1320px) {
+            .product-catalog-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 26px;
+            }
+        }
+
+        /* Individual Product Card */
+        .product-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.35s var(--ease-out-expo), border-color 0.3s ease, box-shadow 0.35s ease;
+            opacity: 0;
+            animation: cardReveal 0.65s var(--ease-out-expo) forwards;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245, 158, 11, 0.45);
+            box-shadow: 0 22px 45px -15px rgba(0, 0, 0, 0.85), 0 0 25px rgba(245, 158, 11, 0.08);
+        }
+
+        .product-media-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background: #141418;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.65s var(--ease-out-expo);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.07);
+        }
+
+        .product-media-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.85) 0%, transparent 45%);
+            pointer-events: none;
+        }
+
+        .product-category-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 10px;
+            border-radius: var(--radius-pill);
+            background: rgba(8, 8, 10, 0.78);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+        }
+
+        .product-stock-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: rgba(16, 185, 129, 0.16);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-emerald);
+            font-family: var(--font-mono);
+            font-size: 9.5px;
+            font-weight: 600;
+            color: var(--emerald-primary);
+        }
+
+        .product-price-floating {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            font-family: var(--font-mono);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gold-bright);
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 5px 11px;
+            border-radius: 8px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .product-info-box {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .product-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.35;
+            margin-bottom: 4px;
+        }
+
+        .product-spec-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Add to Bag Button */
+        .add-to-bag-btn {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 10px;
+            background: #17171d;
+            border: 1px solid var(--border-mid);
+            color: var(--text-primary);
+            font-size: 12.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.25s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover .add-to-bag-btn {
+            background: var(--text-primary);
+            color: var(--bg-obsidian);
+            border-color: var(--text-primary);
+        }
+
+        .add-to-bag-btn:active {
+            transform: scale(0.96);
+        }
+
+        .add-to-bag-btn.added-state {
+            background: var(--emerald-primary) !important;
+            color: #032218 !important;
+            border-color: var(--emerald-primary) !important;
+        }
+
+        /* Mobile adjustments for product cards */
+        @media (max-width: 600px) {
+            .product-info-box {
+                padding: 12px;
+                gap: 10px;
+            }
+            .product-title {
+                font-size: 13px;
+            }
+            .product-price-floating {
+                font-size: 12.5px;
+                padding: 4px 8px;
+            }
+            .product-category-badge {
+                font-size: 8.5px;
+                padding: 3px 7px;
+            }
+            .product-stock-tag {
+                display: none;
+            }
+            .add-to-bag-btn {
+                padding: 9px 10px;
+                font-size: 11.5px;
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           8. FOOTER 1: FLOATING GLASS BAR (ACTIVE WHILE BROWSING)
+           -------------------------------------------------------------------------- */
+        .floating-dock-footer {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 75;
+            width: max-content;
+            max-width: 92vw;
+            padding: 8px 10px 8px 18px;
+            border-radius: var(--radius-pill);
+            background: rgba(10, 10, 13, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 25px rgba(245, 158, 11, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: opacity 0.45s var(--ease-out-expo), transform 0.45s var(--ease-out-expo);
+        }
+
+        /* Hidden state triggered when Grand Footer enters viewport */
+        .floating-dock-footer.dock-hidden {
+            opacity: 0;
+            transform: translate(-50%, 45px) scale(0.94);
+            pointer-events: none;
+        }
+
+        .dock-text-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .dock-sparkle-icon {
+            color: var(--gold-bright);
+            font-size: 15px;
+        }
+
+        .dock-highlight {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .dock-anon-tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--gold-bright);
+            display: none;
+        }
+
+        @media (min-width: 680px) {
+            .dock-anon-tag {
+                display: inline;
+            }
+        }
+
+        .dock-cta-btn {
+            padding: 7px 14px;
+            border-radius: var(--radius-pill);
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold-primary));
+            color: #09090b;
+            font-size: 11.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .dock-cta-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 18px rgba(245, 158, 11, 0.45);
+        }
+
+        /* --------------------------------------------------------------------------
+           9. FOOTER 2: THE GRAND ARCHITECTURAL REVEAL FOOTER
+           -------------------------------------------------------------------------- */
+        .grand-architectural-footer {
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            background: #030304;
+            border-top: 1px solid var(--border-mid);
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        /* Ambient Gold & Emerald Spotlight inside Grand Footer */
+        .grand-footer-glow {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 100%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+        }
+
+        /* Kinetic Marquee Ribbon */
+        .kinetic-marquee-strip {
+            width: 100%;
+            background: #08080b;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 12px 0;
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            animation: marqueeScroll 28s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            padding: 0 24px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+        }
+
+        .marquee-item strong {
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+
+        .marquee-diamond {
+            color: var(--emerald-primary);
+            font-size: 10px;
+        }
+
+        /* Grand Footer Inner Container */
+        .grand-footer-inner {
+            position: relative;
+            z-index: 2;
+            width: 94%;
+            max-width: var(--max-container);
+            margin: 0 auto;
+            padding: 72px 0 56px;
+        }
+
+        /* Top Monumental Banner inside Footer */
+        .courtesy-monument-box {
+            text-align: center;
+            margin-bottom: 56px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .courtesy-eyebrow-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
+            background: var(--gold-soft);
+            border: 1px solid var(--border-highlight);
+            color: var(--gold-bright);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .courtesy-headline {
+            font-family: var(--font-display);
+            font-size: clamp(24px, 4.2vw, 52px);
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #fde68a 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        /* Bespoke Signature Crest Plaque: "Created & Engineered by Anonymous Himself" */
+        .signature-crest-plaque {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 20px 28px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(145deg, #0f0f14 0%, #070709 100%);
+            border: 1px solid rgba(245, 158, 11, 0.45);
+            animation: pulseGlowGold 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        .signature-crest-plaque:hover {
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        .signature-crest-plaque::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.18), transparent);
+            transform: translateX(-130%) skewX(-20deg);
+        }
+
+        .signature-crest-plaque:hover::before {
+            animation: shimmerSweep 1s ease;
+        }
+
+        .crest-seal-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--gold-soft);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .crest-copy {
+            text-align: left;
+        }
+
+        .crest-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--emerald-primary);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .crest-title {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
+        }
+
+        .crest-sub {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Architectural Columns inside Grand Footer */
+        .footer-columns-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 36px;
+            margin-bottom: 52px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-columns-grid {
+                grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+                gap: 40px;
+            }
+        }
+
+        .footer-col-title {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold-bright);
+            margin-bottom: 16px;
+        }
+
+        .footer-col-desc {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 20px;
+            max-width: 340px;
+        }
+
+        .footer-link-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .footer-link-item {
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .footer-link-item:hover {
+            color: var(--gold-bright);
+            transform: translateX(4px);
+        }
+
+        .footer-cta-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 18px;
+        }
+
+        .footer-cta-card p {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+        }
+
+        .claim-store-btn {
+            width: 100%;
+            padding: 11px 16px;
+            border-radius: 10px;
+            background: var(--text-primary);
+            color: var(--bg-obsidian);
+            font-weight: 700;
+            font-size: 12.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .claim-store-btn:hover {
+            background: var(--gold-bright);
+        }
+
+        /* Bottom Legal & Telemetry Strip */
+        .footer-bottom-bar {
+            padding-top: 28px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .telemetry-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            background: #0a0a0d;
+            border: 1px solid var(--border-subtle);
+            color: var(--emerald-primary);
+        }
+
+        /* --------------------------------------------------------------------------
+           10. SLIDE-OUT SHOPPING BAG DRAWER & BACKDROP
+           -------------------------------------------------------------------------- */
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .drawer-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bag-drawer-aside {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 110;
+            width: 100%;
+            max-width: 460px;
+            background: var(--bg-glass-heavy);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-left: 1px solid var(--border-mid);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.42s var(--ease-out-expo);
+            box-shadow: -25px 0 60px rgba(0, 0, 0, 0.85);
+        }
+
+        .bag-drawer-aside.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            padding: 22px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .drawer-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .drawer-title-group i {
+            font-size: 22px;
+            color: var(--gold-bright);
+        }
+
+        .drawer-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .drawer-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #16161c;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-close-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--gold-primary);
+        }
+
+        /* Drawer Scrollable Body */
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .bag-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bag-item-row {
+            display: flex;
+            gap: 14px;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            background: #111116;
+            border: 1px solid var(--border-subtle);
+            align-items: center;
+        }
+
+        .bag-item-thumb {
+            width: 64px;
+            height: 74px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #1a1a22;
+            flex-shrink: 0;
+        }
+
+        .bag-item-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bag-item-name {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bag-item-price {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            color: var(--gold-bright);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .bag-qty-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qty-stepper {
+            display: inline-flex;
+            align-items: center;
+            background: #08080a;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .qty-btn:hover {
+            background: #1c1c24;
+            color: var(--text-primary);
+        }
+
+        .qty-value {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 0 10px;
+            font-weight: 600;
+        }
+
+        .remove-item-btn {
+            color: var(--text-muted);
+            font-size: 15px;
+            padding: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .remove-item-btn:hover {
+            color: var(--danger);
+        }
+
+        /* Empty Bag State */
+        .empty-bag-box {
+            text-align: center;
+            padding: 48px 16px;
+            color: var(--text-muted);
+        }
+
+        .empty-bag-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #111116;
+            border: 1px solid var(--border-subtle);
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--gold-primary);
+        }
+
+        /* Customer Dispatch Form inside Bag Drawer */
+        .checkout-form-card {
+            background: #0d0d11;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkout-form-title {
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-field label {
+            font-size: 11.5px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-input, .form-select {
+            background: #060608;
+            border: 1px solid var(--border-mid);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+        }
+
+        /* Drawer Footer */
+        .drawer-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-subtle);
+            background: #08080b;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .summary-total-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-mid);
+            margin-bottom: 16px;
+        }
+
+        .summary-total-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .summary-total-amount {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold-bright);
+        }
+
+        .whatsapp-checkout-btn {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--emerald-primary) 0%, var(--emerald-dark) 100%);
+            color: #021c13;
+            font-size: 14px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .whatsapp-checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        .whatsapp-checkout-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* --------------------------------------------------------------------------
+           11. TOAST NOTIFICATION & LAUNCH STORE MODAL
+           -------------------------------------------------------------------------- */
+        .toast-notification {
+            position: fixed;
+            top: 92px;
+            right: 24px;
+            z-index: 120;
+            background: rgba(12, 12, 16, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-emerald);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
+            transform: translateY(-20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s var(--ease-spring);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--emerald-soft);
+            color: var(--emerald-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .toast-text {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Claim Store Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 130;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            position: relative;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Stage Lighting -->
+    <div class="ambient-stage-glow"></div>
+
+    <!-- ==========================================================================
+         TOP PLATFORM HEADER
+         ========================================================================== -->
+    <header class="platform-header">
+        <div class="header-inner">
+            <!-- Studio Index Brand Identity -->
+            <a href="#" class="brand-identity" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+                <div class="brand-monogram">
+                    <i class="ph-fill ph-diamond"></i>
+                </div>
+                <div class="brand-text-wrap">
+                    <div class="brand-title">
+                        STUDIO INDEX
+                        <span class="brand-tag">PRO v2.4</span>
+                    </div>
+                    <span class="brand-sub">Courtesy of Anonymous Devs Official</span>
+                </div>
+            </a>
+
+            <!-- Desktop Live Vendor Switcher Bar -->
+            <nav class="vendor-switcher-bar" aria-label="Switch Live Vendor">
+                <span class="vendor-switch-label"><i class="ph-bold ph-storefront"></i> Live Showrooms:</span>
+                <div id="desktop-vendor-pills" style="display:flex; gap:6px;"></div>
+            </nav>
+
+            <!-- Shopping Bag Trigger Button (Strictly ph-shopping-bag) -->
+            <button id="header-bag-btn" class="bag-trigger-btn" onclick="toggleBagDrawer(true)" aria-label="Open Shopping Bag">
+                <div class="bag-icon-wrap">
+                    <i class="ph-bold ph-shopping-bag"></i>
+                </div>
+                <span id="header-bag-subtotal" class="bag-subtotal-text">₦0</span>
+                <span id="header-bag-count" class="bag-count-badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Live Vendor Switcher Strip -->
+    <div id="mobile-vendor-pills" class="mobile-vendor-strip"></div>
+
+    <!-- ==========================================================================
+         EXPANSIVE DESKTOP SPLIT-SCREEN SHOWROOM
+         ========================================================================== -->
+    <main class="showroom-wrapper">
+        <div class="showroom-grid">
+
+            <!-- LEFT COLUMN: STICKY VENDOR IDENTITY ATELIER -->
+            <aside class="vendor-atelier-aside">
+                <div class="vendor-atelier-card">
+                    <!-- Dynamic Cover Aura -->
+                    <div id="vendor-cover" class="vendor-cover-aura">
+                        <div class="vendor-cover-pattern"></div>
+                        <div class="vendor-status-pill">
+                            <span class="status-live-dot"></span>
+                            <span>VERIFIED MERCHANT</span>
+                        </div>
+                    </div>
+
+                    <div class="vendor-atelier-body">
+                        <div class="vendor-avatar-row">
+                            <div class="vendor-avatar-frame">
+                                <img id="vendor-avatar" src="" alt="Vendor Avatar" class="vendor-avatar-img">
+                                <div class="verified-seal-badge" title="Verified by Studio Index">
+                                    <i class="ph-fill ph-seal-check"></i>
+                                </div>
+                            </div>
+                            <span id="vendor-tier" class="vendor-tier-tag">LAGOS FLAGSHIP</span>
+                        </div>
+
+                        <h1 id="vendor-name" class="vendor-store-name">Loading Atelier...</h1>
+
+                        <div class="vendor-handle-line">
+                            <span id="vendor-handle" class="vendor-handle">@amaka_wears</span>
+                            <span class="vendor-location-chip">
+                                <i class="ph-fill ph-map-pin"></i>
+                                <span id="vendor-hub">Lekki / PH Dispatch</span>
+                            </span>
+                        </div>
+
+                        <p id="vendor-bio" class="vendor-bio-text"></p>
+
+                        <!-- Store Telemetry Metrics -->
+                        <div class="vendor-metrics-grid">
+                            <div class="metric-box">
+                                <span id="vendor-response" class="metric-val">&lt; 4 mins</span>
+                                <span class="metric-label">WhatsApp Reply</span>
+                            </div>
+                            <div class="metric-box">
+                                <span id="vendor-rating" class="metric-val">4.98 ★</span>
+                                <span class="metric-label">Buyer Trust</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="metric-val">100%</span>
+                                <span class="metric-label">RLS Secured</span>
+                            </div>
+                        </div>
+
+                        <!-- Category Filter Pills -->
+                        <span class="filter-section-label">Filter Atelier Collection</span>
+                        <div id="category-filter-container" class="category-pills-wrap"></div>
+
+                        <!-- Direct WhatsApp Concierge CTA -->
+                        <button class="whatsapp-concierge-btn" onclick="openDirectVendorChat()">
+                            <i class="ph-fill ph-whatsapp-logo" style="font-size: 19px;"></i>
+                            <span>Chat on WhatsApp Concierge</span>
+                        </button>
+
+                        <!-- Copy Store Link -->
+                        <div class="share-link-row">
+                            <button class="copy-store-btn" onclick="copyVendorStoreLink()">
+                                <span id="store-url-preview">studioindex.ng/amaka_wears</span>
+                                <i class="ph-bold ph-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- RIGHT COLUMN: EXPANSIVE PRODUCT CATALOG GRID -->
+            <section class="catalog-main-section">
+                <div class="catalog-top-bar">
+                    <div class="catalog-heading-group">
+                        <span id="catalog-eyebrow" class="catalog-eyebrow">CURATED ARCHIVE // SEASON 01</span>
+                        <h2 id="catalog-title" class="catalog-main-title">Available Pieces</h2>
+                    </div>
+
+                    <div class="catalog-controls-right">
+                        <div class="search-input-wrap">
+                            <i class="ph-bold ph-magnifying-glass"></i>
+                            <input
+                                type="text"
+                                id="product-search-input"
+                                class="catalog-search-input"
+                                placeholder="Search pieces..."
+                                oninput="handleProductSearch(this.value)"
+                            >
+                        </div>
+                        <span id="catalog-count-badge" class="catalog-count-pill">8 Pieces</span>
+                    </div>
+                </div>
+
+                <!-- Dynamic Product Grid -->
+                <div id="product-grid-container" class="product-catalog-grid"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         FOOTER 1: FLOATING GLASS BAR (ACTIVE WHILE BROWSING, HIDES AT BOTTOM)
+         ========================================================================== -->
+    <div id="floating-dock-footer" class="floating-dock-footer">
+        <div class="dock-text-content">
+            <i class="ph-fill ph-sparkle dock-sparkle-icon"></i>
+            <span>Powered by <span class="dock-highlight">Studio Index</span></span>
+            <span class="dock-anon-tag">• Courtesy of Anonymous Devs Official</span>
+        </div>
+        <button class="dock-cta-btn" onclick="toggleClaimModal(true)">
+            <span>Create Yours</span>
+            <i class="ph-bold ph-arrow-up-right"></i>
+        </button>
+    </div>
+
+    <!-- ==========================================================================
+         FOOTER 2: THE GRAND ARCHITECTURAL REVEAL FOOTER
+         ========================================================================== -->
+    <footer id="grand-architectural-footer" class="grand-architectural-footer">
+        <div class="grand-footer-glow"></div>
+
+        <!-- Kinetic Marquee Divider -->
+        <div class="kinetic-marquee-strip">
+            <div class="marquee-track">
+                <span class="marquee-item"><strong>STUDIO INDEX</strong> SOCIAL COMMERCE ENGINE <span class="marquee-diamond">◆</span></span>
+                <span class="marquee-item">COURTESY OF <strong>ANONYMOUS DEVS OFFICIAL</strong> <span class="marquee-diamond">◆</span></span>
+                <span class="marquee-item">CREATED BY <strong>ANONYMOUS HIMSELF</strong> <span class="marquee-diamond">◆</span></span>
+                <span class="marquee-item">SUPABASE RLS + ZERO-LATENCY WHATSAPP PIPELINE <span class="marquee-diamond">◆</span></span>
+                <span class="marquee-item"><strong>STUDIO INDEX</strong> SOCIAL COMMERCE ENGINE <span class="marquee-diamond">◆</span></span>
+                <span class="marquee-item">COURTESY OF <strong>ANONYMOUS DEVS OFFICIAL</strong> <span class="marquee-diamond">◆</span></span>
+                <span class="marquee-item">CREATED BY <strong>ANONYMOUS HIMSELF</strong> <span class="marquee-diamond">◆</span></span>
+                <span class="marquee-item">SUPABASE RLS + ZERO-LATENCY WHATSAPP PIPELINE <span class="marquee-diamond">◆</span></span>
+            </div>
+        </div>
+
+        <div class="grand-footer-inner">
+            <!-- Monumental Courtesy Showcase -->
+            <div class="courtesy-monument-box">
+                <div class="courtesy-eyebrow-badge">
+                    <i class="ph-fill ph-crown"></i>
+                    <span>OFFICIAL ARCHITECTURAL RELEASE</span>
+                </div>
+
+                <h2 class="courtesy-headline">COURTESY OF ANONYMOUS DEVS OFFICIAL</h2>
+
+                <!-- Bespoke Signature Crest Plaque -->
+                <div class="signature-crest-plaque">
+                    <div class="crest-seal-icon">
+                        <i class="ph-fill ph-fingerprint"></i>
+                    </div>
+                    <div class="crest-copy">
+                        <span class="crest-label">AUTHENTICATED CODEBASE SIGNATURE</span>
+                        <div class="crest-title">Created &amp; Engineered by Anonymous Himself</div>
+                        <div class="crest-sub">Bespoke Luxury UI • Supabase Security Definer • WhatsApp Invoice Engine</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi-Column Architectural Footer Links -->
+            <div class="footer-columns-grid">
+                <div>
+                    <div class="brand-identity" style="margin-bottom: 14px;">
+                        <div class="brand-monogram">
+                            <i class="ph-fill ph-diamond"></i>
+                        </div>
+                        <div class="brand-text-wrap">
+                            <div class="brand-title">STUDIO INDEX</div>
+                            <span class="brand-sub">High-Conversion Link-in-Bio SaaS</span>
+                        </div>
+                    </div>
+                    <p class="footer-col-desc">
+                        Transforming chaotic Instagram &amp; TikTok DMs into structured, high-trust luxury showrooms with instant WhatsApp invoice routing across Lagos, Port Harcourt, and Abuja.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="footer-col-title">Live Showrooms</h3>
+                    <ul class="footer-link-list">
+                        <li class="footer-link-item" onclick="switchVendor('amaka_wears'); window.scrollTo({top:0, behavior:'smooth'});">
+                            <i class="ph-bold ph-arrow-right"></i> @amaka_wears
+                        </li>
+                        <li class="footer-link-item" onclick="switchVendor('tunde_scents'); window.scrollTo({top:0, behavior:'smooth'});">
+                            <i class="ph-bold ph-arrow-right"></i> @tunde_scents
+                        </li>
+                        <li class="footer-link-item" onclick="switchVendor('chioma_glam'); window.scrollTo({top:0, behavior:'smooth'});">
+                            <i class="ph-bold ph-arrow-right"></i> @chioma_glam
+                        </li>
+                        <li class="footer-link-item" onclick="switchVendor('ibrahim_fits'); window.scrollTo({top:0, behavior:'smooth'});">
+                            <i class="ph-bold ph-arrow-right"></i> @ibrahim_fits
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-col-title">Core Architecture</h3>
+                    <ul class="footer-link-list">
+                        <li class="footer-link-item" onclick="toggleBagDrawer(true)">
+                            <i class="ph-bold ph-shopping-bag"></i> LocalStorage Bag Engine
+                        </li>
+                        <li class="footer-link-item" onclick="toggleClaimModal(true)">
+                            <i class="ph-bold ph-shield-check"></i> Deny-by-Default RLS
+                        </li>
+                        <li class="footer-link-item" onclick="toggleClaimModal(true)">
+                            <i class="ph-bold ph-whatsapp-logo"></i> Dynamic Invoice Formatter
+                        </li>
+                        <li class="footer-link-item" onclick="toggleClaimModal(true)">
+                            <i class="ph-bold ph-database"></i> Offline JSON Fallback Ready
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-col-title">Launch Your Atelier</h3>
+                    <div class="footer-cta-card">
+                        <p>Turn your Instagram bio into a 24/7 automated luxury storefront in under 3 minutes.</p>
+                        <button class="claim-store-btn" onclick="toggleClaimModal(true)">
+                            <i class="ph-bold ph-rocket-launch"></i>
+                            <span>Claim Your Studio Link</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <div>© 2026 STUDIO INDEX • COURTESY OF ANONYMOUS DEVS OFFICIAL. ALL RIGHTS RESERVED.</div>
+                <div class="telemetry-badge">
+                    <span class="status-live-dot"></span>
+                    <span>ENGINEERED BY ANONYMOUS HIMSELF // ALL SYSTEMS NOMINAL</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         SLIDE-OUT SHOPPING BAG DRAWER
+         ========================================================================== -->
+    <div id="drawer-backdrop" class="drawer-backdrop" onclick="toggleBagDrawer(false)"></div>
+
+    <aside id="bag-drawer" class="bag-drawer-aside" aria-label="Shopping Bag Drawer">
+        <div class="drawer-header">
+            <div class="drawer-title-group">
+                <i class="ph-fill ph-shopping-bag"></i>
+                <h2 class="drawer-title">Your Luxury Bag</h2>
+            </div>
+            <button class="drawer-close-btn" onclick="toggleBagDrawer(false)" aria-label="Close Bag">
+                <i class="ph-bold ph-x"></i>
+            </button>
+        </div>
+
+        <div class="drawer-body">
+            <!-- Dynamic Bag Items -->
+            <div id="bag-items-container" class="bag-items-list"></div>
+
+            <!-- Customer Dispatch Details Form -->
+            <div class="checkout-form-card">
+                <div class="checkout-form-title">
+                    <i class="ph-fill ph-paper-plane-tilt"></i>
+                    <span>Instant WhatsApp Invoice Details</span>
+                </div>
+
+                <div class="form-field">
+                    <label for="buyer-name">Your Full Name</label>
+                    <input type="text" id="buyer-name" class="form-input" placeholder="e.g. Chim / Tobi Adeyemi">
+                </div>
+
+                <div class="form-field">
+                    <label for="buyer-zone">Delivery Hub / Zone</label>
+                    <select id="buyer-zone" class="form-select">
+                        <option value="GRA Phase 2 (Port Harcourt)">GRA Phase 2 (Port Harcourt)</option>
+                        <option value="Orazi / Peter Odili (PH)">Orazi / Peter Odili (PH)</option>
+                        <option value="Lekki Phase 1 (Lagos)">Lekki Phase 1 (Lagos)</option>
+                        <option value="Victoria Island / Ikoyi (Lagos)">Victoria Island / Ikoyi (Lagos)</option>
+                        <option value="Ikeja GRA / Mainland (Lagos)">Ikeja GRA / Mainland (Lagos)</option>
+                        <option value="Maitama / Wuse II (Abuja)">Maitama / Wuse II (Abuja)</option>
+                        <option value="Nationwide DHL Express">Nationwide DHL Express</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer-footer">
+            <div class="summary-line">
+                <span>Merchant Showroom</span>
+                <strong id="bag-merchant-label" style="color: var(--text-primary);">@amaka_wears</strong>
+            </div>
+            <div class="summary-line">
+                <span>Dispatch Method</span>
+                <span>WhatsApp Verified Escrow</span>
+            </div>
+            <div class="summary-total-line">
+                <span class="summary-total-label">Total Due</span>
+                <span id="bag-total-price" class="summary-total-amount">₦0</span>
+            </div>
+
+            <button id="whatsapp-checkout-btn" class="whatsapp-checkout-btn" onclick="proceedToWhatsAppInvoice()">
+                <i class="ph-fill ph-whatsapp-logo" style="font-size: 20px;"></i>
+                <span>Proceed to WhatsApp Checkout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="toast-notification">
+        <div class="toast-icon">
+            <i class="ph-bold ph-shopping-bag"></i>
+        </div>
+        <div id="toast-message" class="toast-text">Added to your luxury bag</div>
+    </div>
+
+    <!-- Claim Your Studio Index Modal -->
+    <div id="claim-modal" class="modal-overlay" onclick="if(event.target === this) toggleClaimModal(false)">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <span class="courtesy-eyebrow-badge" style="margin-bottom:0;">STUDIO INDEX ONBOARDING</span>
+                <button class="drawer-close-btn" onclick="toggleClaimModal(false)">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+            <h3 style="font-family:var(--font-display); font-size:24px; margin-bottom:8px;">Launch Your Storefront</h3>
+            <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:20px;">
+                Built by <strong>Anonymous Himself</strong> (<span style="color:var(--gold-bright);">Anonymous Devs Official</span>). Get your custom link-in-bio showroom with automated WhatsApp invoice generation.
+            </p>
+            <div class="form-field" style="margin-bottom:14px;">
+                <label>Desired Store Handle</label>
+                <input type="text" id="claim-handle-input" class="form-input" placeholder="e.g. lagos_luxury_wears">
+            </div>
+            <button class="whatsapp-concierge-btn" onclick="toggleClaimModal(false); showToast('Handle reserved! Anonymous Devs concierge notified.');">
+                <i class="ph-bold ph-sparkle"></i>
+                <span>Reserve My Studio Link (₦3,500/mo)</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         JAVASCRIPT ENGINE (MOCK DATABASE, CART LOCALSTORAGE, SCROLL OBSERVER)
+         ========================================================================== -->
+    <script>
+        /* --------------------------------------------------------------------------
+           1. PRE-LOADED NIGERIAN LUXURY VENDORS & PRODUCTS
+           -------------------------------------------------------------------------- */
+        const SELLERS_DB = {
+            amaka_wears: {
+                id: 'seller_999',
+                username: 'amaka_wears',
+                store_name: "Amaka's Premium Fits",
+                whatsapp_number: '2348012345678',
+                bio: 'Curated heavyweight streetwear, archival denim & rare sneakers. Direct dispatch across GRA Port Harcourt & Lekki Phase 1.',
+                avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+                cover_gradient: 'linear-gradient(135deg, #3b230a 0%, #072318 60%, #0c0c0e 100%)',
+                tier: 'LAGOS / PH FLAGSHIP',
+                hub: 'GRA PH & Lekki Dispatch',
+                response_time: '< 3 mins',
+                rating: '4.99 ★'
+            },
+            tunde_scents: {
+                id: 'seller_101',
+                username: 'tunde_scents',
+                store_name: 'Tunde Artisanal Oud',
+                whatsapp_number: '2348023456789',
+                bio: 'High-concentration niche perfumery, raw Cambodian Oud & bespoke oil blends crafted for 24-hour projection in tropical heat.',
+                avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+                cover_gradient: 'linear-gradient(135deg, #2e1f08 0%, #1d1228 60%, #0c0c0e 100%)',
+                tier: 'NICHE PERFUMERY',
+                hub: 'Victoria Island Hub',
+                response_time: '< 5 mins',
+                rating: '4.97 ★'
+            },
+            chioma_glam: {
+                id: 'seller_202',
+                username: 'chioma_glam',
+                store_name: 'Chioma Silk & Hair Atelier',
+                whatsapp_number: '2348034567890',
+                bio: 'Single-donor raw Vietnamese bone-straight bundles, HD custom frontal units & pure mulberry silk accessories.',
+                avatar_url: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80',
+                cover_gradient: 'linear-gradient(135deg, #381224 0%, #241b08 60%, #0c0c0e 100%)',
+                tier: 'LUXURY BEAUTY',
+                hub: 'Lekki Phase 1 Studio',
+                response_time: '< 4 mins',
+                rating: '5.00 ★'
+            },
+            ibrahim_fits: {
+                id: 'seller_303',
+                username: 'ibrahim_fits',
+                store_name: 'Ibrahim Bespoke Couture',
+                whatsapp_number: '2348045678901',
+                bio: 'Architectural Nigerian Senator wear, hand-embroidered Agbada ensembles & Italian wool native tailoring.',
+                avatar_url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+                cover_gradient: 'linear-gradient(135deg, #0b261c 0%, #2b2109 60%, #0c0c0e 100%)',
+                tier: 'BESPOKE TAILORING',
+                hub: 'Maitama & VI Showroom',
+                response_time: '< 6 mins',
+                rating: '4.98 ★'
+            }
+        };
+
+        const PRODUCTS_DB = [
+            // Amaka Wears (6 products)
+            { id: 'amk_1', seller_id: 'amaka_wears', name: 'Archival Heavyweight Boxy Hoodie', category: 'Outerwear', spec: '480GSM French Terry • Obsidian', price: 38000, image_url: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80' },
+            { id: 'amk_2', seller_id: 'amaka_wears', name: 'Vintage Distressed Carpenter Denim', category: 'Denim', spec: 'Relaxed Fit • Washed Indigo', price: 42000, image_url: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=80' },
+            { id: 'amk_3', seller_id: 'amaka_wears', name: 'Noir Leather Low-Top Sneakers', category: 'Footwear', spec: 'EU 41 - 45 • Calfskin Upper', price: 65000, image_url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=700&q=80' },
+            { id: 'amk_4', seller_id: 'amaka_wears', name: 'Lagos Utility Cargo Overshirt', category: 'Outerwear', spec: 'Ripstop Cotton • Olive Drab', price: 32000, image_url: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=80' },
+            { id: 'amk_5', seller_id: 'amaka_wears', name: 'Gold-Rimmed Acetate Sunglasses', category: 'Accessories', spec: 'UV400 Polarized • Tortoise', price: 24000, image_url: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80' },
+            { id: 'amk_6', seller_id: 'amaka_wears', name: 'Monogram Crossbody Messenger Bag', category: 'Accessories', spec: 'Ballistic Nylon + Matte Hardware', price: 29500, image_url: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80' },
+
+            // Tunde Scents (6 products)
+            { id: 'tnd_1', seller_id: 'tunde_scents', name: 'Imperial Cambodian Oud Extrait', category: 'Extrait de Parfum', spec: '100ml • 40% Oil Concentration', price: 85000, image_url: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80' },
+            { id: 'tnd_2', seller_id: 'tunde_scents', name: 'Smoked Amber & Saffron Elixir', category: 'Extrait de Parfum', spec: '50ml • Warm Spicy Projection', price: 54000, image_url: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80' },
+            { id: 'tnd_3', seller_id: 'tunde_scents', name: 'Pure Musk Tahara Roll-On Oil', category: 'Artisanal Oils', spec: '12ml Crystal Tola • Alcohol-Free', price: 18500, image_url: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80' },
+            { id: 'tnd_4', seller_id: 'tunde_scents', name: 'Nocturnal Cedar & Vetiver Mist', category: 'Eau de Parfum', spec: '100ml • Crisp Woody Signature', price: 62000, image_url: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=700&q=80' },
+            { id: 'tnd_5', seller_id: 'tunde_scents', name: 'Bakhoor Royal Incense Burner Set', category: 'Home Rituals', spec: 'Handcrafted Brass + 50g Chips', price: 45000, image_url: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=700&q=80' },
+            { id: 'tnd_6', seller_id: 'tunde_scents', name: '5-Piece Luxury Discovery Coffret', category: 'Discovery Sets', spec: '5 x 10ml Travel Atomizers', price: 39000, image_url: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=700&q=80' },
+
+            // Chioma Glam (6 products)
+            { id: 'chm_1', seller_id: 'chioma_glam', name: '30" Raw Vietnamese Bone Straight', category: 'Raw Bundles', spec: '300g Full Unit • Double Drawn', price: 245000, image_url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80' },
+            { id: 'chm_2', seller_id: 'chioma_glam', name: 'HD Melted Lace Bob Wig (14 Inch)', category: 'Custom Units', spec: 'Pre-Plucked • Glueless Ready', price: 135000, image_url: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=700&q=80' },
+            { id: 'chm_3', seller_id: 'chioma_glam', name: '22-Momme Mulberry Silk Night Wrap', category: 'Silk Care', spec: 'Champagne Gold • Zero Frizz', price: 22000, image_url: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80' },
+            { id: 'chm_4', seller_id: 'chioma_glam', name: 'Argan & Keratin Gloss Serum', category: 'Hair Care', spec: '100ml Heat Shield Formula', price: 19500, image_url: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80' },
+            { id: 'chm_5', seller_id: 'chioma_glam', name: '26" Deep Wave Burmese Luxury Unit', category: 'Custom Units', spec: '5x5 HD Closure • Lush Curls', price: 190000, image_url: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=700&q=80' },
+            { id: 'chm_6', seller_id: 'chioma_glam', name: 'Ionic Titanium Flat Iron (450°F)', category: 'Styling Tools', spec: 'Single-Pass Silk Press Plate', price: 58000, image_url: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=700&q=80' },
+
+            // Ibrahim Fits (6 products)
+            { id: 'ibr_1', seller_id: 'ibrahim_fits', name: 'Obsidian Cashmere Senator Two-Piece', category: 'Senator Wear', spec: 'Super 150s Wool • Geometric Cuff', price: 95000, image_url: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=700&q=80' },
+            { id: 'ibr_2', seller_id: 'ibrahim_fits', name: 'Royal Emerald Hand-Loomed Agbada', category: 'Agbada Couture', spec: '3-Piece Complete • Gold Threading', price: 210000, image_url: 'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=700&q=80' },
+            { id: 'ibr_3', seller_id: 'ibrahim_fits', name: 'Handwoven Aso-Oke Fila Cap', category: 'Headwear', spec: 'Metallic Gold & Onyx Weave', price: 28000, image_url: 'https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=700&q=80' },
+            { id: 'ibr_4', seller_id: 'ibrahim_fits', name: 'Ivory Silk Kaftan with Onyx Piping', category: 'Kaftan', spec: 'Breathable Italian Silk Blend', price: 82000, image_url: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=700&q=80' },
+            { id: 'ibr_5', seller_id: 'ibrahim_fits', name: 'Artisanal Brass & Onyx Cufflinks', category: 'Accessories', spec: 'Gift Boxed • Tarnish Resistant', price: 34000, image_url: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=80' },
+            { id: 'ibr_6', seller_id: 'ibrahim_fits', name: 'Hand-Stitched Italian Leather Mule', category: 'Footwear', spec: 'EU 40 - 46 • Crocodile Embossed', price: 78000, image_url: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=700&q=80' }
+        ];
+
+        /* --------------------------------------------------------------------------
+           2. APPLICATION STATE & LOCALSTORAGE BAG PERSISTENCE
+           -------------------------------------------------------------------------- */
+        let activeVendorKey = 'amaka_wears';
+        let activeCategory = 'All';
+        let searchQuery = '';
+        let shoppingBag = [];
+
+        const BAG_STORAGE_KEY = 'studio_index_luxury_bag_v2';
+
+        function loadBagFromStorage() {
+            try {
+                const raw = localStorage.getItem(BAG_STORAGE_KEY);
+                if (raw) {
+                    shoppingBag = JSON.parse(raw);
+                }
+            } catch (e) {
+                console.error('Failed to read localStorage bag:', e);
+                shoppingBag = [];
+            }
+        }
+
+        function saveBagToStorage() {
+            try {
+                localStorage.setItem(BAG_STORAGE_KEY, JSON.stringify(shoppingBag));
+            } catch (e) {
+                console.error('Failed to save localStorage bag:', e);
+            }
+        }
+
+        function formatNaira(amount) {
+            return '₦' + Number(amount).toLocaleString('en-NG');
+        }
+
+        /* --------------------------------------------------------------------------
+           3. RENDER VENDOR SWITCHER & VENDOR ATELIER PROFILE
+           -------------------------------------------------------------------------- */
+        function renderVendorSwitchers() {
+            const desktopContainer = document.getElementById('desktop-vendor-pills');
+            const mobileContainer = document.getElementById('mobile-vendor-pills');
+
+            const html = Object.values(SELLERS_DB).map(seller => {
+                const isActive = seller.username === activeVendorKey ? 'active' : '';
+                return `
+                    <button class="vendor-pill-btn ${isActive}" onclick="switchVendor('${seller.username}')">
+                        <span class="vendor-pill-dot"></span>
+                        <span>@${seller.username}</span>
+                    </button>
+                `;
+            }).join('');
+
+            desktopContainer.innerHTML = html;
+            mobileContainer.innerHTML = html;
+        }
+
+        function switchVendor(usernameKey) {
+            if (!SELLERS_DB[usernameKey]) return;
+            activeVendorKey = usernameKey;
+            activeCategory = 'All';
+            searchQuery = '';
+            const searchEl = document.getElementById('product-search-input');
+            if (searchEl) searchEl.value = '';
+
+            renderVendorSwitchers();
+            renderVendorAtelier();
+            renderProductsGrid();
+            updateBagUI();
+        }
+
+        function renderVendorAtelier() {
+            const vendor = SELLERS_DB[activeVendorKey];
+            document.getElementById('vendor-cover').style.background = vendor.cover_gradient;
+
+            const avatarEl = document.getElementById('vendor-avatar');
+            avatarEl.src = vendor.avatar_url;
+            avatarEl.onerror = function() {
+                this.src = 'https://placehold.co/200x200/141418/fbbf24?text=' + encodeURIComponent(vendor.store_name.charAt(0));
+            };
+
+            document.getElementById('vendor-tier').textContent = vendor.tier;
+            document.getElementById('vendor-name').textContent = vendor.store_name;
+            document.getElementById('vendor-handle').textContent = '@' + vendor.username;
+            document.getElementById('vendor-hub').textContent = vendor.hub;
+            document.getElementById('vendor-bio').textContent = vendor.bio;
+            document.getElementById('vendor-response').textContent = vendor.response_time;
+            document.getElementById('vendor-rating').textContent = vendor.rating;
+            document.getElementById('store-url-preview').textContent = 'studioindex.ng/' + vendor.username;
+            document.getElementById('catalog-eyebrow').textContent = `ATELIER SHOWROOM // @${vendor.username.toUpperCase()}`;
+
+            // Render Category Filter Pills
+            const vendorProducts = PRODUCTS_DB.filter(p => p.seller_id === activeVendorKey);
+            const categories = ['All', ...new Set(vendorProducts.map(p => p.category))];
+            const catContainer = document.getElementById('category-filter-container');
+
+            catContainer.innerHTML = categories.map(cat => `
+                <button
+                    class="cat-filter-pill ${cat === activeCategory ? 'active' : ''}"
+                    onclick="setCategoryFilter('${cat}')"
+                >
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function setCategoryFilter(category) {
+            activeCategory = category;
+            renderVendorAtelier();
+            renderProductsGrid();
+        }
+
+        function handleProductSearch(val) {
+            searchQuery = val.trim().toLowerCase();
+            renderProductsGrid();
+        }
+
+        /* --------------------------------------------------------------------------
+           4. RENDER EXPANSIVE PRODUCT CATALOG GRID
+           -------------------------------------------------------------------------- */
+        function renderProductsGrid() {
+            const gridEl = document.getElementById('product-grid-container');
+            const filtered = PRODUCTS_DB.filter(item => {
+                const matchesSeller = item.seller_id === activeVendorKey;
+                const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
+                const matchesSearch = !searchQuery ||
+                    item.name.toLowerCase().includes(searchQuery) ||
+                    item.spec.toLowerCase().includes(searchQuery) ||
+                    item.category.toLowerCase().includes(searchQuery);
+                return matchesSeller && matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('catalog-count-badge').textContent =
+                `${filtered.length} ${filtered.length === 1 ? 'Piece' : 'Pieces'}`;
+
+            if (filtered.length === 0) {
+                gridEl.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
+                        <i class="ph-duotone ph-magnifying-glass" style="font-size: 40px; color: var(--gold-primary); margin-bottom: 12px;"></i>
+                        <h3 style="font-family: var(--font-display); font-size: 18px; margin-bottom: 6px;">No Matching Pieces Found</h3>
+                        <p style="font-size: 13px; color: var(--text-muted);">Try clearing your search filter or switching categories.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            gridEl.innerHTML = filtered.map((product, idx) => {
+                const delayMs = idx * 75;
+                return `
+                    <article class="product-card" style="animation-delay: ${delayMs}ms;">
+                        <div class="product-media-box">
+                            <img
+                                src="${product.image_url}"
+                                alt="${product.name}"
+                                class="product-img"
+                                loading="lazy"
+                                onerror="this.src='https://placehold.co/600x750/121216/f59e0b?text=${encodeURIComponent(product.name)}'"
+                            >
+                            <div class="product-media-overlay"></div>
+                            <span class="product-category-badge">${product.category}</span>
+                            <span class="product-stock-tag">IN STOCK</span>
+                            <div class="product-price-floating">${formatNaira(product.price)}</div>
+                        </div>
+
+                        <div class="product-info-box">
+                            <div>
+                                <h3 class="product-title">${product.name}</h3>
+                                <p class="product-spec-sub">${product.spec}</p>
+                            </div>
+
+                            <button
+                                id="add-btn-${product.id}"
+                                class="add-to-bag-btn"
+                                onclick="addToBag('${product.id}')"
+                            >
+                                <i class="ph-bold ph-shopping-bag"></i>
+                                <span>Add to Bag</span>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        /* --------------------------------------------------------------------------
+           5. SHOPPING BAG OPERATIONS & WHATSAPP INVOICE ENGINE
+           -------------------------------------------------------------------------- */
+        function addToBag(productId) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = shoppingBag.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                shoppingBag.push({
+                    id: product.id,
+                    seller_id: product.seller_id,
+                    name: product.name,
+                    price: product.price,
+                    image_url: product.image_url,
+                    qty: 1
+                });
+            }
+
+            saveBagToStorage();
+            updateBagUI();
+
+            // Button micro-feedback
+            const btn = document.getElementById(`add-btn-${productId}`);
+            if (btn) {
+                btn.classList.add('added-state');
+                btn.innerHTML = `<i class="ph-bold ph-check"></i><span>Added to Bag</span>`;
+                setTimeout(() => {
+                    btn.classList.remove('added-state');
+                    btn.innerHTML = `<i class="ph-bold ph-shopping-bag"></i><span>Add to Bag</span>`;
+                }, 900);
+            }
+
+            // Bounce header shopping bag button
+            const headerBtn = document.getElementById('header-bag-btn');
+            headerBtn.classList.remove('animate-bounce');
+            void headerBtn.offsetWidth;
+            headerBtn.classList.add('animate-bounce');
+
+            showToast(`Added "${product.name}" to bag`);
+        }
+
+        function updateBagQty(productId, delta) {
+            const idx = shoppingBag.findIndex(item => item.id === productId);
+            if (idx === -1) return;
+
+            shoppingBag[idx].qty += delta;
+            if (shoppingBag[idx].qty <= 0) {
+                shoppingBag.splice(idx, 1);
+            }
+
+            saveBagToStorage();
+            updateBagUI();
+        }
+
+        function removeFromBag(productId) {
+            shoppingBag = shoppingBag.filter(item => item.id !== productId);
+            saveBagToStorage();
+            updateBagUI();
+        }
+
+        function updateBagUI() {
+            const totalItems = shoppingBag.reduce((sum, item) => sum + item.qty, 0);
+            const totalAmount = shoppingBag.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            document.getElementById('header-bag-count').textContent = totalItems;
+            document.getElementById('header-bag-subtotal').textContent = formatNaira(totalAmount);
+            document.getElementById('bag-total-price').textContent = formatNaira(totalAmount);
+            document.getElementById('bag-merchant-label').textContent = '@' + activeVendorKey;
+
+            const container = document.getElementById('bag-items-container');
+            const checkoutBtn = document.getElementById('whatsapp-checkout-btn');
+
+            if (shoppingBag.length === 0) {
+                checkoutBtn.disabled = true;
+                container.innerHTML = `
+                    <div class="empty-bag-box">
+                        <div class="empty-bag-icon">
+                            <i class="ph-duotone ph-shopping-bag"></i>
+                        </div>
+                        <h4 style="font-family:var(--font-display); font-size:16px; color:var(--text-primary); margin-bottom:4px;">Your Luxury Bag is Empty</h4>
+                        <p style="font-size:12.5px;">Explore the showroom and tap "Add to Bag" to build your WhatsApp invoice.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            checkoutBtn.disabled = false;
+            container.innerHTML = shoppingBag.map(item => `
+                <div class="bag-item-row">
+                    <img
+                        src="${item.image_url}"
+                        alt="${item.name}"
+                        class="bag-item-thumb"
+                        onerror="this.src='https://placehold.co/120x140/141418/f59e0b?text=Item'"
+                    >
+                    <div class="bag-item-details">
+                        <div class="bag-item-name">${item.name}</div>
+                        <div class="bag-item-price">${formatNaira(item.price * item.qty)}</div>
+                        <div class="bag-qty-controls">
+                            <div class="qty-stepper">
+                                <button class="qty-btn" onclick="updateBagQty('${item.id}', -1)">-</button>
+                                <span class="qty-value">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateBagQty('${item.id}', 1)">+</button>
+                            </div>
+                            <button class="remove-item-btn" onclick="removeFromBag('${item.id}')" title="Remove item">
+                                <i class="ph-bold ph-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleBagDrawer(open) {
+            const drawer = document.getElementById('bag-drawer');
+            const backdrop = document.getElementById('drawer-backdrop');
+            if (open) {
+                drawer.classList.add('open');
+                backdrop.classList.add('open');
+            } else {
+                drawer.classList.remove('open');
+                backdrop.classList.remove('open');
+            }
+        }
+
+        function proceedToWhatsAppInvoice() {
+            if (shoppingBag.length === 0) return;
+
+            const vendor = SELLERS_DB[activeVendorKey];
+            const customerName = document.getElementById('buyer-name').value.trim() || 'Valued Client';
+            const deliveryZone = document.getElementById('buyer-zone').value;
+            const orderRef = Math.floor(1000 + Math.random() * 9000);
+            const totalAmount = shoppingBag.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            const itemLines = shoppingBag.map(item =>
+                `• ${item.qty}x ${item.name} — ${formatNaira(item.price * item.qty)}`
+            ).join('\n');
+
+            const invoiceText =
+`🛍️ *STUDIO INDEX OFFICIAL ORDER [#${orderRef}]*
+*Merchant:* ${vendor.store_name} (@${vendor.username})
+----------------------------------
+*Customer:* ${customerName}
+*Delivery Zone:* ${deliveryZone}
+
+*Selected Pieces:*
+${itemLines}
+
+*TOTAL DUE:* ${formatNaira(totalAmount)}
+----------------------------------
+_Generated via Studio Index • Courtesy of Anonymous Devs Official._
+_Hello! I am ready to confirm payment and dispatch._`;
+
+            const whatsappUrl = `https://wa.me/${vendor.whatsapp_number}?text=${encodeURIComponent(invoiceText)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        function openDirectVendorChat() {
+            const vendor = SELLERS_DB[activeVendorKey];
+            const msg = `Hello ${vendor.store_name}! I am browsing your official Studio Index showroom (@${vendor.username}) and would like to make an inquiry.`;
+            const whatsappUrl = `https://wa.me/${vendor.whatsapp_number}?text=${encodeURIComponent(msg)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        function copyVendorStoreLink() {
+            const linkText = `https://studioindex.ng/${activeVendorKey}`;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = linkText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(`Copied link: studioindex.ng/${activeVendorKey}`);
+        }
+
+        /* --------------------------------------------------------------------------
+           6. TOAST & MODAL UTILITIES
+           -------------------------------------------------------------------------- */
+        let toastTimer = null;
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.add('show');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2600);
+        }
+
+        function toggleClaimModal(open) {
+            const modal = document.getElementById('claim-modal');
+            if (open) {
+                modal.classList.add('open');
+            } else {
+                modal.classList.remove('open');
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           7. DUAL-FOOTER INTERSECTION OBSERVER ENGINE
+           -------------------------------------------------------------------------- */
+        function initDualFooterObserver() {
+            const floatingDock = document.getElementById('floating-dock-footer');
+            const grandFooter = document.getElementById('grand-architectural-footer');
+
+            if (!('IntersectionObserver' in window) || !floatingDock || !grandFooter) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Hide the compact floating pill so the Grand Architectural Footer shines
+                        floatingDock.classList.add('dock-hidden');
+                    } else {
+                        floatingDock.classList.remove('dock-hidden');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.08
+            });
+
+            observer.observe(grandFooter);
+        }
+
+        /* --------------------------------------------------------------------------
+           8. INITIALIZATION ON LOAD
+           -------------------------------------------------------------------------- */
+        window.addEventListener('DOMContentLoaded', () => {
+            loadBagFromStorage();
+            renderVendorSwitchers();
+            renderVendorAtelier();
+            renderProductsGrid();
+            updateBagUI();
+            initDualFooterObserver();
+        });
+    </script>
+</body>
+</html>

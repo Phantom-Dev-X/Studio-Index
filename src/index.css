@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@source "../src";
+
+/* ============================================================
+   OMOR.HTML BRAND TOKENS — registered so Tailwind v4 never
+   silently drops colors that aren't in its default palette.
+   ============================================================ */
+:root {
+    /* Backgrounds */
+    --bg-dark: #0a0a0a;
+    --bg-surface: #121214;
+    --bg-glass: rgba(18, 18, 20, 0.78);
+
+    /* Bronze / Olive card tones */
+    --card-bronze-bg: rgba(115, 107, 77, 0.13);
+    /* #736b4d21 */
+    --card-bronze-border: rgba(78, 73, 54, 0.59);
+    /* #4e493696 */
+    --tag-olive-fill: #39341f;
+
+    /* Brand accents */
+    --amber-400: #fbbf24;
+    --amber-500: #f59e0b;
+    --amber-glow: rgba(251, 191, 36, 0.35);
+    --emerald-500: #10b981;
+    --emerald-600: #059669;
+    --emerald-glow: rgba(16, 185, 129, 0.35);
+
+    /* Neutral text & borders */
+    --text-white: #fafafa;
+    --text-muted: #a3a3a3;
+    --text-dim: #737373;
+    --border-neutral: rgba(38, 38, 38, 0.85);
+    --border-light: rgba(163, 163, 163, 0.25);
+}
+
+html,
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@theme {
+    --breakpoint-fmq: 375px;
+    --breakpoint-smq: 585px;
+    --breakpoint-tmq: 510px;
+    --background-image-footer-glow: radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.06) 0%, rgba(16, 185, 129, 0.03) 35%, #050507 75%);
+
+    /* Expose brand tokens as Tailwind design tokens */
+    --color-brand-amber: #fbbf24;
+    --color-brand-emerald: #10b981;
+    --color-brand-dark: #0a0a0a;
+    --color-brand-surface: #121214;
+    --color-brand-muted: #a3a3a3;
+    --color-brand-dim: #737373;
+}
+
+@keyframes borderBeamRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-beam-spin {
+    animation: borderBeamRotate 7s linear infinite;
+}
