@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Studio Index – Turn Your Instagram Followers Into Customers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: #fff;
+            --mut: #a9a9a9;
+            --card: #0d0d0d;
+            --line: #ffffff1f;
+            --glass: #ffffff10;
+            --g1: #ffd65f;
+            --g2: #f3a81a;
+            --gold: #f7b92c;
+            color-scheme: dark;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        :root[data-theme=light] {
+            --bg: #fffaf0;
+            --fg: #16120a;
+            --mut: #6d654f;
+            --card: #fff;
+            --line: #16120a26;
+            --glass: #ffffffcc;
+            color-scheme: light
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            scroll-behavior: smooth
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+            margin: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font: 400 15px/1.5 Poppins, system-ui, -apple-system, "Segoe UI", sans-serif;
+            overflow-x: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        svg {
+            display: block
+        }
+
+        .w {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 40px
+        }
+
+        .gt {
+            background: linear-gradient(180deg, var(--g1), var(--g2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .ic {
+            width: 1em;
+            height: 1em;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .f {
+            fill: currentColor
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            font: 600 14px Poppins, sans-serif;
+            padding: 14px 26px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--fg);
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .btn .ic {
+            width: 14px;
+            height: 14px
+        }
+
+        .btn.g {
+            background: linear-gradient(180deg, var(--g1), var(--g2));
+            color: #1a1204;
+            border: 0;
+            box-shadow: 0 6px 24px #f7b92c40
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px #f7b92c55
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 22px 40px
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 20px
+        }
+
+        .logo svg {
+            width: 34px;
+            height: 36px
+        }
+
+        .logo i {
+            font-style: normal;
+            color: var(--gold)
+        }
+
+        .nav nav {
+            display: flex;
+            gap: 36px;
+            font-size: 13.5px;
+            font-weight: 500
+        }
+
+        .nav nav a {
+            padding: 8px 0;
+            border-bottom: 2px solid transparent
+        }
+
+        .nav nav a.on {
+            border-color: var(--gold)
+        }
+
+        .act {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .act .btn {
+            padding: 10px 24px;
+            font-size: 13px
+        }
+
+        .act .g {
+            padding: 10px 18px;
+            font-size: 12px
+        }
+
+        .tg {
+            width: 46px;
+            height: 24px;
+            border-radius: 99px;
+            background: #1c1c1c;
+            border: 0;
+            cursor: pointer;
+            padding: 0 4px;
+            display: flex;
+            align-items: center;
+            transition: .2s
+        }
+
+        .tg .ic {
+            width: 18px;
+            height: 18px;
+            color: var(--gold)
+        }
+
+        [data-theme=light] .tg {
+            justify-content: flex-end;
+            background: #e6dcc3
+        }
+
+        .hero {
+            position: relative;
+            padding-bottom: 90px;
+            overflow-x: clip;
+            background: radial-gradient(55% 55% at 78% 35%, #f7b92c1c, transparent 70%)
+        }
+
+        .hero .w {
+            display: grid;
+            grid-template-columns: 1.12fr 1fr;
+            align-items: center;
+            position: relative;
+            z-index: 1
+        }
+
+        .bd {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid #f7b92c70;
+            border-radius: 99px;
+            background: #f7b92c14;
+            font-size: 12px;
+            font-weight: 500
+        }
+
+        .bd .ic {
+            color: var(--gold);
+            width: 16px;
+            height: 16px
+        }
+
+        h1 {
+            font-size: clamp(32px, 4.5vw, 46px);
+            line-height: 1.1;
+            font-weight: 600;
+            margin: 24px 0 18px;
+            letter-spacing: -.5px
+        }
+
+        .lead {
+            font-size: 16px;
+            max-width: 490px;
+            opacity: .92
+        }
+
+        .cta {
+            display: flex;
+            gap: 16px;
+            margin: 32px 0 28px;
+            flex-wrap: wrap
+        }
+
+        .tr {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 12px;
+            opacity: .9;
+            flex-wrap: wrap
+        }
+
+        .st {
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-size: 15px
+        }
+
+        .av {
+            display: flex
+        }
+
+        .av span {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            margin-left: -9px;
+            overflow: hidden
+        }
+
+        .av span:first-child {
+            margin: 0
+        }
+
+        .av svg {
+            width: 100%;
+            height: 100%;
+            fill: #2c1a12
+        }
+
+        .stage {
+            position: relative;
+            height: 490px
+        }
+
+        .aura {
+            position: absolute;
+            left: 50%;
+            top: 48%;
+            width: 640px;
+            height: 600px;
+            margin: -300px 0 0 -320px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: visible
+        }
+
+        .hero .w>div:first-child {
+            position: relative;
+            z-index: 2
+        }
+
+        .fc {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.25;
+            box-shadow: 0 10px 30px #0006;
+            transform: perspective(700px) rotateY(-14deg) rotate(-4deg)
+        }
+
+        .fc .ic {
+            width: 30px;
+            height: 30px;
+            color: var(--gold)
+        }
+
+        .wg {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #25d366;
+            display: grid;
+            place-items: center
+        }
+
+        .fc .wg .ic {
+            width: 22px;
+            height: 22px;
+            color: #fff
+        }
+
+        .ph {
+            position: absolute;
+            left: 50%;
+            top: 48%;
+            width: 214px;
+            height: 440px;
+            margin: -220px 0 0 -107px;
+            border-radius: 40px;
+            padding: 7px;
+            z-index: 2;
+            background: linear-gradient(140deg, #6a6a6a, #161616 35%, #3a3a3a 70%, #111);
+            box-shadow: 4px 3px 0 #2a2a2a, 8px 6px 0 #1a1a1a, 12px 9px 0 #0d0d0d, inset 0 0 0 1.5px #8a8a8a, 0 40px 80px #000c, 0 0 70px #f7b92c66;
+            transform: perspective(1100px) rotateZ(11deg) rotateY(-18deg) rotateX(3deg)
+        }
+
+        .ph::before {
+            content: "";
+            position: absolute;
+            right: -3px;
+            top: 110px;
+            width: 3px;
+            height: 52px;
+            border-radius: 2px;
+            background: #555
+        }
+
+        .scr {
+            position: relative;
+            height: 100%;
+            border-radius: 33px;
+            overflow: hidden;
+            background: #f3f3f3;
+            color: #111;
+            display: flex;
+            flex-direction: column
+        }
+
+        .scr::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, #fff4 0, transparent 38%);
+            pointer-events: none
+        }
+
+        .sb {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 18px 0;
+            font-size: 8.5px;
+            font-weight: 600;
+            background: #fff;
+            height: 28px
+        }
+
+        .isl {
+            width: 58px;
+            height: 16px;
+            border-radius: 9px;
+            background: #000;
+            position: absolute;
+            left: 50%;
+            top: 7px;
+            margin-left: -29px
+        }
+
+        .tb {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px 8px;
+            background: #fff;
+            font-size: 9px;
+            font-weight: 600
+        }
+
+        .tb svg:first-child {
+            width: 14px;
+            height: 15px
+        }
+
+        .tb .ic {
+            margin-left: auto;
+            width: 12px;
+            height: 12px
+        }
+
+        .hb {
+            position: relative;
+            height: 196px;
+            background: linear-gradient(#d4d4d4, #6f6f6f);
+            color: #fff;
+            padding: 26px 14px
+        }
+
+        .hb::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #000c, transparent 75%)
+        }
+
+        .hb>svg {
+            position: absolute;
+            right: -4px;
+            bottom: 0;
+            height: 150px
+        }
+
+        .hb>div {
+            position: relative
+        }
+
+        .hb h4 {
+            font: italic 600 20px/1.05 Poppins, sans-serif
+        }
+
+        .hb p {
+            font-size: 7.5px;
+            font-style: italic;
+            margin: 6px 0 10px
+        }
+
+        .sn {
+            display: inline-block;
+            background: linear-gradient(var(--g1), var(--g2));
+            color: #1a1204;
+            font-size: 7.5px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 99px
+        }
+
+        .pd {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #f6f6f6;
+            text-align: center;
+            font-size: 8.5px;
+            font-weight: 700
+        }
+
+        .pd svg {
+            height: 64px;
+            margin: 0 auto 4px
+        }
+
+        .pd em {
+            display: block;
+            margin-top: 5px;
+            background: #161616;
+            color: #fff;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 7px;
+            padding: 5px;
+            border-radius: 99px
+        }
+
+        .sw {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 130px
+        }
+
+        .fh {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            color: var(--gold);
+            font-weight: 500;
+            margin: 6px auto 22px;
+            max-width: 800px
+        }
+
+        .fh::before,
+        .fh::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: linear-gradient(90deg, transparent, var(--gold))
+        }
+
+        .fh::after {
+            transform: scaleX(-1)
+        }
+
+        .fg {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px
+        }
+
+        .ft {
+            padding: 22px 20px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: linear-gradient(160deg, #ffffff10, var(--card) 60%)
+        }
+
+        .ft .ic {
+            width: 34px;
+            height: 34px;
+            color: var(--gold);
+            margin-bottom: 14px;
+            stroke-width: 1.6
+        }
+
+        .ft h3 {
+            font-size: 15.5px;
+            font-weight: 600
+        }
+
+        .ft p {
+            font-size: 12.5px;
+            color: var(--mut);
+            margin-top: 6px
+        }
+
+        .pr {
+            display: grid;
+            grid-template-columns: .8fr 2fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 70px
+        }
+
+        h2 {
+            font-size: clamp(28px, 3.6vw, 36px);
+            line-height: 1.15;
+            font-weight: 600;
+            margin: 20px 0 18px
+        }
+
+        .pr p,
+        .fq p.s {
+            font-size: 14.5px;
+            max-width: 290px
+        }
+
+        .ul {
+            width: 290px;
+            height: 40px;
+            margin-top: 30px
+        }
+
+        .pg {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 22px
+        }
+
+        .pc {
+            position: relative;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 24px 22px;
+            background: linear-gradient(160deg, #ffffff0d, var(--card))
+        }
+
+        .pc h3 {
+            font-size: 22px;
+            font-weight: 600
+        }
+
+        .pc .sub {
+            font-size: 12.5px;
+            color: var(--mut)
+        }
+
+        .pp {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 18px 0 14px
+        }
+
+        .pp small {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--mut)
+        }
+
+        .pc ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 11px;
+            margin-bottom: 22px;
+            font-size: 12.5px
+        }
+
+        .pc li {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .ck {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #1a1204;
+            display: grid;
+            place-items: center;
+            flex: none
+        }
+
+        .ck .ic {
+            width: 11px;
+            height: 11px
+        }
+
+        .pc .btn {
+            width: 100%
+        }
+
+        .pro {
+            border: 1.5px solid var(--gold);
+            background: radial-gradient(110% 70% at 100% 0, #f7b92c2e, transparent 60%), var(--card);
+            box-shadow: 0 0 40px #f7b92c26
+        }
+
+        .mp {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, var(--g1), var(--g2));
+            color: #1a1204;
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            white-space: nowrap
+        }
+
+        .mp .ic {
+            width: 15px;
+            height: 15px
+        }
+
+        .dm {
+            position: absolute;
+            right: 6px;
+            top: 26px;
+            width: 92px;
+            overflow: visible
+        }
+
+        .dv {
+            display: block;
+            width: 100%;
+            height: 70px;
+            margin-top: 40px
+        }
+
+        .fq {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 20px
+        }
+
+        .fq .bd .ic {
+            width: 16px;
+            height: 16px
+        }
+
+        .fq h2 {
+            font-size: 32px;
+            margin: 16px 0 10px
+        }
+
+        .fq p.s {
+            color: var(--mut);
+            font-size: 16px;
+            margin-bottom: 24px
+        }
+
+        details {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--glass);
+            margin-bottom: 10px
+        }
+
+        summary {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            font-size: 14.5px;
+            font-weight: 500;
+            cursor: pointer
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        summary .ic {
+            width: 18px;
+            height: 18px;
+            transition: .2s
+        }
+
+        details[open] summary .ic {
+            transform: rotate(45deg)
+        }
+
+        details p {
+            padding: 0 20px 16px;
+            color: var(--mut);
+            font-size: 13px
+        }
+
+        .cb {
+            margin: 60px 0 40px;
+            border: 1px solid #f7b92c70;
+            border-radius: 30px;
+            padding: 30px 40px;
+            display: grid;
+            grid-template-columns: auto 1px 1fr auto;
+            gap: 40px;
+            align-items: center;
+            background: radial-gradient(80% 120% at 50% 135%, #f7b92c45, transparent 70%), var(--card);
+            box-shadow: 0 0 40px #f7b92c1f
+        }
+
+        .cb .vr {
+            height: 44px;
+            background: var(--line)
+        }
+
+        .cb .logo {
+            font-size: 22px
+        }
+
+        .cb .logo svg {
+            width: 46px;
+            height: 50px
+        }
+
+        .cb small {
+            display: block;
+            font-size: 13px;
+            color: var(--mut);
+            font-weight: 400
+        }
+
+        .cb h3 {
+            font-size: 17px;
+            font-weight: 600
+        }
+
+        .cb p {
+            font-size: 13px;
+            color: var(--mut)
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 30px 0;
+            font-size: 12.5px
+        }
+
+        footer .w {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap
+        }
+
+        .fl a+a {
+            border-left: 1px solid var(--line);
+            margin-left: 10px;
+            padding-left: 12px
+        }
+
+        .so {
+            display: flex;
+            gap: 22px
+        }
+
+        .so .ic {
+            width: 20px;
+            height: 20px
+        }
+
+        @media(max-width:900px) {
+            .nav nav {
+                display: none
+            }
+
+            .hero .w,
+            .pr,
+            .fq {
+                grid-template-columns: 1fr
+            }
+
+            .fg {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .cb {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+                gap: 18px
+            }
+
+            .cb .vr {
+                display: none
+            }
+
+            .stage {
+                margin-top: 20px
+            }
+
+            .pr p {
+                max-width: none
+            }
+        }
+
+        @media(max-width:560px) {
+
+            .w,
+            .nav {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .fg,
+            .pg {
+                grid-template-columns: 1fr
+            }
+
+            .pro {
+                margin-top: 18px
+            }
+
+            .act .btn:not(.g) {
+                display: none
+            }
+
+            .stage {
+                height: 470px
+            }
+
+            .fc {
+                padding: 10px 12px;
+                font-size: 13px
+            }
+
+            .ul {
+                display: none
+            }
+
+            .cb {
+                padding: 26px 20px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffd65f" />
+                <stop offset="1" stop-color="#e8960f" />
+            </linearGradient>
+            <linearGradient id="sg" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#f7b92c" stop-opacity=".15" />
+                <stop offset=".55" stop-color="#ffd65f" />
+                <stop offset="1" stop-color="#f7b92c" stop-opacity=".35" />
+            </linearGradient>
+            <linearGradient id="sf" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#f7b92c" stop-opacity=".3" />
+                <stop offset="1" stop-color="#f7b92c" stop-opacity="0" />
+            </linearGradient>
+            <symbol id="logo" viewBox="0 0 48 52">
+                <path d="M37 11C29 3 12 6 11 17c-1 12 26 8 26 22 0 11-18 12-27 4" fill="none" stroke="url(#gg)"
+                    stroke-width="9" stroke-linecap="round" />
+            </symbol>
+            <symbol id="ar" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+            </symbol>
+            <symbol id="bolt" viewBox="0 0 24 24">
+                <path d="M13 2L4 14h7l-1 8 9-12h-7z" />
+            </symbol>
+            <symbol id="ck" viewBox="0 0 24 24">
+                <path d="M5 12.5l4.5 4.5L19 7.5" stroke-width="3.4" />
+            </symbol>
+            <symbol id="pl" viewBox="0 0 24 24">
+                <path d="M12 4v16M4 12h16" />
+            </symbol>
+            <symbol id="wa" viewBox="0 0 24 24">
+                <path d="M3 21l1.6-4.6A9 9 0 1 1 8 19.6z" />
+                <path d="M9 8c0 4 3 7 7 7l1-1.500-2.200-1-1 .8c-1-.4-1.800-1.200-2.300-2.300l.8-1-1-2.200z" />
+            </symbol>
+            <symbol id="ch" viewBox="0 0 24 24">
+                <path d="M4 21v-6M10 21V9M16 21v-9M22 21V3M2 21h20" />
+            </symbol>
+            <symbol id="sh" viewBox="0 0 24 24">
+                <path
+                    d="M4 9l1.500-5h13L20 9M4 9h16M4 9a2.700 2.700 0 0 0 5.300 0 2.700 2.700 0 0 0 5.400 0A2.700 2.700 0 0 0 20 9M5.500 12v8h13v-8M10 20v-5h4v5" />
+            </symbol>
+            <symbol id="cr" viewBox="0 0 24 24">
+                <path d="M3 18L2 7l6 5 4-8 4 8 6-5-1 11z" />
+            </symbol>
+            <symbol id="p" viewBox="0 0 40 40">
+                <circle cx="20" cy="16" r="7.500" />
+                <path d="M5 40c0-9 6-13 15-13s15 4 15 13z" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <header class="nav"><a class="logo" href="#top"><svg>
+                <use href="#logo" />
+            </svg><span>Studio <i>Index</i></span></a>
+        <nav><a class="on" href="#top">Home</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a
+                href="#faqs">FAQs</a><a href="#contact">Contact</a></nav>
+        <div class="act"><button class="tg" id="tg" aria-label="Toggle theme"><svg class="ic">
+                    <circle cx="12" cy="12" r="4.500" class="f" />
+                    <path
+                        d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900l2.100 2.100M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100" />
+                </svg></button><a class="btn" href="#">Login</a><a class="btn g" href="#pricing">Create Account <svg
+                    class="ic">
+                    <use href="#ar" />
+                </svg></a></div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="w">
+                <div><span class="bd"><svg class="ic f">
+                            <path d="M12 2l2.200 7.800L22 12l-7.800 2.200L12 22l-2.200-7.800L2 12l7.800-2.200z" />
+                        </svg>The Ultimate Storefront Builder for Instagram Sellers</span>
+                    <h1>Turn Your Instagram<br>Followers Into <span class="gt">Customers</span></h1>
+                    <p class="lead">Create your beautiful online store with Studio Index, share your unique link, and
+                        let your audience shop effortlessly.</p>
+                    <div class="cta"><a class="btn g" href="#pricing">Get Started Free <svg class="ic">
+                                <use href="#ar" />
+                            </svg></a><a class="btn" href="#"><svg class="ic f" style="width:15px">
+                                <path d="M7 4l13 8-13 8z" />
+                            </svg>Watch Demo</a></div>
+                </div>
+
+                <div class="stage"><svg class="aura" viewBox="0 0 640 600" aria-hidden="true">
+                        <defs>
+                            <radialGradient id="ah">
+                                <stop offset="0" stop-color="#f7b92c" stop-opacity=".5" />
+                                <stop offset=".55" stop-color="#f7b92c" stop-opacity=".15" />
+                                <stop offset="1" stop-color="#f7b92c" stop-opacity="0" />
+                            </radialGradient>
+                            <linearGradient id="ab" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#f7b92c" stop-opacity=".1" />
+                                <stop offset=".45" stop-color="#ffe7a0" />
+                                <stop offset=".75" stop-color="#ffc83d" />
+                                <stop offset="1" stop-color="#f3a81a" stop-opacity=".5" />
+                            </linearGradient>
+                            <filter id="bl" x="-30%" y="-30%" width="160%" height="160%">
+                                <feGaussianBlur stdDeviation="14" />
+                            </filter>
+                            <filter id="bs" x="-30%" y="-30%" width="160%" height="160%">
+                                <feGaussianBlur stdDeviation="3" />
+                            </filter>
+                        </defs>
+                        <ellipse cx="320" cy="300" rx="310" ry="290" fill="url(#ah)" />
+                        <defs>
+                            <linearGradient id="rg" x1="0" y1="1" x2="0" y2="0">
+                                <stop offset="0" stop-color="#ffd65f" stop-opacity=".42" />
+                                <stop offset="1" stop-color="#ffd65f" stop-opacity="0" />
+                            </linearGradient>
+                            <radialGradient id="bk">
+                                <stop offset="0" stop-color="#ffe7a0" stop-opacity=".9" />
+                                <stop offset="1" stop-color="#f7b92c" stop-opacity="0" />
+                            </radialGradient>
+                            <polygon id="rr" points="0,0 -22,-310 22,-310" fill="url(#rg)" />
+                        </defs>
+                        <g transform="translate(320 300)" filter="url(#bs)">
+                            <use href="#rr" transform="rotate(-72)" />
+                            <use href="#rr" transform="rotate(-44) scale(.6 1)" />
+                            <use href="#rr" transform="rotate(-14)" />
+                            <use href="#rr" transform="rotate(20) scale(.5 1)" />
+                            <use href="#rr" transform="rotate(52)" />
+                            <use href="#rr" transform="rotate(112) scale(.6 1)" />
+                            <use href="#rr" transform="rotate(158)" />
+                            <use href="#rr" transform="rotate(206) scale(.5 1)" />
+                            <use href="#rr" transform="rotate(252)" />
+                        </g>
+                        <g fill="none" stroke="url(#ab)" stroke-linecap="round">
+                            <path d="M30 500C170 430 250 545 380 400S540 250 615 105" stroke-width="24"
+                                filter="url(#bl)" opacity=".75" />
+                            <path d="M30 500C170 430 250 545 380 400S540 250 615 105" stroke-width="2.5" />
+                            <path d="M15 440C150 390 270 505 400 340S560 200 630 70" stroke-width="1.5" opacity=".6" />
+                        </g>
+                        <g filter="url(#bs)">
+                            <circle cx="120" cy="260" r="16" fill="url(#bk)" />
+                            <circle cx="525" cy="205" r="22" fill="url(#bk)" />
+                            <circle cx="175" cy="405" r="10" fill="url(#bk)" />
+                            <circle cx="505" cy="385" r="12" fill="url(#bk)" />
+                            <circle cx="262" cy="72" r="9" fill="url(#bk)" />
+                        </g>
+                        <path d="M566 440l4 14 14 4-14 4-4 14-4-14-14-4 14-4z" fill="#ffd65f" filter="url(#bs)" />
+                        <path d="M566 440l3 11 11 3-11 3-3 11-3-11-11-3 11-3z" fill="#fff3c4" />
+                        <circle cx="110" cy="170" r="2.500" fill="#ffe7a0" />
+                        <circle cx="150" cy="470" r="2" fill="#ffd65f" />
+                        <circle cx="540" cy="120" r="2" fill="#ffe7a0" />
+                        <circle cx="485" cy="520" r="1.500" fill="#ffd65f" />
+                    </svg>
+                    <div class="fc" style="right:0;top:50px"><svg class="ic f">
+                            <use href="#bolt" />
+                        </svg>Create Store<br>in Seconds</div>
+                    <div class="fc" style="right:0;top:205px"><span class="wg"><svg class="ic">
+                                <use href="#wa" />
+                            </svg></span>Get Orders<br>on WhatsApp</div>
+                    <div class="fc" style="left:6px;top:228px"><svg class="ic" style="stroke-width:3">
+                            <use href="#ch" />
+                        </svg>Grow Your<br>Business</div>
+                    <div class="ph">
+                        <div class="scr"><i class="isl"></i>
+                            <div class="sb"><span>9:01</span><span>▂▄▆ ▭</span></div>
+                            <div class="tb"><svg>
+                                    <use href="#logo" />
+                                </svg>Your Store<svg class="ic">
+                                    <path d="M3 4h3l2 11h10l2-8H7" />
+                                    <circle cx="9" cy="19" r="1.200" />
+                                    <circle cx="17" cy="19" r="1.200" />
+                                </svg></div>
+                            <div class="hb"><svg viewBox="0 0 130 170">
+                                    <path
+                                        d="M70 6c20 0 32 14 32 34 0 11-4 18-9 22 16 6 26 20 28 44l4 64H14l4-64c2-24 12-38 28-44-5-4-9-11-9-22C37 20 50 6 70 6z"
+                                        fill="#141414" />
+                                </svg>
+                                <div>
+                                    <h4>Premium<br>Collection</h4>
+                                    <p>Shop the latest trends</p><span class="sn">Shop Now →</span>
+                                </div>
+                            </div>
+                            <div class="pd">
+                                <div><svg viewBox="0 0 60 50">
+                                        <path d="M18 3L3 11l5 10 7-3v29h30V18l7 3 5-10-15-8c-2 5-6 7-12 7S20 8 18 3z"
+                                            fill="#fff" stroke="#c9c9c9" />
+                                        <circle cx="30" cy="22" r="3" fill="#222" />
+                                    </svg>₦15,000<em>Add to Cart</em></div>
+                                <div><svg viewBox="0 0 60 50">
+                                        <path d="M5 34C4 17 16 8 31 8c14 0 23 9 25 22-8-3-17-3-26 0-9 3-19 5-25 4z"
+                                            fill="#141414" />
+                                        <path d="M30 31c10-3 21-2 30 4-4 4-12 4-22 2z" fill="#000" />
+                                        <path d="M20 22c6-3 12-3 18-1" stroke="#fff" stroke-width="2" fill="none" />
+                                    </svg>₦12,000<em>Add to Cart</em></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <svg class="sw" viewBox="0 0 1440 130" preserveAspectRatio="none">
+                <path d="M0 95C300 118 520 80 800 38S1250 55 1440 96V130H0z" fill="url(#sf)" />
+                <path d="M0 95C300 118 520 80 800 38S1250 55 1440 96" fill="none" stroke="url(#sg)" stroke-width="3" />
+            </svg>
+        </section>
+
+        <section class="w" id="features">
+            <div class="fh">Powerful Features</div>
+            <div class="fg">
+                <div class="ft"><svg class="ic">
+                        <use href="#sh" />
+                    </svg>
+                    <h3>Your Personal Storefront</h3>
+                    <p>Get a unique link and showcase your products beautifully.</p>
+                </div>
+                <div class="ft"><svg class="ic">
+                        <use href="#bolt" />
+                    </svg>
+                    <h3>Seamless Shopping</h3>
+                    <p>Customers add to cart and confirm orders in just a tap.</p>
+                </div>
+                <div class="ft"><svg class="ic">
+                        <use href="#wa" />
+                    </svg>
+                    <h3>WhatsApp Integration</h3>
+                    <p>Receive orders instantly with our Pro plan WhatsApp bot.</p>
+                </div>
+                <div class="ft"><svg class="ic">
+                        <use href="#ch" />
+                    </svg>
+                    <h3>Track &amp; Manage</h3>
+                    <p>View orders and manage your store with ease.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w pr" id="pricing">
+            <div><span class="bd"><svg class="ic f">
+                        <use href="#cr" />
+                    </svg>Simple &amp; Flexible Pricing</span>
+                <h2>Choose the Plan<br>That Fits You</h2>
+                <p>Start free and upgrade anytime for more power and automation.</p>
+                <svg class="ul" viewBox="0 0 300 40">
+                    <path d="M0 34C80 10 200 4 300 24" fill="none" stroke="url(#sg)" stroke-width="2" />
+                </svg>
+            </div>
+            <div class="pg">
+                <div class="pc">
+                    <h3>Free Plan</h3>
+                    <div class="sub">Perfect for getting started</div>
+                    <div class="pp">₦0 <small>/ Forever</small></div>
+                    <ul>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Create your online store</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Add products &amp; manage cart</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Get a unique store link</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Manual order lookup</li>
+                    </ul><a class="btn" href="#">Start Free</a>
+                </div>
+                <div class="pc pro"><span class="mp"><svg class="ic f">
+                            <use href="#cr" />
+                        </svg>Most Popular</span>
+                    <svg class="dm" viewBox="-12 0 124 92">
+                        <polygon points="12,28 28,6 38,28" fill="#e7a017" />
+                        <polygon points="38,28 28,6 50,6" fill="#ffd66b" />
+                        <polygon points="38,28 50,6 62,28" fill="#f7be3a" />
+                        <polygon points="62,28 50,6 72,6" fill="#ffe29a" />
+                        <polygon points="62,28 72,6 88,28" fill="#d68e10" />
+                        <polygon points="12,28 38,28 50,84" fill="#c9800b" />
+                        <polygon points="38,28 62,28 50,84" fill="#f5b52a" />
+                        <polygon points="62,28 88,28 50,84" fill="#a96a06" />
+                        <ellipse cx="50" cy="58" rx="62" ry="13" fill="none" stroke="#f7b92c" stroke-width="2.500"
+                            transform="rotate(-14 50 58)" />
+                    </svg>
+                    <h3>Pro Plan</h3>
+                    <div class="sub">Automate &amp; grow your business</div>
+                    <div class="pp">₦5,000 <small>/ Month</small></div>
+                    <ul>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>All Free Features</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Automatic WhatsApp Notifications</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Manage orders via WhatsApp</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Priority Support</li>
+                    </ul><a class="btn g" href="#">Upgrade to Pro <svg class="ic">
+                            <use href="#ar" />
+                        </svg></a>
+                </div>
+            </div>
+        </section>
+
+        <svg class="dv" viewBox="0 0 1440 70" preserveAspectRatio="none">
+            <path d="M0 40C350 66 760 6 1440 36" fill="none" stroke="url(#sg)" stroke-width="1.500" />
+        </svg>
+
+        <section class="w fq" id="faqs">
+            <div><span class="bd"><svg class="ic" style="color:var(--gold)">
+                        <circle cx="12" cy="12" r="8" stroke-width="3" />
+                    </svg>FAQs</span>
+                <h2>Got Questions?</h2>
+                <p class="s">Find answers to common questions about Studio Index.</p><a class="btn" href="#">View All
+                    FAQs <svg class="ic">
+                        <use href="#ar" />
+                    </svg></a>
+            </div>
+            <div>
+                <details>
+                    <summary>Is Studio Index free to use?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>Yes. The Free plan costs ₦0 forever, and you can upgrade whenever you’re ready.</p>
+                </details>
+                <details>
+                    <summary>How do I get my unique store link?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>Create your account and store, and we’ll give you a link to share in your Instagram bio.</p>
+                </details>
+                <details>
+                    <summary>Can I upgrade to Pro later?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>Yes. Upgrade to Pro at any time to unlock WhatsApp automation.</p>
+                </details>
+                <details>
+                    <summary>Is my data safe and secure?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>Yes. Your store and order data are kept private and protected.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="w" id="contact">
+            <div class="cb">
+                <div class="logo"><svg>
+                        <use href="#logo" />
+                    </svg>
+                    <div>Studio <i>Index</i><small>Shop. Sell. Grow.</small></div>
+                </div><i class="vr"></i>
+                <div>
+                    <h3>Ready to take your business to the next level?</h3>
+                    <p>Join thousands of sellers already using Studio Index.</p>
+                </div><a class="btn g" href="#pricing">Create Your Account <svg class="ic">
+                        <use href="#ar" />
+                    </svg></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="w"><span>© 2025 Studio Index. All rights reserved.</span><span class="fl"><a href="#">Privacy
+                    Policy</a><a href="#">Terms of Service</a><a href="#contact">Contact</a></span>
+            <div class="so"><svg class="ic">
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.500" cy="6.500" r=".8" class="f" />
+                </svg><svg class="ic">
+                    <path d="M14 3v11.500a3.500 3.500 0 1 1-3.500-3.500M14 3c.4 2.600 2 4.200 5 4.500" />
+                </svg><svg class="ic f">
+                    <rect x="2" y="5" width="20" height="14" rx="4" />
+                    <path d="M10 9l5 3-5 3z" style="fill:var(--bg);stroke:none" />
+                </svg><svg class="ic">
+                    <path d="M4 4l16 16M20 4L4 20" />
+                </svg><svg class="ic f">
+                    <path d="M21 4L3 11l6 2 2 6 3-4 5 4z" />
+                </svg></div>
+        </div>
+    </footer>
+    <script>document.getElementById('tg').onclick = function () { var r = document.documentElement; r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light' }</script>
+</body>
+
+</html>
