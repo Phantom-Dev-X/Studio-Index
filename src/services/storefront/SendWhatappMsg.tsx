@@ -11,7 +11,7 @@ export function SendWhatappMsg(sessionId: string, phoneNumber: string, selected:
     }
     const rawMsg = `hello i wanna gt some things from your store, here's my sessionId: ${sessionId} `
     const encodedMsg = encodeURIComponent(rawMsg)
-    const link = `https://wa.me/${phoneNumber}?text=${encodedMsg}}`
+    const link = `https://wa.me/${phoneNumber}?text=${encodedMsg}`
     window.open(link, '_blank')
 
 }

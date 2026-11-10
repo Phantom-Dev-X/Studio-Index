@@ -7,7 +7,7 @@ import {
 
 export function LandingPricing() {
   return (
-    <section id="pricing" className="w-full pt-3 sm:pt-5 md:pt-6 pb-2 relative z-10">
+    <section id="pricing" className="w-full pt-3 sm:pt-5 md:pt-6 pb-2">
       <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-12 items-center">
           {/* ============================================================
@@ -124,7 +124,7 @@ export function LandingPricing() {
 
               {/* 3D Gold Faceted Diamond Graphic in Top Right */}
               <svg
-                className="absolute right-2 top-4 w-[75px] sm:w-[98px] overflow-visible pointer-events-none drop-shadow-[0_6px_20px_rgba(247,185,44,0.4)] z-10"
+                className="absolute right-2 top-4 w-[75px] sm:w-[98px] overflow-hidden pointer-events-none md:drop-shadow-[0_6px_20px_rgba(247,185,44,0.4)] z-10"
                 viewBox="-12 0 124 92"
                 aria-hidden="true"
               >
@@ -215,7 +215,7 @@ export function LandingPricing() {
           Wavy Divider Line at the end of Pricing Section (.dv)
           ============================================================ */}
       <svg
-        className="w-full h-[36px] sm:h-[44px] mt-4 sm:mt-6 pointer-events-none overflow-visible"
+        className="w-full h-[36px] sm:h-[44px] mt-4 sm:mt-6 pointer-events-none overflow-hidden"
         viewBox="0 0 1440 70"
         preserveAspectRatio="none"
         aria-hidden="true"

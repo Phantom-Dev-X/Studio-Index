@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import {
     Check,
     ArrowRight,
@@ -51,11 +51,10 @@ function ValueCheck() {
                 text-left so the label text isn't centered.
             */}
             <div
-                className="grid grid-cols-[1.2fr_1fr] gap-10 items-center mt-11 text-left rounded-[30px] p-11 max-[900px]:grid-cols-1 max-[900px]:p-7"
+                className="grid grid-cols-[1.2fr_1fr] gap-10 items-center mt-11 text-left rounded-[30px] p-11 max-[900px]:grid-cols-1 max-[900px]:p-7 shadow-[0_8px_24px_#f7b92c12] md:shadow-[0_0_60px_#f7b92c14]"
                 style={{
                     border: "1px solid #f7b92c4d",
                     background: "radial-gradient(70% 100% at 100% 0, #f7b92c1f, transparent 60%), #0d0d0d",
-                    boxShadow: "0 0 60px #f7b92c14",
                 }}
             >
                 {/* ── Left: label + slider ── */}
@@ -180,7 +179,7 @@ function FaqItem({ q, a, defaultOpen = false }: { q: string; a: string; defaultO
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export function PricingPage() {
     return (
-        <div className="relative isolate w-full min-h-screen flex flex-col bg-[#050505] text-white overflow-x-hidden font-[Poppins,sans-serif]">
+        <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-[#050505] text-white font-[Poppins,sans-serif]">
             <FeaturesBackground />
             <LandingHeader />
 
@@ -220,15 +219,15 @@ export function PricingPage() {
                         {/* Free Plan */}
                         <div className="h-full">
                             <div
-                                style={{ transformStyle: "preserve-3d" }}
                                 onPointerMove={(e) => {
+                                    if (e.pointerType !== "mouse") return;
                                     const r = e.currentTarget.getBoundingClientRect();
                                     const x = (e.clientX - r.left) / r.width - 0.5;
                                     const y = (e.clientY - r.top) / r.height - 0.5;
                                     e.currentTarget.style.transform = `perspective(900px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
                                 }}
                                 onPointerLeave={(e) => {
-                                    e.currentTarget.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+                                    e.currentTarget.style.transform = "";
                                 }}
                                 className="h-full border border-white/10 rounded-[28px] p-[34px_30px] bg-[linear-gradient(160deg,#ffffff0e,#0d0d0d_60%)] text-left max-[560px]:p-[30px_22px] transition-transform duration-[250ms] ease-out hover:border-[#f7b92c80]"
                             >
@@ -261,23 +260,20 @@ export function PricingPage() {
                         <div className="h-full">
                             <div
                                 style={{
-                                    transformStyle: "preserve-3d",
                                     background: "radial-gradient(110% 70% at 100% 0, #f7b92c33, transparent 60%), radial-gradient(80% 60% at 0 100%, #f7b92c1a, transparent 60%), #0c0a05",
-                                    boxShadow: "0 0 80px #f7b92c30",
                                 }}
                                 onPointerMove={(e) => {
+                                    if (e.pointerType !== "mouse") return;
                                     const r = e.currentTarget.getBoundingClientRect();
                                     const x = (e.clientX - r.left) / r.width - 0.5;
                                     const y = (e.clientY - r.top) / r.height - 0.5;
                                     e.currentTarget.style.transform = `perspective(900px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
                                 }}
                                 onPointerLeave={(e) => {
-                                    e.currentTarget.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+                                    e.currentTarget.style.transform = "";
                                 }}
-                                className="relative h-full rounded-[28px] p-[34px_30px] text-left max-[560px]:p-[30px_22px] transition-transform duration-[250ms] ease-out"
+                                className="relative h-full border-[1.5px] border-[#f7b92c]/75 rounded-[28px] p-[34px_30px] text-left max-[560px]:p-[30px_22px] shadow-[0_8px_24px_#f7b92c1c] md:shadow-[0_0_60px_#f7b92c28] transition-transform duration-[250ms] ease-out"
                             >
-                                {/* Animated conic border */}
-                                <div className="absolute inset-0 rounded-[28px] pointer-events-none" style={{ padding: "1.5px", background: "conic-gradient(from 0deg, #f7b92c55, #ffe58a, #f7b92c55 40%, #f7b92c55)", WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)", WebkitMaskComposite: "xor", maskComposite: "exclude" }} />
 
                                 {/* Most Popular ribbon */}
                                 <span className="absolute top-[-15px] left-1/2 -translate-x-1/2 flex items-center gap-1.5 whitespace-nowrap bg-[linear-gradient(180deg,#ffd65f,#f3a81a)] text-[#1a1204] text-[12.5px] font-semibold px-[18px] py-[7px] rounded-full shadow-[0_6px_20px_#f7b92c55]">
@@ -285,7 +281,7 @@ export function PricingPage() {
                                 </span>
 
                                 {/* Floating diamond */}
-                                <svg className="absolute right-[22px] top-[26px] w-24 overflow-visible" style={{ animation: "fy 5s ease-in-out infinite alternate", filter: "drop-shadow(0 0 22px #f7b92c99)" }} viewBox="-12 0 124 92">
+                                <svg className="absolute right-[22px] top-[26px] w-24 overflow-hidden animate-[fy_5s_ease-in-out_infinite_alternate] md:drop-shadow-[0_0_22px_#f7b92c99]" viewBox="-12 0 124 92">
                                     <polygon points="12,28 28,6 38,28" fill="#e7a017" />
                                     <polygon points="38,28 28,6 50,6" fill="#ffd66b" />
                                     <polygon points="38,28 50,6 62,28" fill="#f7be3a" />
@@ -297,9 +293,9 @@ export function PricingPage() {
                                 </svg>
 
                                 {/* Sparkles */}
-                                <i className="absolute not-italic text-[#ffd65f] text-sm" style={{ right: 130, top: 34, animation: "tw 2.4s ease-in-out infinite", animationDelay: "0s" }}>✦</i>
-                                <i className="absolute not-italic text-[#ffd65f] text-sm" style={{ right: 14, top: 120, animation: "tw 2.4s ease-in-out infinite", animationDelay: "-.8s" }}>✦</i>
-                                <i className="absolute not-italic text-[#ffd65f] text-[9px]" style={{ right: 150, top: 100, animation: "tw 2.4s ease-in-out infinite", animationDelay: "-1.6s" }}>✦</i>
+                                <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 130, top: 34, animationDelay: "0s" }}>✦</i>
+                                <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 14, top: 120, animationDelay: "-.8s" }}>✦</i>
+                                <i className="absolute not-italic text-[#ffd65f] text-[9px] animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 150, top: 100, animationDelay: "-1.6s" }}>✦</i>
 
                                 <h3 className="text-2xl font-semibold text-white">Pro Plan</h3>
                                 <div className="text-[13px] text-[#a9a9a9] mt-0.5">Automate &amp; grow your business</div>
@@ -376,8 +372,8 @@ export function PricingPage() {
                                 ].map(({ Icon, title, desc }) => (
                                     <div
                                         key={title}
-                                        style={{ transformStyle: "preserve-3d" }}
                                         onPointerMove={(e) => {
+                                            if (e.pointerType !== "mouse") return;
                                             const r = e.currentTarget.getBoundingClientRect();
                                             const x = (e.clientX - r.left) / r.width  - 0.5;
                                             const y = (e.clientY - r.top)  / r.height - 0.5;
@@ -385,8 +381,7 @@ export function PricingPage() {
                                                 `perspective(900px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
                                         }}
                                         onPointerLeave={(e) => {
-                                            e.currentTarget.style.transform =
-                                                "perspective(900px) rotateX(0deg) rotateY(0deg)";
+                                            e.currentTarget.style.transform = "";
                                         }}
                                         className="group relative overflow-hidden text-left border border-white/10 rounded-[22px] p-6 bg-[linear-gradient(160deg,#ffffff0d,#0d0d0d_55%)] transition-[transform,border-color] duration-[250ms] ease-out hover:border-[#f7b92c80]"
                                     >
@@ -463,10 +458,9 @@ export function PricingPage() {
                         </div>
 
                         {/* ── Right: CTA banner ── */}
-                        <div className="sticky top-10" id="cta">
+                        <div className="min-[901px]:sticky min-[901px]:top-10" id="cta">
                             <div
-                                className="relative text-center border border-[#f7b92c]/40 rounded-[32px] py-14 px-8 bg-landing-card overflow-hidden h-full flex flex-col items-center justify-center"
-                                style={{ boxShadow: "0 0 50px rgba(247,185,44,0.14)" }}
+                                className="relative text-center border border-[#f7b92c]/40 rounded-[32px] py-14 px-8 bg-landing-card overflow-hidden h-full flex flex-col items-center justify-center shadow-lg md:shadow-[0_0_50px_rgba(247,185,44,0.14)]"
                             >
                                 {/* Radial glow from bottom */}
                                 <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(80%_120%_at_50%_140%,rgba(247,185,44,0.32),transparent_70%)]" />

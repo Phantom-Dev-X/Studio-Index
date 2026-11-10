@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import {
     ArrowRight,
     Lock,
@@ -71,8 +71,7 @@ function HeroSection() {
             >
                 {/* Floating gem */}
                 <svg
-                    className="absolute w-[70px] left-[-4px] top-[6px] drop-shadow-[0_0_20px_#f7b92c99]"
-                    style={{ animation: "fy 6s ease-in-out infinite alternate-reverse" }}
+                    className="absolute w-[70px] left-[-4px] top-[6px] drop-shadow-[0_0_20px_#f7b92c99] animate-[aboutFloat_6s_ease-in-out_infinite_alternate-reverse]"
                     viewBox="0 0 64 64"
                 >
                     <defs>
@@ -119,26 +118,18 @@ function HeroSection() {
 
                 {/* ID Card */}
                 <div
-                    className="relative w-[310px] p-[26px] rounded-[26px] overflow-hidden max-[560px]:w-[270px]"
+                    className="relative w-[310px] p-[26px] rounded-[26px] overflow-hidden max-[560px]:w-[270px] bg-[#141418] md:bg-[linear-gradient(160deg,#ffffff18,#ffffff05)] md:backdrop-blur-[14px] shadow-[0_14px_34px_rgba(0,0,0,0.65),0_0_40px_#f7b92c22] md:shadow-[0_30px_80px_#000a,0_0_60px_#f7b92c22,inset_0_1px_#ffffff26] animate-[aboutFloat_7s_ease-in-out_infinite_alternate]"
                     style={{
                         border: "1px solid #ffffff26",
-                        background:
-                            "linear-gradient(160deg, #ffffff18, #ffffff05)",
-                        backdropFilter: "blur(14px)",
-                        WebkitBackdropFilter: "blur(14px)",
-                        boxShadow:
-                            "0 30px 80px #000a, 0 0 60px #f7b92c22, inset 0 1px #ffffff26",
-                        animation: "fy 7s ease-in-out infinite alternate",
                     }}
                 >
                     {/* Scan line */}
                     <div
-                        className="absolute left-0 right-0 top-0 h-[2px] pointer-events-none"
+                        className="absolute left-0 right-0 top-0 h-[2px] pointer-events-none animate-[aboutScan_3.6s_ease-in-out_infinite_alternate]"
                         style={{
                             background:
                                 "linear-gradient(90deg, transparent, #f7b92c, transparent)",
                             boxShadow: "0 0 22px 3px #f7b92c99",
-                            animation: "ln 3.6s ease-in-out infinite alternate",
                         }}
                     />
 
@@ -162,7 +153,7 @@ function HeroSection() {
                         >
                             <svg
                                 viewBox="0 0 40 40"
-                                className="w-[60px] h-[60px] drop-shadow-[0_0_10px_#f7b92c88]"
+                                className="w-[60px] h-[60px] md:drop-shadow-[0_0_10px_#f7b92c88]"
                                 style={{ fill: "url(#lgab)" }}
                             >
                                 <circle cx="20" cy="15" r="8" />
@@ -176,11 +167,10 @@ function HeroSection() {
                                 style={{ width: "85%", background: "#ffffff26" }}
                             >
                                 <div
-                                    className="absolute inset-0"
+                                    className="absolute inset-0 animate-[aboutShimmer_2.4s_infinite]"
                                     style={{
                                         background:
                                             "linear-gradient(90deg,transparent,#f7b92c99,transparent)",
-                                        animation: "sc 2.4s infinite",
                                     }}
                                 />
                             </div>
@@ -189,11 +179,10 @@ function HeroSection() {
                                 style={{ width: "60%", background: "#ffffff26" }}
                             >
                                 <div
-                                    className="absolute inset-0"
+                                    className="absolute inset-0 animate-[aboutShimmer_2.4s_infinite]"
                                     style={{
                                         background:
                                             "linear-gradient(90deg,transparent,#f7b92c99,transparent)",
-                                        animation: "sc 2.4s infinite",
                                     }}
                                 />
                             </div>
@@ -206,11 +195,10 @@ function HeroSection() {
                         style={{ background: "#ffffff26" }}
                     >
                         <div
-                            className="absolute inset-0"
+                            className="absolute inset-0 animate-[aboutShimmer_2.4s_infinite]"
                             style={{
                                 background:
                                     "linear-gradient(90deg,transparent,#f7b92c99,transparent)",
-                                animation: "sc 2.4s infinite",
                             }}
                         />
                     </div>
@@ -219,11 +207,10 @@ function HeroSection() {
                         style={{ width: "78%", background: "#ffffff26" }}
                     >
                         <div
-                            className="absolute inset-0"
+                            className="absolute inset-0 animate-[aboutShimmer_2.4s_infinite]"
                             style={{
                                 background:
                                     "linear-gradient(90deg,transparent,#f7b92c99,transparent)",
-                                animation: "sc 2.4s infinite",
                             }}
                         />
                     </div>
@@ -236,10 +223,9 @@ function HeroSection() {
                         </span>
                         <span className="flex items-center gap-[7px] text-[11.5px] px-3 py-1.5 border border-white/10 rounded-full bg-white/[0.04]">
                             <span
-                                className="w-2 h-2 rounded-full bg-[#4ade80] flex-none"
+                                className="w-2 h-2 rounded-full bg-[#4ade80] flex-none animate-[aboutPing_1.8s_infinite]"
                                 style={{
                                     boxShadow: "0 0 0 0 #4ade80aa",
-                                    animation: "pg 1.8s infinite",
                                 }}
                             />
                             Building in the open
@@ -249,28 +235,20 @@ function HeroSection() {
 
                 {/* Floating chips */}
                 <div
-                    className="absolute flex items-center gap-[9px] px-4 py-2.5 border border-white/[0.15] rounded-[14px] text-[12.5px] font-medium"
+                    className="absolute flex items-center gap-[9px] px-4 py-2.5 border border-white/[0.15] rounded-[14px] text-[12.5px] font-medium bg-[#18181d]/95 md:bg-[#ffffff10] md:backdrop-blur-[10px] animate-[aboutFloat_5s_ease-in-out_infinite_alternate]"
                     style={{
                         right: -6,
                         top: 40,
-                        background: "#ffffff10",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        animation: "fy 5s ease-in-out infinite alternate",
                     }}
                 >
                     <Heart size={18} className="text-[#f7b92c]" />
                     Sellers first
                 </div>
                 <div
-                    className="absolute flex items-center gap-[9px] px-4 py-2.5 border border-white/[0.15] rounded-[14px] text-[12.5px] font-medium"
+                    className="absolute flex items-center gap-[9px] px-4 py-2.5 border border-white/[0.15] rounded-[14px] text-[12.5px] font-medium bg-[#18181d]/95 md:bg-[#ffffff10] md:backdrop-blur-[10px] animate-[aboutFloat_5s_ease-in-out_infinite_alternate]"
                     style={{
                         left: -8,
                         bottom: 50,
-                        background: "#ffffff10",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        animation: "fy 5s ease-in-out infinite alternate",
                         animationDelay: "-2s",
                     }}
                 >
@@ -298,12 +276,11 @@ function FounderLetterSection() {
 
             {/* Letter card */}
             <div
-                className="relative max-w-[800px] mt-[44px] mx-auto px-[54px] py-[56px] pb-[44px] rounded-[32px] text-left max-[900px]:px-[26px] max-[900px]:py-[46px] max-[900px]:pb-[34px]"
+                className="relative max-w-[800px] mt-[44px] mx-auto px-[54px] py-[56px] pb-[44px] rounded-[32px] text-left max-[900px]:px-[26px] max-[900px]:py-[46px] max-[900px]:pb-[34px] shadow-[0_8px_24px_#f7b92c12] md:shadow-[0_0_70px_#f7b92c14]"
                 style={{
                     border: "1px solid #f7b92c4d",
                     background:
                         "radial-gradient(70% 60% at 100% 0, #f7b92c1a, transparent 60%), radial-gradient(60% 50% at 0 100%, #f7b92c14, transparent 60%), #0d0d0d",
-                    boxShadow: "0 0 70px #f7b92c14",
                 }}
             >
                 {/* Big decorative quote mark */}
@@ -493,7 +470,7 @@ function WhatIStandForSection() {
                 {promises.map(({ icon, title, desc, delay }) => (
                     <div
                         key={title}
-                        className="group relative overflow-hidden text-left border border-white/10 rounded-[22px] p-[30px] transition-[border-color,transform] duration-[300ms] hover:border-[#f7b92c80] hover:-translate-y-1"
+                        className="group relative overflow-hidden text-left border border-white/10 rounded-[22px] p-[30px] transition-colors duration-200 md:transition-[border-color,transform] md:duration-[300ms] hover:border-[#f7b92c80] md:hover:-translate-y-1"
                         style={{
                             background: "linear-gradient(160deg, #ffffff0d, #0d0d0d 55%)",
                             ["--d" as string]: delay,
@@ -622,12 +599,9 @@ function JourneySection() {
                 {comingPills.map(({ label, delay }) => (
                     <span
                         key={label}
-                        className="px-[22px] py-3 rounded-full text-[13.5px] font-medium"
+                        className="px-[22px] py-3 rounded-full text-[13.5px] font-medium bg-[linear-gradient(100deg,transparent_30%,#f7b92c26,transparent_70%)] bg-[length:250%_100%] animate-[aboutSweep_3.5s_linear_infinite]"
                         style={{
                             border: "1px dashed #f7b92c80",
-                            background:
-                                "linear-gradient(100deg, transparent 30%, #f7b92c26, transparent 70%) 0 0 / 250% 100%",
-                            animation: "sm 3.5s linear infinite",
                             animationDelay: delay,
                         }}
                     >
@@ -647,12 +621,11 @@ function CTASection() {
             className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10 mt-[100px] mb-[40px]"
         >
             <div
-                className="text-center rounded-[32px] px-[30px] py-[60px]"
+                className="text-center rounded-[32px] px-[30px] py-[60px] shadow-[0_8px_24px_#f7b92c14] md:shadow-[0_0_50px_#f7b92c22]"
                 style={{
                     border: "1px solid #f7b92c70",
                     background:
                         "radial-gradient(80% 120% at 50% 140%, #f7b92c50, transparent 70%), #0d0d0d",
-                    boxShadow: "0 0 50px #f7b92c22",
                 }}
             >
                 <h2 className="text-[clamp(26px,3.6vw,40px)] leading-[1.15] font-semibold text-white">
@@ -688,35 +661,7 @@ function CTASection() {
 
 export function AboutPage() {
     return (
-        <div className="relative isolate w-full min-h-screen flex flex-col bg-[#050505] text-white overflow-x-hidden font-[Poppins,sans-serif]">
-            {/* Keyframe animations */}
-            <style>{`
-                @keyframes sh { to { background-position: 200% 0 } }
-                @keyframes fy { to { transform: translateY(-14px) rotate(1.5deg) } }
-                @keyframes ln { to { top: 100% } }
-                @keyframes sc { to { transform: translateX(100%) } }
-                @keyframes pg { to { box-shadow: 0 0 0 10px #4ade8000 } }
-                @keyframes sm { to { background-position: -250% 0 } }
-
-                /* Timeline vertical line */
-                .tl::before {
-                    content: "";
-                    position: absolute;
-                    left: 17px;
-                    top: 6px;
-                    bottom: 6px;
-                    width: 2px;
-                    background: linear-gradient(#f7b92c, #f7b92c10);
-                    transform-origin: top;
-                    transform: scaleY(0);
-                    transition: transform 2.2s ease;
-                }
-                .tl.tl-in::before { transform: scaleY(1); }
-                @media (max-width: 560px) {
-                    .tl::before { left: 12px; }
-                }
-            `}</style>
-
+        <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-[#050505] text-white font-[Poppins,sans-serif]">
             <FeaturesBackground />
             <LandingHeader />
 

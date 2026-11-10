@@ -37,7 +37,7 @@ export function LandingFaqs() {
   };
 
   return (
-    <section id="faqs" className="w-full py-4 sm:py-6 md:py-7 relative z-10">
+    <section id="faqs" className="w-full py-4 sm:py-6 md:py-7">
       <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14 items-start">
           {/* Left Column: Heading & Info */}

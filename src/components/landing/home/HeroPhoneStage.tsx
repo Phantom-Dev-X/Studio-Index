@@ -7,9 +7,11 @@ import {
 
 export function HeroPhoneStage() {
   return (
-    <div className="relative w-full h-[410px] sm:h-[440px] lg:h-[460px] flex items-center justify-center select-none overflow-visible">
+    <div className="relative w-full h-[450px] sm:h-[460px] flex items-center justify-center select-none overflow-visible">
       {/* ============================================================
           LAYER 1: Ambient Golden Aura & Celestial Rays
+          (Zero SVG <feGaussianBlur> filters — uses layered radial/linear
+          gradients & soft concentric strokes for identical glow on all devices)
           ============================================================ */}
       <svg
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] sm:w-[640px] h-[520px] sm:h-[600px] z-0 overflow-visible opacity-90"
@@ -28,28 +30,24 @@ export function HeroPhoneStage() {
             <stop offset=".75" stopColor="#ffc83d" />
             <stop offset="1" stopColor="#f3a81a" stopOpacity=".5" />
           </linearGradient>
-          <filter id="bl" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="14" />
-          </filter>
-          <filter id="bs" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3" />
-          </filter>
           <linearGradient id="rg" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0" stopColor="#ffd65f" stopOpacity=".42" />
+            <stop offset="0" stopColor="#ffd65f" stopOpacity=".34" />
+            <stop offset=".55" stopColor="#ffd65f" stopOpacity=".12" />
             <stop offset="1" stopColor="#ffd65f" stopOpacity="0" />
           </linearGradient>
           <radialGradient id="bk">
-            <stop offset="0" stopColor="#ffe7a0" stopOpacity=".95" />
+            <stop offset="0" stopColor="#ffe7a0" stopOpacity=".85" />
+            <stop offset=".45" stopColor="#f7b92c" stopOpacity=".35" />
             <stop offset="1" stopColor="#f7b92c" stopOpacity="0" />
           </radialGradient>
-          <polygon id="rr" points="0,0 -22,-310 22,-310" fill="url(#rg)" />
+          <polygon id="rr" points="0,0 -26,-310 26,-310" fill="url(#rg)" />
         </defs>
 
         {/* Central Ambient Glow */}
         <ellipse cx="320" cy="300" rx="310" ry="290" fill="url(#ah)" />
 
         {/* Radiating Light Beams */}
-        <g transform="translate(320 300)" filter="url(#bs)">
+        <g transform="translate(320 300)">
           <use href="#rr" transform="rotate(-72)" />
           <use href="#rr" transform="rotate(-44) scale(.6 1)" />
           <use href="#rr" transform="rotate(-14)" />
@@ -61,13 +59,27 @@ export function HeroPhoneStage() {
           <use href="#rr" transform="rotate(252)" />
         </g>
 
-        {/* Dynamic Curved Energy Streams */}
+        {/* Dynamic Curved Energy Streams (soft concentric glow without feGaussianBlur) */}
         <g fill="none" stroke="url(#ab)" strokeLinecap="round">
           <path
             d="M30 500C170 430 250 545 380 400S540 250 615 105"
-            strokeWidth="24"
-            filter="url(#bl)"
-            opacity=".75"
+            strokeWidth="52"
+            opacity=".07"
+          />
+          <path
+            d="M30 500C170 430 250 545 380 400S540 250 615 105"
+            strokeWidth="32"
+            opacity=".13"
+          />
+          <path
+            d="M30 500C170 430 250 545 380 400S540 250 615 105"
+            strokeWidth="16"
+            opacity=".22"
+          />
+          <path
+            d="M30 500C170 430 250 545 380 400S540 250 615 105"
+            strokeWidth="7"
+            opacity=".36"
           />
           <path
             d="M30 500C170 430 250 545 380 400S540 250 615 105"
@@ -80,20 +92,25 @@ export function HeroPhoneStage() {
           />
         </g>
 
-        {/* Glowing Spheres & Particles */}
-        <g filter="url(#bs)">
-          <circle cx="120" cy="260" r="16" fill="url(#bk)" />
-          <circle cx="525" cy="205" r="22" fill="url(#bk)" />
-          <circle cx="175" cy="405" r="10" fill="url(#bk)" />
-          <circle cx="505" cy="385" r="12" fill="url(#bk)" />
-          <circle cx="262" cy="72" r="9" fill="url(#bk)" />
+        {/* Glowing Spheres & Particles (pure radialGradient falloff) */}
+        <g>
+          <circle cx="120" cy="260" r="22" fill="url(#bk)" />
+          <circle cx="525" cy="205" r="28" fill="url(#bk)" />
+          <circle cx="175" cy="405" r="14" fill="url(#bk)" />
+          <circle cx="505" cy="385" r="16" fill="url(#bk)" />
+          <circle cx="262" cy="72" r="13" fill="url(#bk)" />
         </g>
 
         {/* Starburst Crosses */}
         <path
+          d="M566 432l6 20 20 6-20 6-6 20-6-20-20-6 20-6z"
+          fill="#f7b92c"
+          opacity=".28"
+        />
+        <path
           d="M566 440l4 14 14 4-14 4-4 14-4-14-14-4 14-4z"
           fill="#ffd65f"
-          filter="url(#bs)"
+          opacity=".7"
         />
         <path
           d="M566 440l3 11 11 3-11 3-3 11-3-11-11-3 11-3z"
@@ -106,11 +123,11 @@ export function HeroPhoneStage() {
       </svg>
 
       {/* ============================================================
-          LAYER 3: Floating Frosted-Glass Badges
+          LAYER 3: Floating Badges
           ============================================================ */}
 
       {/* Badge 1: Top Right - Create Store in Seconds */}
-      <div className="absolute z-20 top-4 sm:top-6 right-1 sm:right-2 lg:-right-4 flex flex-col gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-landing-line bg-[var(--landing-glass)] backdrop-blur-md text-[11.5px] sm:text-[14px] font-medium leading-snug text-landing-fg shadow-[0_12px_32px_rgba(0,0,0,0.5)] animate-float-badge1">
+      <div className="absolute z-20 top-4 sm:top-6 right-1 sm:right-2 lg:-right-4 flex flex-col gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-landing-line bg-[#16161be6] md:bg-[var(--landing-glass)] md:backdrop-blur-md text-[11.5px] sm:text-[14px] font-medium leading-snug text-landing-fg shadow-[0_6px_16px_rgba(0,0,0,0.45)] md:shadow-[0_12px_32px_rgba(0,0,0,0.5)] animate-float-badge1">
         <LightningIcon size={19} weight="fill" className="text-landing-gold sm:hidden" />
         <LightningIcon size={24} weight="fill" className="text-landing-gold hidden sm:block" />
         <p className="leading-tight">
@@ -121,7 +138,7 @@ export function HeroPhoneStage() {
       </div>
 
       {/* Badge 2: Mid/Bottom Right - Get Orders on WhatsApp */}
-      <div className="absolute z-20 bottom-14 sm:bottom-16 right-0 sm:right-1 lg:-right-6 flex flex-col gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-landing-line bg-[var(--landing-glass)] backdrop-blur-md text-[11.5px] sm:text-[14px] font-medium leading-snug text-landing-fg shadow-[0_12px_32px_rgba(0,0,0,0.5)] animate-float-badge2">
+      <div className="absolute z-20 bottom-14 sm:bottom-16 right-0 sm:right-1 lg:-right-6 flex flex-col gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-landing-line bg-[#16161be6] md:bg-[var(--landing-glass)] md:backdrop-blur-md text-[11.5px] sm:text-[14px] font-medium leading-snug text-landing-fg shadow-[0_6px_16px_rgba(0,0,0,0.45)] md:shadow-[0_12px_32px_rgba(0,0,0,0.5)] animate-float-badge2">
         <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#25d366] flex items-center justify-center shadow-md">
           <WhatsappLogoIcon size={14} weight="fill" className="text-white sm:hidden" />
           <WhatsappLogoIcon size={18} weight="fill" className="text-white hidden sm:block" />
@@ -134,7 +151,7 @@ export function HeroPhoneStage() {
       </div>
 
       {/* Badge 3: Bottom Left - Grow Your Business */}
-      <div className="absolute z-20 bottom-10 sm:bottom-14 left-1 sm:left-2 lg:-left-6 flex flex-col gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-landing-line bg-[var(--landing-glass)] backdrop-blur-md text-[11.5px] sm:text-[14px] font-medium leading-snug text-landing-fg shadow-[0_12px_32px_rgba(0,0,0,0.5)] animate-float-badge3">
+      <div className="absolute z-20 bottom-10 sm:bottom-14 left-1 sm:left-2 lg:-left-6 flex flex-col gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-landing-line bg-[#16161be6] md:bg-[var(--landing-glass)] md:backdrop-blur-md text-[11.5px] sm:text-[14px] font-medium leading-snug text-landing-fg shadow-[0_6px_16px_rgba(0,0,0,0.45)] md:shadow-[0_12px_32px_rgba(0,0,0,0.5)] animate-float-badge3">
         <TrendUpIcon size={19} weight="bold" className="text-landing-gold sm:hidden" />
         <TrendUpIcon size={24} weight="bold" className="text-landing-gold hidden sm:block" />
         <p className="leading-tight">
@@ -167,6 +184,9 @@ export function HeroPhoneStage() {
             <img
               src="/StudioIndex.png"
               alt="Logo"
+              width={240}
+              height={160}
+              decoding="async"
               className="h-3.5 w-auto object-contain"
             />
             <span className="tracking-tight">Your Store</span>
@@ -263,4 +283,3 @@ export function HeroPhoneStage() {
     </div>
   );
 }
-

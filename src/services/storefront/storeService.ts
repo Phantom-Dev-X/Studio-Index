@@ -1,17 +1,15 @@
 import supabase from "../../lib/supabase";
 
-
 const reuseableResponseHandlers = (data: any, error: any) => {
-  const handleError = (_err: any) => {
+  if (error !== null) {
     return null;
-  };
-  const res = (!(error === null)) ? handleError(error) : data;
-  console.log(res)
-  return res;
+  }
+  return data;
 };
 
 export const supabaseFunctions = {
   async getSellersProducts(username: string) {
+    if (!supabase) return null;
     const { data, error } = await supabase
       .from('sellers')
       .select('*, products(*)')
@@ -22,7 +20,7 @@ export const supabaseFunctions = {
   },
 
   async getSellersImage(username?: string) {
-
+    if (!supabase) return null;
     const { data, error } = await supabase
       .from('sellers')
       .select('avatar_url')
@@ -35,11 +33,13 @@ export const supabaseFunctions = {
 
     return data?.avatar_url || null;
   },
+
   async getSellerInfo(username: string) {
+    if (!supabase) return null;
     const { data, error } = await supabase.rpc('get_store_by_username', {
       'p_username': username.trim()
     }).single();
 
-    return reuseableResponseHandlers(data, error)
+    return reuseableResponseHandlers(data, error);
   },
 };

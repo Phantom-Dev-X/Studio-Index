@@ -43,11 +43,9 @@ export function FloatingFooter() {
     return (
         <div
             id="floating-credit-pill"
-            className="rounded-full px-3 py-1.5 fixed bottom-4 left-1/2 flex place-content-between items-center w-[95%] max-w-lg z-50 backdrop-blur-md"
+            className="rounded-full px-3 py-1.5 fixed bottom-4 left-1/2 flex place-content-between items-center w-[95%] max-w-lg z-50 md:backdrop-blur-md bg-[#0c0c0f]/96 md:bg-[#0c0c0f]/92 shadow-xl md:shadow-[0_15px_40px_rgba(0,0,0,0.85)]"
             style={{
                 border: "1px solid rgba(255,255,255,0.12)",
-                background: "rgba(12, 12, 15, 0.92)",
-                boxShadow: "0 15px 40px rgba(0, 0, 0, 0.85)",
                 transform: isDockHidden ? "translate(-50%, 42px)" : "translate(-50%, 0)",
                 opacity: isDockHidden ? 0 : 1,
                 pointerEvents: isDockHidden ? "none" : "auto",

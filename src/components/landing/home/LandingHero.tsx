@@ -3,7 +3,7 @@ import { HeroPhoneStage } from "./HeroPhoneStage";
 
 export function LandingHero() {
   return (
-    <section className="relative w-full overflow-hidden pt-6 pb-12 sm:pt-10 sm:pb-16 md:pt-12 md:pb-20 lg:pt-14 lg:pb-20 bg-[radial-gradient(55%_55%_at_78%_35%,rgba(247,185,44,0.12),transparent_70%)]">
+    <section className="relative w-full overflow-x-clip pt-6 pb-12 sm:pt-10 sm:pb-16 md:pt-12 md:pb-20 lg:pt-14 lg:pb-20 bg-[radial-gradient(55%_55%_at_78%_35%,rgba(247,185,44,0.12),transparent_70%)]">
       <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_1fr] items-center gap-8 lg:gap-12">
           {/* Left Column: Text & CTA */}
@@ -58,7 +58,7 @@ export function LandingHero() {
           WAVY TRANSITION LINE (Stays in Hero, seamlessly leading to Features)
           ============================================================ */}
       <svg
-        className="absolute bottom-0 left-0 w-full h-[45px] sm:h-[65px] md:h-[80px] pointer-events-none overflow-visible z-10"
+        className="absolute bottom-0 left-0 w-full h-[45px] sm:h-[65px] md:h-[80px] pointer-events-none overflow-hidden z-10"
         viewBox="0 0 1440 130"
         preserveAspectRatio="none"
         aria-hidden="true"

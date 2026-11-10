@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
     ArrowRightIcon,
     ShoppingBagIcon,
@@ -134,7 +134,7 @@ export function FeaturesPage() {
     }, [charIndex, isDeleting, handleIndex]);
 
     return (
-        <div className="relative isolate w-full min-h-screen flex flex-col bg-landing-bg text-landing-fg font-poppins selection:bg-landing-gold selection:text-black overflow-x-hidden">
+        <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-landing-bg text-landing-fg font-poppins selection:bg-landing-gold selection:text-black">
             {/* Background 3 Radial Gradients & Grid */}
             <FeaturesBackground />
 
@@ -186,17 +186,19 @@ export function FeaturesPage() {
                     {/* Right Column: Hero Visual Container with Floating Main Card and Chips */}
                     <div className="relative w-full h-[360px] sm:h-[400px] select-none">
                         {/* Main Card (Orders Dashboard) - Outer Box + Rotating Conic Beam + Inner Box */}
-                        <div className="absolute inset-[24px_12px_24px_24px] sm:inset-[30px_20px_30px_40px] rounded-[22px] p-[1px] overflow-hidden animate-float-main z-10 shadow-[0_20px_60px_rgba(0,0,0,0.55)]">
-                            {/* Rotating Conic Gradient Beam */}
-                            <div
-                                className="absolute -inset-[150%] animate-spin-border pointer-events-none"
-                                style={{
-                                    background: "conic-gradient(from 0deg at 50% 50%, transparent 60%, #f7b92c 85%, transparent 100%)",
-                                }}
-                            />
+                        <div className="absolute inset-[24px_12px_24px_24px] sm:inset-[30px_20px_30px_40px] rounded-[22px] p-[1px] overflow-hidden isolate [clip-path:inset(0_round_22px)] animate-float-main z-10 shadow-[0_10px_28px_rgba(0,0,0,0.5)] md:shadow-[0_20px_60px_rgba(0,0,0,0.55)]">
+                            {/* Rotating Conic Gradient Beam (clipped cleanly inside rounded card on all sizes) */}
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div
+                                    className="w-[560px] h-[560px] shrink-0 animate-spin-border"
+                                    style={{
+                                        background: "conic-gradient(from 0deg at 50% 50%, transparent 60%, #f7b92c 85%, transparent 100%)",
+                                    }}
+                                />
+                            </div>
 
                             {/* Inner Box */}
-                            <div className="relative w-full h-full p-5 sm:p-6 rounded-[21px] bg-[#0c0c0e]/95 backdrop-blur-[16px] bg-gradient-to-br from-white/[0.09] to-white/[0.02] border border-white/[0.10] shadow-[inset_0_1px_rgba(255,255,255,0.18)] flex flex-col justify-between z-10">
+                            <div className="relative w-full h-full p-5 sm:p-6 rounded-[21px] bg-[#0c0c0e] md:bg-[#0c0c0e]/95 md:backdrop-blur-[16px] md:bg-gradient-to-br md:from-white/[0.09] md:to-white/[0.02] border border-white/[0.10] shadow-[inset_0_1px_rgba(255,255,255,0.18)] flex flex-col justify-between z-10">
                                 <div>
                                     <h4 className="text-landing-mut text-xs sm:text-[13px] font-medium tracking-wide">
                                         Today's orders
@@ -212,14 +214,14 @@ export function FeaturesPage() {
                         </div>
 
                         {/* Floating Chip 1: New order (Top-Right) */}
-                        <div className="absolute top-0 right-0 z-20 flex items-center gap-2.5 px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium text-white border border-white/[0.14] rounded-2xl bg-gradient-to-br from-white/[0.12] to-white/[0.03] backdrop-blur-[14px] shadow-[0_12px_36px_rgba(0,0,0,0.45),inset_0_1px_rgba(255,255,255,0.18)] animate-float-chip">
+                        <div className="absolute top-0 right-0 z-20 flex items-center gap-2.5 px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium text-white border border-white/[0.14] rounded-2xl bg-[#16161b] md:bg-transparent md:bg-gradient-to-br md:from-white/[0.12] md:to-white/[0.03] md:backdrop-blur-[14px] shadow-[0_8px_20px_rgba(0,0,0,0.45)] md:shadow-[0_12px_36px_rgba(0,0,0,0.45),inset_0_1px_rgba(255,255,255,0.18)] animate-float-chip">
                             <ShoppingBagIcon size={20} weight="bold" className="text-landing-gold shrink-0" />
                             <span>New order · ₦27,000</span>
                         </div>
 
                         {/* Floating Chip 2: Order confirmed (Bottom-Left) */}
                         <div
-                            className="absolute bottom-1.5 left-0 z-20 flex items-center gap-2.5 px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium text-white border border-white/[0.14] rounded-2xl bg-gradient-to-br from-white/[0.12] to-white/[0.03] backdrop-blur-[14px] shadow-[0_12px_36px_rgba(0,0,0,0.45),inset_0_1px_rgba(255,255,255,0.18)] animate-float-chip"
+                            className="absolute bottom-1.5 left-0 z-20 flex items-center gap-2.5 px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium text-white border border-white/[0.14] rounded-2xl bg-[#16161b] md:bg-transparent md:bg-gradient-to-br md:from-white/[0.12] md:to-white/[0.03] md:backdrop-blur-[14px] shadow-[0_8px_20px_rgba(0,0,0,0.45)] md:shadow-[0_12px_36px_rgba(0,0,0,0.45),inset_0_1px_rgba(255,255,255,0.18)] animate-float-chip"
                             style={{ animationDelay: "-2s" }}
                         >
                             <span className="w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full bg-[#25d366] flex items-center justify-center shrink-0 shadow-[0_2px_8px_rgba(37,211,102,0.35)]">
@@ -318,7 +320,7 @@ export function FeaturesPage() {
                         {/* ----------------------------------------------------
                             CARD 1: Unique Store Link (Span 7)
                             ---------------------------------------------------- */}
-                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-7 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-all duration-300 hover:border-landing-gold/50 hover:-translate-y-1 group">
+                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-7 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-colors duration-200 md:transition-all md:duration-300 hover:border-landing-gold/50 md:hover:-translate-y-1 group">
                             <LinkSimpleIcon size={32} weight="bold" className="text-landing-gold mb-3.5" />
                             <h3 className="text-lg sm:text-xl font-semibold text-white mb-1.5">
                                 Your own unique store link
@@ -341,7 +343,7 @@ export function FeaturesPage() {
                         {/* ----------------------------------------------------
                             CARD 2: Beautiful Product Catalogue (Span 5)
                             ---------------------------------------------------- */}
-                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-5 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-all duration-300 hover:border-landing-gold/50 hover:-translate-y-1 group">
+                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-5 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-colors duration-200 md:transition-all md:duration-300 hover:border-landing-gold/50 md:hover:-translate-y-1 group">
                             <ShoppingBagIcon size={32} weight="bold" className="text-landing-gold mb-3.5" />
                             <h3 className="text-lg sm:text-xl font-semibold text-white mb-1.5">
                                 Beautiful product catalogue
@@ -358,7 +360,7 @@ export function FeaturesPage() {
                                         className="relative aspect-square rounded-xl overflow-hidden animate-shimmer border border-white/10"
                                         style={{ animationDelay: tile.delay }}
                                     >
-                                        <span className="absolute left-1.5 bottom-1.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold text-white bg-black/80 backdrop-blur-sm tracking-tight border border-white/10">
+                                        <span className="absolute left-1.5 bottom-1.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold text-white bg-black/85 md:backdrop-blur-sm tracking-tight border border-white/10">
                                             {tile.price}
                                         </span>
                                     </div>
@@ -369,7 +371,7 @@ export function FeaturesPage() {
                         {/* ----------------------------------------------------
                             CARD 3: Seamless Cart (Span 4)
                             ---------------------------------------------------- */}
-                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-4 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-all duration-300 hover:border-landing-gold/50 hover:-translate-y-1 group flex flex-col justify-between">
+                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-4 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-colors duration-200 md:transition-all md:duration-300 hover:border-landing-gold/50 md:hover:-translate-y-1 group flex flex-col justify-between">
                             <div>
                                 <ShoppingCartIcon size={32} weight="bold" className="text-landing-gold mb-3.5" />
                                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-1.5">
@@ -396,7 +398,7 @@ export function FeaturesPage() {
                         {/* ----------------------------------------------------
                             CARD 4: Order Dashboard (Span 4)
                             ---------------------------------------------------- */}
-                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-4 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-all duration-300 hover:border-landing-gold/50 hover:-translate-y-1 group flex flex-col justify-between">
+                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-4 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-colors duration-200 md:transition-all md:duration-300 hover:border-landing-gold/50 md:hover:-translate-y-1 group flex flex-col justify-between">
                             <div>
                                 <ChartBarIcon size={32} weight="bold" className="text-landing-gold mb-3.5" />
                                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-1.5">
@@ -414,7 +416,7 @@ export function FeaturesPage() {
                         {/* ----------------------------------------------------
                             CARD 5: Made for Phones (Span 4)
                             ---------------------------------------------------- */}
-                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-4 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-all duration-300 hover:border-landing-gold/50 hover:-translate-y-1 group flex flex-col justify-between">
+                        <div onPointerMove={handleCardPointerMove} className="bento-spotlight md:col-span-4 relative overflow-hidden rounded-[22px] border border-landing-line bg-gradient-to-br from-white/[0.06] via-landing-card/60 to-landing-card p-6 sm:p-7 transition-colors duration-200 md:transition-all md:duration-300 hover:border-landing-gold/50 md:hover:-translate-y-1 group flex flex-col justify-between">
                             <div>
                                 <DeviceMobileIcon size={32} weight="bold" className="text-landing-gold mb-3.5" />
                                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-1.5">
@@ -437,10 +439,10 @@ export function FeaturesPage() {
                 {/* WhatsApp Order Bot Section */}
                 <section id="whatsapp" className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 pt-10 sm:pt-14 pb-16 sm:pb-24">
                     <div
-                        className="w-full rounded-[32px] p-6 sm:p-10 lg:p-14 border border-[#f7b92c]/30 shadow-[0_0_70px_rgba(247,185,44,0.12)] grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center relative overflow-hidden"
+                        className="w-full rounded-[32px] p-6 sm:p-10 lg:p-14 border border-[#f7b92c]/30 shadow-lg md:shadow-[0_0_70px_rgba(247,185,44,0.12)] grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center relative overflow-hidden"
                         style={{
                             background:
-                                "radial-gradient(70% 90% at 100% 0, rgba(37, 211, 102, 0.14), transparent 60%), radial-gradient(60% 80% at 0 100%, rgba(247, 185, 44, 0.16), transparent 60%), var(--card)",
+                                "radial-gradient(70% 90% at 100% 0, rgba(37, 211, 102, 0.14), transparent 60%), radial-gradient(60% 80% at 0 100%, rgba(247, 185, 44, 0.16), transparent 60%), var(--landing-card)",
                         }}
                     >
                         {/* Left Column: Text & Features List */}
@@ -487,7 +489,7 @@ export function FeaturesPage() {
 
                         {/* Right Column: Interactive WhatsApp Chat Widget */}
                         <div className="w-full flex justify-center lg:justify-end">
-                            <div className="max-w-[340px] w-full rounded-[28px] bg-[#0b141a] border border-white/[0.14] shadow-[0_30px_70px_rgba(0,0,0,0.7)] overflow-hidden lg:rotate-3 transition-transform duration-300 hover:rotate-0 select-none pb-4">
+                            <div className="max-w-[340px] w-full rounded-[28px] bg-[#0b141a] border border-white/[0.14] shadow-xl md:shadow-[0_30px_70px_rgba(0,0,0,0.7)] overflow-hidden lg:rotate-3 transition-transform duration-300 hover:rotate-0 select-none pb-4">
                                 {/* WhatsApp Header */}
                                 <div className="flex items-center gap-2.5 px-4 py-3 bg-[#202c33] border-b border-white/5">
                                     <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#ffd65f] to-[#f3a81a] flex items-center justify-center text-[#1a1204] shrink-0">
@@ -600,7 +602,7 @@ export function FeaturesPage() {
                             <span
                                 key={pill.label}
                                 style={{ animationDelay: pill.delay }}
-                                className="px-5 py-3 rounded-full border border-dashed border-[#f7b92c]/50 text-[13.5px] font-medium text-landing-fg/90 animate-pill-shimmer backdrop-blur-sm cursor-default hover:border-landing-gold transition-colors"
+                                className="px-5 py-3 rounded-full border border-dashed border-[#f7b92c]/50 text-[13.5px] font-medium text-landing-fg/90 animate-pill-shimmer md:backdrop-blur-sm cursor-default hover:border-landing-gold transition-colors"
                             >
                                 {pill.label}
                             </span>
@@ -610,7 +612,7 @@ export function FeaturesPage() {
 
                 {/* ── Bottom CTA Banner ── */}
                 <section id="cta" className="w-full max-w-6xl mx-auto px-4 md:px-8 mt-24 md:mt-32 mb-16">
-                    <div className="relative text-center border border-[#f7b92c]/40 rounded-[32px] py-14 px-6 md:px-12 bg-landing-card shadow-[0_0_50px_rgba(247,185,44,0.14)] overflow-hidden">
+                    <div className="relative text-center border border-[#f7b92c]/40 rounded-[32px] py-14 px-6 md:px-12 bg-landing-card shadow-lg md:shadow-[0_0_50px_rgba(247,185,44,0.14)] overflow-hidden">
                         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(80%_120%_at_50%_140%,rgba(247,185,44,0.32),transparent_70%)]" />
 
                         <div className="relative z-10">

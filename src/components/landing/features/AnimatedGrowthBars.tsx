@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 export interface GrowthBarItem {
     h: number;
     t: number;
@@ -19,14 +21,13 @@ export function AnimatedGrowthBars({
             {bars.map((bar, index) => (
                 <i
                     key={index}
-                    className="flex-1 bg-gradient-to-b from-[#ffd65f] to-[#a86a0866] origin-bottom rounded-t-lg rounded-b-[3px]"
+                    className="flex-1 bg-gradient-to-b from-[#ffd65f] to-[#a86a0866] origin-bottom rounded-t-lg rounded-b-[3px] animate-growth-bar"
                     style={{
                         height: `${bar.h}%`,
-                        animation: `gr 2.6s ease-in-out ${bar.t}s infinite alternate`,
-                    }}
+                        ["--bar-delay" as string]: `${bar.t}s`,
+                    } as CSSProperties}
                 />
             ))}
         </div>
     );
 }
-

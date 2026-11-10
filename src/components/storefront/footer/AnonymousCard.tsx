@@ -2,22 +2,28 @@ import { CrownSimpleIcon } from "@phosphor-icons/react";
 
 export function AnonymousCard() {
     return (
-        <div className="relative w-full max-w-[456px] min-h-[250px] rounded-2xl border border-[#ffd23048] p-[2px] overflow-hidden" style={{
-            background: "radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.12) 0%, #09090c 65%)"
-        }}>
-            {/* Rotating Conic Beam */}
-            <div
-                className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] animate-beam-spin pointer-events-none"
-                style={{
-                    background: "conic-gradient(from 0deg, transparent 0%, transparent 65%, #fbbf24 82%, #10b981 95%, transparent 100%)"
-                }}
-            />
+        <div
+            className="relative isolate w-full max-w-[456px] min-h-[250px] rounded-2xl border border-[#ffd23060] p-[2px] overflow-hidden [clip-path:inset(0_round_1rem)] shadow-md md:shadow-[0_0_28px_rgba(251,191,36,0.12)]"
+            style={{
+                background: "radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.12) 0%, #09090c 65%)",
+            }}
+        >
+            {/* Rotating Conic Beam (clipped cleanly inside rounded card on all screen sizes) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div
+                    className="w-[560px] h-[560px] shrink-0 animate-beam-spin"
+                    style={{
+                        background:
+                            "conic-gradient(from 0deg, transparent 0%, transparent 65%, #fbbf24 82%, #10b981 95%, transparent 100%)",
+                    }}
+                />
+            </div>
 
             {/* Inner Card Content */}
             <div
-                className="relative z-10 flex flex-col w-full px-7 py-5 rounded-[14.5px]"
+                className="relative z-10 flex flex-col w-full px-7 py-5 rounded-[14px]"
                 style={{
-                    background: "radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.12) 0%, #09090c 65%)"
+                    background: "radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.12) 0%, #09090c 65%)",
                 }}
             >
                 <div className="flex place-content-between items-center">
@@ -55,8 +61,6 @@ export function AnonymousCard() {
                     <p className="font-bold text-[10px]" style={{ color: "#fbbf24" }}>★ VERIFIED ORIGIN</p>
                 </div>
             </div>
-
-
         </div>
-    )
+    );
 }

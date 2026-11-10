@@ -9,14 +9,14 @@ import { AnonymousCard } from "../../storefront/footer/AnonymousCard";
 
 export function LandingFooter() {
   return (
-    <footer className="w-full relative z-10 pt-2 pb-6 mt-0">
+    <footer className="w-full overflow-x-clip pt-2 pb-6 mt-0">
       <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10">
         {/* ============================================================
             CTA Section + Anonymous Card Side-by-Side (Max 456x250)
             ============================================================ */}
         <div
           id="contact"
-          className="w-full rounded-3xl border border-landing-gold/50 bg-[radial-gradient(ellipse_at_top,rgba(247,185,44,0.14),var(--landing-card)_70%)] p-5 sm:p-6 lg:p-8 shadow-[0_0_50px_rgba(247,185,44,0.12)] grid grid-cols-1 lg:grid-cols-[1.1fr_456px] gap-6 lg:gap-8 items-center mb-6 sm:mb-8"
+          className="w-full rounded-3xl border border-landing-gold/50 bg-[radial-gradient(ellipse_at_top,rgba(247,185,44,0.14),var(--landing-card)_70%)] p-5 sm:p-6 lg:p-8 shadow-[0_8px_24px_rgba(247,185,44,0.1)] md:shadow-[0_0_50px_rgba(247,185,44,0.12)] grid grid-cols-1 lg:grid-cols-[1.1fr_456px] gap-6 lg:gap-8 items-center mb-6 sm:mb-8"
         >
           {/* Left Column: Brand & Callout Action */}
           <div className="flex flex-col items-start text-left">
@@ -24,6 +24,9 @@ export function LandingFooter() {
               <img
                 src="/StudioIndex.png"
                 alt="Studio Index Logo"
+                width={240}
+                height={160}
+                decoding="async"
                 className="h-8 sm:h-12 w-auto object-contain"
               />
               <div className="flex flex-col">

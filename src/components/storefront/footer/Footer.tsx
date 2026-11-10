@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export function Footer() {
     const navigate = useNavigate();
     return (
-        <footer id="grand-anon-footer" className="w-screen bg-footer-glow tmq:border-t-2 tmq:border-[#362f2f] mt-9 flex justify-center">
+        <footer id="grand-anon-footer" className="w-full overflow-x-clip bg-footer-glow tmq:border-t-2 tmq:border-[#362f2f] mt-9 flex justify-center">
             <div className="w-full max-w-[1000px] py-8 rounded-2xl relative flex flex-col items-center gap-6">
 
                 <div
@@ -34,7 +34,7 @@ export function Footer() {
                                 className="flex flex-wrap sm:flex-nowrap flex-1 rounded-[10px] p-1 gap-1 items-center w-full"
                                 style={{ border: "1px solid #fbbf24", background: "#0e0e12" }}
                             >
-                                <div className="flex items-center pl-2 min-w-[210px] flex-1">
+                                <div className="flex items-center pl-2 min-w-0 flex-1">
                                     <span className="text-[13px] shrink-0" style={{ color: "#737373" }}>studioindex.ng/</span>
                                     <input
                                         id="claim-handle-input"

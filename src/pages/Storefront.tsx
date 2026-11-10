@@ -41,7 +41,7 @@ export default function Storefront() {
 
   return (
     (ProductsArray ?
-      <div className="flex flex-col relative w-full">
+      <div className="flex flex-col relative w-full min-h-svh overflow-x-clip bg-[radial-gradient(circle_at_80%_20%,rgba(212,160,65,0.12),transparent_35%),linear-gradient(135deg,#080808,#11100d,#080808)]">
         <Header />
 
         {/* Main centered container for the storefront */}
@@ -60,7 +60,7 @@ export default function Storefront() {
         <BagPage isOpen={isBagOpen} onClose={() => setIsBagOpen(false)} />
       </div> : (
         <div
-          className='flex w-screen h-screen text-center justify-center items-center text-amber-50 animate-pulse'
+          className='flex w-full min-h-svh text-center justify-center items-center text-amber-50 animate-pulse'
         >
           loading StoreFront...
         </div>)

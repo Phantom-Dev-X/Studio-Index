@@ -63,35 +63,30 @@
     color-scheme: light;
 }
 
-html,
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-white);
+html {
+    background-color: var(--landing-bg);
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
     margin: 0;
     padding: 0;
-    height: 100dvh;
+}
 
-
-    background:
-        radial-gradient(circle at 80% 20%,
-            rgba(212, 160, 65, 0.12),
-            transparent 35%),
-        linear-gradient(135deg,
-            #080808,
-            #11100d,
-            #080808);
-
-    color: #ffffff;
+body {
+    background-color: var(--landing-bg);
+    color: var(--text-white);
+    width: 100%;
+    min-height: 100%;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
-
 }
 
 #root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    min-height: 100svh;
 }
 
 @theme {
@@ -149,7 +144,13 @@ body {
     position: relative;
     border: 1.5px solid var(--landing-gold);
     background: radial-gradient(110% 70% at 100% 0%, rgba(247, 185, 44, 0.42) 0%, rgba(247, 185, 44, 0.15) 35%, transparent 65%), var(--landing-card);
-    box-shadow: 0 0 45px rgba(247, 185, 44, 0.22);
+    box-shadow: 0 8px 24px rgba(247, 185, 44, 0.16);
+}
+
+@media (min-width: 768px) {
+    .pro-card {
+        box-shadow: 0 0 45px rgba(247, 185, 44, 0.22);
+    }
 }
 
 [data-theme="light"] .pro-card {
@@ -745,6 +746,10 @@ body.deranked-mode .verified-badge-seal {
     animation: borderBeamRotate 6s linear infinite;
 }
 
+.animate-growth-bar {
+    animation: gr 2.6s ease-in-out var(--bar-delay, 0s) infinite alternate;
+}
+
 /* ============================================================
    INFINITE MARQUEE TICKER ANIMATION
    ============================================================ */
@@ -860,12 +865,105 @@ body.deranked-mode .verified-badge-seal {
 }
 
 /* ============================================================
+   ABOUT & CONTACT PAGE DEDICATED KEYFRAMES
+   (kept separate from `fy` so inline <style> blocks don't collide)
+   ============================================================ */
+@keyframes aboutFloat {
+    to {
+        transform: translateY(-14px) rotate(1.5deg);
+    }
+}
+
+@keyframes aboutScan {
+    to {
+        top: 100%;
+    }
+}
+
+@keyframes aboutShimmer {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes aboutPing {
+    to {
+        box-shadow: 0 0 0 10px #4ade8000;
+    }
+}
+
+@keyframes aboutSweep {
+    to {
+        background-position: -250% 0;
+    }
+}
+
+@keyframes contactMarquee {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes contactFlight {
+    to {
+        stroke-dashoffset: -28;
+    }
+}
+
+@keyframes contactFloat {
+    to {
+        transform: translateY(-16px) rotate(4deg);
+    }
+}
+
+.tl::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(#f7b92c, #f7b92c10);
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 2.2s ease;
+}
+
+.tl.tl-in::before {
+    transform: scaleY(1);
+}
+
+@media (max-width: 767px) {
+    .tl::before {
+        transform: scaleY(1);
+    }
+}
+
+@media (max-width: 560px) {
+    .tl::before {
+        left: 12px;
+    }
+}
+
+/* ============================================================
    PRICING PAGE — SPARKLE TWINKLE (tw)
    ============================================================ */
 @keyframes tw {
     50% {
         opacity: 0.1;
         transform: scale(0.4);
+    }
+}
+
+@keyframes menuReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 

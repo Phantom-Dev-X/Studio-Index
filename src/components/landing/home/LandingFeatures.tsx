@@ -50,7 +50,7 @@ export function LandingFeatures() {
   return (
     <section
       id="features"
-      className="w-full pt-4 pb-6 sm:pt-6 sm:pb-8 md:pt-6 md:pb-10 relative z-10"
+      className="w-full pt-4 pb-6 sm:pt-6 sm:pb-8 md:pt-6 md:pb-10"
     >
       <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10">
         {/* Section Divider Header with bilateral gold gradients */}
@@ -67,7 +67,7 @@ export function LandingFeatures() {
           {FEATURES_DATA.map((item, idx) => (
             <div
               key={idx}
-              className="group p-4 sm:p-6 rounded-2xl border border-landing-line bg-[linear-gradient(160deg,rgba(255,255,255,0.06),var(--landing-card)_60%)] hover:border-landing-gold/45 hover:-translate-y-1.5 transition-all duration-300 shadow-xl flex flex-col items-start text-left cursor-default"
+              className="group p-4 sm:p-6 rounded-2xl border border-landing-line bg-[linear-gradient(160deg,rgba(255,255,255,0.06),var(--landing-card)_60%)] hover:border-landing-gold/45 md:hover:-translate-y-1.5 transition-colors duration-200 md:transition-all md:duration-300 shadow-md md:shadow-xl flex flex-col items-start text-left cursor-default"
             >
               <div className="mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110">
                 {item.icon}

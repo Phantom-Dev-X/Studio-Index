@@ -2,34 +2,44 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
     ArrowRightIcon,
+    ArrowUpRight,
+    House,
+    Info,
     MoonIcon,
-    SunIcon,
-    CaretRight,
+    PaperPlaneTilt,
+    SignIn,
     Sparkle,
+    SunIcon,
+    Tag,
     X,
 } from "@phosphor-icons/react";
 
 const navItems = [
-    { to: "/", label: "Home", end: true },
-    { to: "/features", label: "Features" },
-    { to: "/pricing", label: "Pricing" },
-    { to: "/about", label: "About" },
-    { to: "/contact", label: "Contact" },
+    { to: "/", label: "Home", subtitle: "Storefront overview", num: "01", Icon: House, end: true },
+    { to: "/features", label: "Features", subtitle: "WhatsApp & smart tools", num: "02", Icon: Sparkle },
+    { to: "/pricing", label: "Pricing", subtitle: "Free & Pro plans", num: "03", Icon: Tag },
+    { to: "/about", label: "About", subtitle: "Founder & mission", num: "04", Icon: Info },
+    { to: "/contact", label: "Contact", subtitle: "Direct support", num: "05", Icon: PaperPlaneTilt },
 ];
 
 export function LandingHeader() {
     const [isDark, setIsDark] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    // Prevent background scrolling when modal is open
+    // Prevent background scrolling & allow Escape close when modal is open
     useEffect(() => {
-        if (mobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
+        if (!mobileMenuOpen) {
             document.body.style.overflow = "";
+            return;
         }
+        document.body.style.overflow = "hidden";
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setMobileMenuOpen(false);
+        };
+        window.addEventListener("keydown", onKeyDown);
         return () => {
             document.body.style.overflow = "";
+            window.removeEventListener("keydown", onKeyDown);
         };
     }, [mobileMenuOpen]);
 
@@ -45,8 +55,8 @@ export function LandingHeader() {
 
     return (
         <>
-            <header className="w-full sticky top-0 z-50 backdrop-blur-md bg-landing-bg/90 border-b border-landing-line">
-                <div className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10 py-3 sm:py-4 flex items-center justify-between gap-3">
+            <header className="w-full fixed top-0 left-0 right-0 z-50 [transform:translate3d(0,0,0)] bg-landing-bg/95 md:bg-landing-bg/90 md:backdrop-blur-md border-b border-landing-line">
+                <div className="max-w-[1100px] w-full mx-auto px-3 sm:px-6 md:px-10 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-3">
                     {/* Brand Logo & Name */}
                     <NavLink
                         to="/"
@@ -56,9 +66,12 @@ export function LandingHeader() {
                         <img
                             src="/StudioIndex.png"
                             alt="Studio Index Logo"
+                            width={240}
+                            height={160}
+                            decoding="async"
                             className="h-7 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105 duration-200 shrink-0"
                         />
-                        <span className="font-poppins font-semibold text-[clamp(15px,3.8vw,20px)] tracking-tight text-white whitespace-nowrap">
+                        <span className="font-poppins font-semibold text-[clamp(14px,3.8vw,20px)] tracking-tight text-white whitespace-nowrap">
                             Studio <i className="not-italic text-landing-gold">Index</i>
                         </span>
                     </NavLink>
@@ -84,7 +97,7 @@ export function LandingHeader() {
                     </nav>
 
                     {/* Right Actions: Theme Toggle + CTA Button + Hamburger */}
-                    <div className="flex items-center gap-2 sm:gap-3.5 shrink-0">
+                    <div className="flex items-center gap-1.5 sm:gap-3.5 shrink-0">
                         {/* Theme Toggle Pill */}
                         <button
                             type="button"
@@ -129,116 +142,175 @@ export function LandingHeader() {
                             <ArrowRightIcon size={11} weight="bold" className="shrink-0" />
                         </a>
 
-                        {/* Hamburger Button */}
+                        {/* Sharp Morphing Hamburger Toggle */}
                         <button
                             type="button"
-                            onClick={() => setMobileMenuOpen(true)}
-                            aria-label="Open menu"
-                            className="md:hidden relative flex flex-col items-center justify-center w-9 h-9 rounded-xl border bg-white/[0.04] border-white/10 hover:border-landing-gold/40 hover:bg-white/[0.08] transition-all duration-200 cursor-pointer"
+                            onClick={() => setMobileMenuOpen((prev) => !prev)}
+                            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                            aria-expanded={mobileMenuOpen}
+                            className={`md:hidden relative flex items-center justify-center w-9 h-9 rounded-xl border transition-colors duration-200 cursor-pointer shrink-0 ${
+                                mobileMenuOpen
+                                    ? "bg-[#f7b92c]/15 border-[#f7b92c]/55 text-[#ffd65f]"
+                                    : "bg-white/[0.04] border-white/12 hover:border-[#f7b92c]/45 text-white"
+                            }`}
                         >
-                            <span className="block w-4.5 h-[2px] rounded-full bg-white mb-1" />
-                            <span className="block w-3 h-[2px] rounded-full bg-landing-gold mb-1" />
-                            <span className="block w-4.5 h-[2px] rounded-full bg-white" />
+                            {mobileMenuOpen ? (
+                                <X size={16} weight="bold" />
+                            ) : (
+                                <span className="flex flex-col items-end gap-[4px]">
+                                    <span className="block w-4 h-[1.75px] rounded-full bg-white" />
+                                    <span className="block w-2.5 h-[1.75px] rounded-full bg-landing-gold" />
+                                    <span className="block w-4 h-[1.75px] rounded-full bg-white" />
+                                </span>
+                            )}
                         </button>
                     </div>
                 </div>
             </header>
+            <div className="h-[61px] sm:h-[69px] w-full shrink-0" aria-hidden="true" />
 
             {/* ════════════════════════════════════════════════════════
-                FIXED FULLSCREEN MODAL OVERLAY (Top 0, Full Width)
+                FLOATING LUXURY DROPDOWN PANEL (Mounted only when open)
                 ════════════════════════════════════════════════════════ */}
-            <div
-                onClick={() => setMobileMenuOpen(false)}
-                className={`md:hidden fixed inset-0 z-50 transition-opacity duration-300 flex flex-col items-center justify-start ${
-                    mobileMenuOpen
-                        ? "opacity-100 pointer-events-auto bg-black/75 backdrop-blur-md"
-                        : "opacity-0 pointer-events-none"
-                }`}
-            >
-                {/* Full-width Modal Sheet pinned right at top 0 */}
+            {mobileMenuOpen && (
                 <div
-                    onClick={(e) => e.stopPropagation()}
-                    className={`relative w-full rounded-b-3xl px-5 pt-4 pb-6 border-b border-landing-gold/40 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(247,185,44,0.18)] transition-all duration-300 ${
-                        mobileMenuOpen
-                            ? "translate-y-0 opacity-100"
-                            : "-translate-y-full opacity-0"
-                    }`}
-                    style={{
-                        background:
-                            "radial-gradient(110% 70% at 100% 0%, rgba(247, 185, 44, 0.16) 0%, transparent 60%), #0e0e0e",
-                    }}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="md:hidden fixed inset-0 z-40 pt-[70px] px-3 pb-6 flex flex-col items-end bg-black/75"
                 >
-                    {/* Top Golden Light Edge */}
-                    <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-landing-gold to-transparent" />
+                    <nav
+                        aria-label="Mobile navigation"
+                        onClick={(e) => e.stopPropagation()}
+                        className="relative w-full max-w-[400px] rounded-2xl border border-white/[0.12] overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.94),0_0_0_1px_rgba(247,185,44,0.14)] animate-[menuReveal_0.18s_cubic-bezier(0.16,1,0.3,1)]"
+                        style={{
+                            background:
+                                "radial-gradient(95% 55% at 100% 0%, rgba(247, 185, 44, 0.14) 0%, transparent 65%), #0a0a0d",
+                        }}
+                    >
+                        {/* Top Specular Gold Hairline */}
+                        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#f7b92c]/75 to-transparent" />
 
-                    {/* Modal Top Header Bar */}
-                    <div className="flex items-center justify-between pb-3.5 mb-3 border-b border-white/10">
-                        <span className="text-xs uppercase tracking-widest text-landing-gold font-semibold flex items-center gap-1.5">
-                            <Sparkle size={13} weight="fill" />
-                            Navigation
-                        </span>
-                        <button
-                            type="button"
-                            onClick={() => setMobileMenuOpen(false)}
-                            aria-label="Close menu"
-                            className="w-8 h-8 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-white/[0.12] transition-colors cursor-pointer"
-                        >
-                            <X size={16} weight="bold" />
-                        </button>
-                    </div>
+                        {/* Top Bar Strip */}
+                        <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.07]">
+                            <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.18em] text-[#a3a3a3]">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
+                                Navigation
+                            </span>
+                            <span className="text-[9.5px] font-mono uppercase tracking-[0.16em] text-[#ffd65f] px-2 py-0.5 rounded-md bg-[#f7b92c]/10 border border-[#f7b92c]/25">
+                                Studio Index
+                            </span>
+                        </div>
 
-                    {/* Nav Links */}
-                    <div className="flex flex-col gap-1.5">
-                        {navItems.map(({ to, label, end }) => (
-                            <NavLink
-                                key={to}
-                                to={to}
-                                end={end}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className={({ isActive }) =>
-                                    `group flex items-center justify-between py-3 px-4 rounded-xl text-sm font-medium transition-all duration-200 ${
-                                        isActive
-                                            ? "text-[#1a1204] font-semibold bg-gradient-to-r from-[#ffd65f] to-[#f3a81a] shadow-[0_4px_16px_rgba(247,185,44,0.35)]"
-                                            : "text-[#d4d4d4] hover:text-white hover:bg-white/[0.06]"
-                                    }`
-                                }
-                            >
-                                {({ isActive }) => (
-                                    <>
-                                        <span className="flex items-center gap-2">
-                                            {label}
-                                        </span>
-                                        <CaretRight
-                                            size={14}
-                                            weight="bold"
-                                            className={`transition-transform duration-200 ${
-                                                isActive
-                                                    ? "text-[#1a1204]"
-                                                    : "text-[#f7b92c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
-                                            }`}
-                                        />
-                                    </>
-                                )}
-                            </NavLink>
-                        ))}
-                    </div>
+                        {/* Architectural Nav Rows */}
+                        <div className="p-2 flex flex-col gap-1">
+                            {navItems.map(({ to, label, subtitle, num, Icon, end }) => (
+                                <NavLink
+                                    key={to}
+                                    to={to}
+                                    end={end}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className={({ isActive }) =>
+                                        `group relative flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-colors duration-150 ${
+                                            isActive
+                                                ? "border-[#f7b92c]/35 bg-[linear-gradient(90deg,rgba(247,185,44,0.13),rgba(247,185,44,0.03)_70%,transparent)]"
+                                                : "border-transparent hover:border-white/[0.08] hover:bg-white/[0.035]"
+                                        }`
+                                    }
+                                >
+                                    {({ isActive }) => (
+                                        <>
+                                            {/* Left Active Indicator */}
+                                            {isActive && (
+                                                <span
+                                                    aria-hidden="true"
+                                                    className="absolute left-0 top-2.5 bottom-2.5 w-[2.5px] rounded-r-full bg-[#f7b92c]"
+                                                />
+                                            )}
 
-                    {/* Modal Footer Row */}
-                    <div className="pt-3.5 mt-3 border-t border-white/10 flex items-center justify-between text-xs text-landing-mut">
-                        <span className="flex items-center gap-1.5 text-[11px] text-[#a9a9a9]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
-                            Free Forever · 0% Cut
-                        </span>
-                        <a
-                            href="#login"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="text-white hover:text-landing-gold font-medium transition-colors"
-                        >
-                            Login &rarr;
-                        </a>
-                    </div>
+                                            {/* Index Number */}
+                                            <span
+                                                className={`font-mono text-[10px] w-4 shrink-0 ${
+                                                    isActive ? "text-[#ffd65f]" : "text-[#62626a]"
+                                                }`}
+                                            >
+                                                {num}
+                                            </span>
+
+                                            {/* Icon Tile */}
+                                            <span
+                                                className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border transition-colors ${
+                                                    isActive
+                                                        ? "bg-[#f7b92c]/15 border-[#f7b92c]/45 text-[#ffd65f]"
+                                                        : "bg-white/[0.04] border-white/[0.08] text-[#a3a3a3] group-hover:text-white group-hover:border-white/15"
+                                                }`}
+                                            >
+                                                <Icon size={15} weight={isActive ? "fill" : "regular"} />
+                                            </span>
+
+                                            {/* Label + Micro Subtitle */}
+                                            <span className="flex flex-col min-w-0 flex-1">
+                                                <span
+                                                    className={`text-[13.5px] leading-tight tracking-tight ${
+                                                        isActive
+                                                            ? "text-white font-semibold"
+                                                            : "text-[#e5e5e5] font-medium group-hover:text-white"
+                                                    }`}
+                                                >
+                                                    {label}
+                                                </span>
+                                                <span className="text-[10.5px] text-[#73737a] truncate mt-0.5">
+                                                    {subtitle}
+                                                </span>
+                                            </span>
+
+                                            {/* Right Indicator */}
+                                            {isActive ? (
+                                                <span className="text-[9.5px] font-mono uppercase tracking-wider text-[#ffd65f] px-2 py-0.5 rounded-full bg-[#f7b92c]/12 border border-[#f7b92c]/30 shrink-0">
+                                                    Here
+                                                </span>
+                                            ) : (
+                                                <ArrowUpRight
+                                                    size={14}
+                                                    weight="bold"
+                                                    className="text-[#52525b] group-hover:text-[#ffd65f] transition-colors shrink-0"
+                                                />
+                                            )}
+                                        </>
+                                    )}
+                                </NavLink>
+                            ))}
+                        </div>
+
+                        {/* Bottom Action Dock */}
+                        <div className="px-3 pt-2.5 pb-3 border-t border-white/[0.07] bg-white/[0.015] flex flex-col gap-2.5">
+                            <div className="grid grid-cols-2 gap-2">
+                                <a
+                                    href="#login"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl border border-white/12 bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/25 text-white/90 text-xs font-medium transition-colors"
+                                >
+                                    <SignIn size={14} weight="bold" className="text-[#a3a3a3]" />
+                                    <span>Login</span>
+                                </a>
+                                <a
+                                    href="#pricing"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-gradient-gold text-[#1a1204] text-xs font-semibold shadow-[0_4px_16px_rgba(247,185,44,0.28)]"
+                                >
+                                    <span>Start Free</span>
+                                    <ArrowRightIcon size={12} weight="bold" />
+                                </a>
+                            </div>
+
+                            <div className="flex items-center justify-between px-1 text-[10px] font-mono text-[#73737a]">
+                                <span>₦0 FOREVER · 0% CUT</span>
+                                <span className="text-[#a3a3a3]">
+                                    LAGOS <span className="text-[#f7b92c]">◆</span> NG
+                                </span>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
-            </div>
+            )}
         </>
     );
 }

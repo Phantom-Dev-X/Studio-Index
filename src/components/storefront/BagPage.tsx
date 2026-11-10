@@ -20,7 +20,6 @@ export function BagPage({ isOpen = true, onClose }: BagPageProps) {
         cart.forEach((item: any) => {
             total += (item.quantity * item.price)
         });
-        window.dispatchEvent(new Event('totalUpdated'))
         return total
     }
 
@@ -31,7 +30,7 @@ export function BagPage({ isOpen = true, onClose }: BagPageProps) {
 
     return (
         <div
-            className="fixed top-0 right-0 w-screen h-full backdrop-blur-[12px] bg-black/50 flex flex-col items-end z-50 transition-all duration-300"
+            className="fixed inset-0 bg-black/75 md:bg-black/50 md:backdrop-blur-[12px] flex flex-col items-end z-50 transition-opacity duration-300"
             onClick={onClose}
         >
             <div

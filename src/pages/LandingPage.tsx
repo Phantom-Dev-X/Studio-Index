@@ -7,7 +7,7 @@ import { LandingFooter } from "../components/landing/home/LandingFooter";
 
 export function LandingPage() {
     return (
-        <div className="w-full min-h-screen flex flex-col bg-landing-bg text-landing-fg font-poppins selection:bg-landing-gold selection:text-black">
+        <div className="w-full min-h-svh flex flex-col overflow-x-clip bg-landing-bg text-landing-fg font-poppins selection:bg-landing-gold selection:text-black">
             <LandingHeader />
             <main id="top" className="w-full flex flex-col items-center">
                 <LandingHero />

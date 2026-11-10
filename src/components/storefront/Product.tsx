@@ -8,7 +8,7 @@ export function Product({ ProductsArray }: { ProductsArray: any[] }) {
                 return (
                     <div
                         key={ProductProp.id}
-                        className="group flex flex-col items-center mb-2 w-[95%] px-2 pt-2 fmq:w-[46%] smq:w-[31%] smq:max-w-[240px] rounded-2xl transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:border-amber-400/60"
+                        className="group flex flex-col items-center mb-2 w-[95%] px-2 pt-2 fmq:w-[46%] smq:w-[31%] smq:max-w-[240px] rounded-2xl transition-colors duration-200 md:transition-all md:duration-300 md:hover:scale-[1.03] md:hover:shadow-xl hover:border-amber-400/60"
                         style={{
                             background: "rgba(115, 107, 77, 0.13)",
                             border: "2px solid rgba(78, 73, 54, 0.59)",
@@ -17,11 +17,14 @@ export function Product({ ProductsArray }: { ProductsArray: any[] }) {
                         <div
                             className="w-full h-64 rounded-2xl relative overflow-hidden p-1"
                         >
-                            <div
-                                className="w-full h-full bg-center bg-cover bg-no-repeat rounded-2xl transition-transform duration-500 ease-out group-hover:scale-110"
-                                style={{ backgroundImage: `url(${ProductProp.image_url || ProductProp.img})` }}
+                            <img
+                                src={ProductProp.image_url || ProductProp.img}
+                                alt={ProductProp.name}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-cover rounded-2xl transition-transform duration-500 ease-out md:group-hover:scale-110"
                             />
-                            <div className="absolute top-2 left-2 inline-flex items-center justify-center px-2 animate-pulse py-1 text-center pointer-events-none">
+                            <div className="absolute top-2 left-2 inline-flex items-center justify-center px-2 py-1 text-center pointer-events-none">
                                 {/* SVG background: Top & bottom curve inward, left & right edges are rounded-full */}
                                 <svg
                                     className="absolute inset-0 w-full h-full top-0.5 "

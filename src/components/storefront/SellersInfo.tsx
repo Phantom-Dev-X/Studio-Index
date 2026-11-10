@@ -8,28 +8,36 @@ import { formatMoney } from "../../utils/formatCurrency";
 
 export function SellersInfo({ username, setIsBagOpen, count }: { username?: string, setIsBagOpen?: (val: boolean) => void, count?: number }) {
     let [profilePic] = useState(userPic);
-    let [, setTotal] = useState(0)
+    let [total, setTotal] = useState(0)
     let [SellersInfo, setSellersInfo] = useState<any>(null)
-    function UpdateTotal() {
+    function computeCartTotal() {
         let amount = 0;
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
         cart.forEach((item: any) => {
             amount += (item.quantity * item.price)
         });
-        setTotal(amount);
-        return amount
-    }
-    async function getSellersInfo(uName?: string) {
-        if (!uName) return;
-        const info = await supabaseFunctions.getSellerInfo(uName);
-        setSellersInfo(info)
-        window.addEventListener('totalUpdated', UpdateTotal)
-
+        return amount;
     }
     useEffect(() => {
-        getSellersInfo(username)
+        let active = true;
+        const syncTotal = () => setTotal(computeCartTotal());
+        syncTotal();
+        window.addEventListener('totalUpdated', syncTotal);
+        window.addEventListener('cartUpdated', syncTotal);
 
-    }, []);
+        async function getSellersInfo(uName?: string) {
+            if (!uName) return;
+            const info = await supabaseFunctions.getSellerInfo(uName);
+            if (active && info) setSellersInfo(info);
+        }
+        getSellersInfo(username);
+
+        return () => {
+            active = false;
+            window.removeEventListener('totalUpdated', syncTotal);
+            window.removeEventListener('cartUpdated', syncTotal);
+        };
+    }, [username]);
     const infoData = SellersInfo || {
         avatar_url: profilePic || "/src/assets/products/amaka-avatar.jpg",
         bio: "Luxury Ankara prints, ready-to-wear dresses & custom fittings in Lagos.",
@@ -116,7 +124,7 @@ export function SellersInfo({ username, setIsBagOpen, count }: { username?: stri
     function StoreName() {
         const nameStyles = () => {
             return (
-                "font-bold text-[18px] w-[90vw] tracking-wider"
+                "font-bold text-[18px] w-full tracking-wider"
             )
         };
 
@@ -174,7 +182,7 @@ export function SellersInfo({ username, setIsBagOpen, count }: { username?: stri
     function Description() {
         function Descriptions() {
             const DescriptionStyles = () => {
-                return ("text-[11px] w-[68vw] max-w-md font-semibold text-center sm:text-start")
+                return ("text-[11px] w-full max-w-md font-semibold text-center sm:text-start")
             }
             return (
                 <p className={DescriptionStyles()} style={{ color: "#a3a3a3" }}>
@@ -197,6 +205,7 @@ export function SellersInfo({ username, setIsBagOpen, count }: { username?: stri
                 return (
 
                     <span
+                        key={prop}
                         className="text-[10px] mx-0.5 mb-2 pl-3 pr-3 py-1 w-fit rounded-full flex gap-1 items-center"
                         style={{ color: "#a3a3a3", border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.04)" }}
                     >
@@ -240,7 +249,7 @@ export function SellersInfo({ username, setIsBagOpen, count }: { username?: stri
                     </div>
                     <div className="">
                         <p className="text-[10px] font-bold" style={{ color: "#a3a3a3" }}>YOUR SHOPPING BAG</p>
-                        <h3 className="text-[13px] font-bold" style={{ color: "#fafafa" }}>₦{formatMoney(UpdateTotal())}</h3>
+                        <h3 className="text-[13px] font-bold" style={{ color: "#fafafa" }}>₦{formatMoney(total)}</h3>
                     </div>
                 </div>
                 <div className="flex gap-1 mb-3">
@@ -281,8 +290,7 @@ export function SellersInfo({ username, setIsBagOpen, count }: { username?: stri
     }
 
     return (
-        (SellersInfo ?
-            (<div
+            <div
                 className="flex flex-col items-center sm:max-w-[900px] md:max-w-[980px] relative rounded-4xl w-full mb-10"
                 style={{
                     border: "1px solid rgba(255,255,255,0.08)",
@@ -306,9 +314,7 @@ export function SellersInfo({ username, setIsBagOpen, count }: { username?: stri
                     </div>
 
                 </div>
-            </div>) : (<p>hello</p>)
-        )
-
+            </div>
     )
 }
 
