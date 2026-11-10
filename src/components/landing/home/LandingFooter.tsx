@@ -5,7 +5,7 @@ import {
   XLogoIcon,
   YoutubeLogoIcon,
 } from "@phosphor-icons/react";
-import { AnonymousCard } from "../storefront/footer/AnonymousCard";
+import { AnonymousCard } from "../../storefront/footer/AnonymousCard";
 
 export function LandingFooter() {
   return (

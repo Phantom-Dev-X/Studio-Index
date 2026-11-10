@@ -13,7 +13,7 @@ import p11Img from '../../assets/products/p11-perfume-oil.jpg';
 import p12Img from '../../assets/products/p12-lip-gloss-set.jpg';
 
 
-export async function getStoreByUserName(setProductsArray, username) {
+export async function getStoreByUserName(setProductsArray: (products: any) => void, username: string) {
     const res: any = await supabaseFunctions.getSellersProducts(username)
 
     if (res === null) {

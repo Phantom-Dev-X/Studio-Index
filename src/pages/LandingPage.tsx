@@ -1,9 +1,9 @@
-import { LandingHeader } from "../components/landing/LandingHeader";
-import { LandingHero } from "../components/landing/LandingHero";
-import { LandingFeatures } from "../components/landing/LandingFeatures";
-import { LandingPricing } from "../components/landing/LandingPricing";
-import { LandingFaqs } from "../components/landing/LandingFaqs";
-import { LandingFooter } from "../components/landing/LandingFooter";
+import { LandingHeader } from "../components/landing/home/LandingHeader";
+import { LandingHero } from "../components/landing/home/LandingHero";
+import { LandingFeatures } from "../components/landing/home/LandingFeatures";
+import { LandingPricing } from "../components/landing/home/LandingPricing";
+import { LandingFaqs } from "../components/landing/home/LandingFaqs";
+import { LandingFooter } from "../components/landing/home/LandingFooter";
 
 export function LandingPage() {
     return (

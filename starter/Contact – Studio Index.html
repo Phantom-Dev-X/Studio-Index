@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Contact – Studio Index</title>
+    <script>document.documentElement.className = 'js'</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: #fff;
+            --mut: #a9a9a9;
+            --card: #0d0d0d;
+            --line: #ffffff1a;
+            --gold: #f7b92c;
+            --g1: #ffd65f;
+            --g2: #f3a81a;
+            color-scheme: dark;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            scroll-behavior: smooth
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+            margin: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font: 400 15px/1.55 Poppins, system-ui, -apple-system, "Segoe UI", sans-serif;
+            overflow-x: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        svg {
+            display: block
+        }
+
+        .w {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 40px
+        }
+
+        .ic {
+            width: 1em;
+            height: 1em;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .gt {
+            background: linear-gradient(90deg, #ffd65f, #f3a81a, #fff1b8, #ffd65f);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: sh 6s linear infinite
+        }
+
+        @keyframes sh {
+            to {
+                background-position: 200% 0
+            }
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden
+        }
+
+        .bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(#ffffff09 1px, transparent 1px), linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+            background-size: 56px 56px;
+            -webkit-mask: radial-gradient(75% 65% at 50% 25%, #000, transparent);
+            mask: radial-gradient(75% 65% at 50% 25%, #000, transparent)
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            background: radial-gradient(circle, #f7b92c4d, transparent 70%);
+            animation: fl 16s ease-in-out infinite alternate
+        }
+
+        @keyframes fl {
+            to {
+                transform: translate(70px, 90px) scale(1.25)
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            font: 600 14px Poppins, sans-serif;
+            padding: 14px 26px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--fg);
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .btn .ic {
+            width: 15px;
+            height: 15px
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: #f7b92c80
+        }
+
+        .btn.g {
+            background: linear-gradient(180deg, var(--g1), var(--g2));
+            color: #1a1204;
+            border: 0;
+            box-shadow: 0 6px 24px #f7b92c40
+        }
+
+        .btn.g:hover {
+            box-shadow: 0 10px 34px #f7b92c70
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 22px 40px
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: .3px
+        }
+
+        .logo svg {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 4px 12px #f7b92c55)
+        }
+
+        .logo i {
+            font-style: normal;
+            background: linear-gradient(180deg, #ffe58a, #f0a31a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .nav nav {
+            display: flex;
+            gap: 36px;
+            font-size: 13.5px;
+            font-weight: 500
+        }
+
+        .nav nav a {
+            padding: 8px 0;
+            border-bottom: 2px solid transparent
+        }
+
+        .nav nav a.on {
+            border-color: var(--gold)
+        }
+
+        .act {
+            display: flex;
+            gap: 12px
+        }
+
+        .act .btn {
+            padding: 10px 22px;
+            font-size: 13px
+        }
+
+        .js .rv {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity .9s, transform .9s cubic-bezier(.2, .7, .2, 1);
+            transition-delay: var(--d, 0s)
+        }
+
+        .js .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .eb {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .eb::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        h1 {
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.08;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin: 18px 0
+        }
+
+        h2 {
+            font-size: clamp(26px, 3.6vw, 40px);
+            line-height: 1.15;
+            font-weight: 600;
+            margin: 14px 0 12px
+        }
+
+        .sub {
+            color: var(--mut);
+            max-width: 520px;
+            font-size: 16px
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding-top: 50px
+        }
+
+        .vis {
+            position: relative;
+            height: 380px;
+            display: grid;
+            place-items: center
+        }
+
+        .halo {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #f7b92c66, #f7b92c18 55%, transparent 72%);
+            filter: blur(10px);
+            animation: pu 4s ease-in-out infinite alternate
+        }
+
+        @keyframes pu {
+            to {
+                transform: scale(1.15);
+                opacity: .7
+            }
+        }
+
+        .big {
+            position: relative;
+            width: 210px;
+            height: 210px;
+            filter: drop-shadow(0 0 40px #f7b92caa);
+            animation: fy 6s ease-in-out infinite alternate
+        }
+
+        @keyframes fy {
+            to {
+                transform: translateY(-16px) rotate(4deg)
+            }
+        }
+
+        .fc {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 16px;
+            border: 1px solid #ffffff26;
+            border-radius: 14px;
+            background: #ffffff10;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            font-size: 12.5px;
+            font-weight: 500;
+            animation: fy 5s ease-in-out infinite alternate
+        }
+
+        .fc .ic {
+            color: var(--gold);
+            width: 18px;
+            height: 18px
+        }
+
+        .sp {
+            position: absolute;
+            color: var(--g1);
+            font-style: normal;
+            animation: tw 2.4s ease-in-out infinite;
+            animation-delay: var(--t)
+        }
+
+        @keyframes tw {
+            50% {
+                opacity: .1;
+                transform: scale(.4)
+            }
+        }
+
+        .scn {
+            width: 100%;
+            max-width: 470px;
+            height: auto;
+            overflow: visible
+        }
+
+        .tr {
+            fill: none;
+            stroke: url(#lg);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-dasharray: 2 12;
+            animation: fw 1.2s linear infinite
+        }
+
+        @keyframes fw {
+            to {
+                stroke-dashoffset: -28
+            }
+        }
+
+        .tile {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #ffffff2e;
+            background: linear-gradient(160deg, #ffffff1c, #ffffff06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 14px 40px #0009, 0 0 30px #f7b92c22, inset 0 1px #ffffff2e;
+            color: var(--gold);
+            animation: fy 5s ease-in-out infinite alternate
+        }
+
+        .tile .ic {
+            width: 28px;
+            height: 28px;
+            stroke-width: 1.7
+        }
+
+        .mq {
+            overflow: hidden;
+            margin: 60px 0 10px;
+            -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)
+        }
+
+        .mq div {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: mq 30s linear infinite;
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            white-space: nowrap;
+            color: transparent;
+            -webkit-text-stroke: 1px #f7b92c66
+        }
+
+        .mq span::after {
+            content: "✦";
+            margin-left: 40px;
+            color: var(--gold);
+            -webkit-text-stroke: 0
+        }
+
+        @keyframes mq {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .main {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 30px;
+            margin-top: 60px;
+            align-items: start
+        }
+
+        .chn {
+            display: grid;
+            gap: 16px
+        }
+
+        .bc {
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 24px;
+            background: linear-gradient(160deg, #ffffff0d, var(--card) 55%);
+            transition: border-color .3s, transform .3s
+        }
+
+        .bc:hover {
+            border-color: #f7b92c80;
+            transform: translateY(-4px)
+        }
+
+        .bc::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(320px circle at var(--x, 50%) var(--y, 0), #f7b92c24, transparent 60%);
+            opacity: 0;
+            transition: .3s;
+            pointer-events: none
+        }
+
+        .bc:hover::before {
+            opacity: 1
+        }
+
+        .ch2 {
+            display: flex;
+            gap: 16px;
+            align-items: center
+        }
+
+        .ico {
+            flex: none;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: #f7b92c1a;
+            border: 1px solid #f7b92c55;
+            color: var(--gold)
+        }
+
+        .ico .ic {
+            width: 24px;
+            height: 24px;
+            stroke-width: 1.8
+        }
+
+        .ch2 h3 {
+            font-size: 16px
+        }
+
+        .ch2 p {
+            font-size: 13px;
+            color: var(--mut)
+        }
+
+        .ch2 .ar {
+            margin-left: auto;
+            color: var(--gold);
+            transition: .3s
+        }
+
+        .bc:hover .ar {
+            transform: translateX(5px)
+        }
+
+        .fm {
+            position: relative;
+            border-radius: 30px;
+            padding: 40px;
+            background: radial-gradient(70% 60% at 100% 0, #f7b92c1f, transparent 60%), var(--card);
+            box-shadow: 0 0 70px #f7b92c1c;
+            text-align: left
+        }
+
+        .fm::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 1.5px;
+            background: conic-gradient(from var(--a, 0deg), #f7b92c40, #ffe58a, #f7b92c40 40%, #f7b92c40);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: spn 6s linear infinite;
+            pointer-events: none
+        }
+
+        @property --a {
+            syntax: "<angle>";
+            inherits: false;
+            initial-value: 0deg
+        }
+
+        @keyframes spn {
+            to {
+                --a: 360deg
+            }
+        }
+
+        .fm h3 {
+            font-size: 24px
+        }
+
+        .fm .d {
+            color: var(--mut);
+            font-size: 13.5px;
+            margin: 4px 0 26px
+        }
+
+        .fr {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px
+        }
+
+        .fl {
+            position: relative;
+            margin-bottom: 26px
+        }
+
+        .fl input,
+        .fl textarea {
+            width: 100%;
+            padding: 22px 0 8px;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--fg);
+            font: 400 15px Poppins, sans-serif;
+            outline: 0
+        }
+
+        .fl textarea {
+            height: 110px;
+            resize: none
+        }
+
+        .fl label {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            color: var(--mut);
+            pointer-events: none;
+            transition: .25s;
+            font-size: 15px
+        }
+
+        .fl input:focus~label,
+        .fl input:not(:placeholder-shown)~label,
+        .fl textarea:focus~label,
+        .fl textarea:not(:placeholder-shown)~label {
+            top: 0;
+            font-size: 11.5px;
+            color: var(--gold);
+            letter-spacing: 1px
+        }
+
+        .fl::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--g1), var(--g2));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .45s
+        }
+
+        .fl:focus-within::after {
+            transform: scaleX(1)
+        }
+
+        .fl.er input,
+        .fl.er textarea {
+            border-color: #f87171;
+            animation: sk .4s
+        }
+
+        .fl.er label {
+            color: #f87171
+        }
+
+        @keyframes sk {
+            25% {
+                transform: translateX(-6px)
+            }
+
+            75% {
+                transform: translateX(6px)
+            }
+        }
+
+        .fl.ta {
+            margin-bottom: 34px
+        }
+
+        .ct {
+            position: absolute;
+            right: 0;
+            bottom: -22px;
+            font-size: 11px;
+            color: var(--mut)
+        }
+
+        .tl {
+            font-size: 11.5px;
+            letter-spacing: 1px;
+            color: var(--mut);
+            margin-bottom: 10px
+        }
+
+        .cp {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px
+        }
+
+        .cp button {
+            padding: 9px 16px;
+            border-radius: 99px;
+            border: 1px solid var(--line);
+            background: #ffffff08;
+            color: var(--fg);
+            font: 500 12.5px Poppins, sans-serif;
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .cp button:hover {
+            border-color: #f7b92c80
+        }
+
+        .cp button.on {
+            background: linear-gradient(var(--g1), var(--g2));
+            color: #1a1204;
+            border-color: transparent;
+            box-shadow: 0 4px 16px #f7b92c55
+        }
+
+        .sb {
+            width: 100%
+        }
+
+        .sb.ld .ic {
+            animation: go .8s linear infinite
+        }
+
+        @keyframes go {
+            to {
+                transform: translate(18px, -18px);
+                opacity: 0
+            }
+        }
+
+        .ok {
+            display: none;
+            text-align: center;
+            padding: 40px 10px
+        }
+
+        .fm.done .fmc {
+            display: none
+        }
+
+        .fm.done .ok {
+            display: block;
+            animation: pop .6s
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: scale(.94)
+            }
+        }
+
+        .ok svg {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 20px;
+            fill: none;
+            stroke: var(--gold);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 16px #f7b92c99)
+        }
+
+        .ok circle,
+        .ok path {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1
+        }
+
+        .fm.done .ok circle {
+            animation: dr .9s forwards
+        }
+
+        .fm.done .ok path {
+            animation: dr .6s .8s forwards
+        }
+
+        @keyframes dr {
+            to {
+                stroke-dashoffset: 0
+            }
+        }
+
+        .ok h3 {
+            font-size: 26px
+        }
+
+        .ok p {
+            color: var(--mut);
+            margin: 8px 0 22px
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 28px 0;
+            margin-top: 90px;
+            font-size: 12.5px;
+            color: var(--mut)
+        }
+
+        footer .w {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .js .rv {
+                opacity: 1;
+                transform: none
+            }
+
+            .ok circle,
+            .ok path {
+                stroke-dashoffset: 0
+            }
+        }
+
+        @media(max-width:900px) {
+            .nav nav {
+                display: none
+            }
+
+            .hero,
+            .main {
+                grid-template-columns: 1fr
+            }
+
+            .vis {
+                height: 320px
+            }
+
+            .fm {
+                padding: 30px 22px
+            }
+        }
+
+        @media(max-width:560px) {
+
+            .w,
+            .nav {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .act .btn:not(.g) {
+                display: none
+            }
+
+            .fr {
+                grid-template-columns: 1fr;
+                gap: 0
+            }
+
+            .big {
+                width: 170px;
+                height: 170px
+            }
+
+            .halo {
+                width: 280px;
+                height: 280px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"><i class="orb" style="width:480px;height:480px;left:-120px;top:-60px"></i><i class="orb"
+            style="width:520px;height:520px;right:-160px;top:30%;animation-delay:-6s"></i><i class="orb"
+            style="width:420px;height:420px;left:25%;bottom:-160px;animation-delay:-11s"></i></div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff1b8" />
+                <stop offset=".45" stop-color="#f7b92c" />
+                <stop offset="1" stop-color="#a86a08" />
+            </linearGradient>
+            <linearGradient id="f1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff3c0" />
+                <stop offset="1" stop-color="#f7b92c" />
+            </linearGradient>
+            <linearGradient id="f2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f7b92c" />
+                <stop offset="1" stop-color="#b9780a" />
+            </linearGradient>
+            <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#d9960f" />
+                <stop offset="1" stop-color="#7a4c04" />
+            </linearGradient>
+            <symbol id="logo" viewBox="0 0 64 64">
+                <polygon points="32,3 57.1,17.5 32,32 6.9,17.5" fill="url(#f1)" />
+                <polygon points="6.9,17.5 32,32 32,61 6.9,46.5" fill="url(#f2)" />
+                <polygon points="57.1,17.5 32,32 32,61 57.1,46.5" fill="url(#f3)" />
+                <polygon points="32,3 57.1,17.5 57.1,46.5 32,61 6.9,46.5 6.9,17.5" fill="none" stroke="#fff3c0"
+                    stroke-width="1.2" stroke-linejoin="round" opacity=".85" />
+                <path d="M32 32L6.9 17.5M32 32L57.1 17.5M32 32V61" stroke="#fff3c0" stroke-width=".6" opacity=".5" />
+                <g fill="none" stroke-linecap="round" transform="translate(32 32) scale(.84) translate(-33 -33.5)">
+                    <path d="M45 22C42 12 19 12 19 25c0 13 28 6 28 19 0 12-24 11-28 2" stroke="#ffe9a8"
+                        stroke-width="7.5" opacity=".6" transform="translate(1 1)" />
+                    <path d="M45 22C42 12 19 12 19 25c0 13 28 6 28 19 0 12-24 11-28 2" stroke="#0b0804"
+                        stroke-width="7.5" />
+                </g>
+                <path d="M55 4.5l1.6 3.9 3.9 1.6-3.9 1.6-1.6 3.9-1.6-3.9-3.9-1.6 3.9-1.6z" fill="url(#lg)" />
+            </symbol>
+            <symbol id="ar" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+            </symbol>
+            <symbol id="wa" viewBox="0 0 24 24">
+                <path d="M3 21l1.6-4.6A9 9 0 1 1 8 19.6z" />
+                <path d="M9 8c0 4 3 7 7 7l1-1.5-2.2-1-1 .8c-1-.4-1.8-1.2-2.3-2.3l.8-1-1-2.2z" />
+            </symbol>
+            <symbol id="ig" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r=".8" />
+            </symbol>
+            <symbol id="ml" viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="14" rx="3" />
+                <path d="M3 8l9 6 9-6" />
+            </symbol>
+            <symbol id="sd" viewBox="0 0 24 24">
+                <path d="M21 3L10 14M21 3l-7 18-4-7-7-4z" />
+            </symbol>
+            <symbol id="bl" viewBox="0 0 24 24">
+                <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <header class="nav"><a class="logo" href="#"><svg>
+                <use href="#logo" />
+            </svg><span>Studio <i>Index</i></span></a>
+        <nav><a href="#">Home</a><a href="#">Features</a><a href="#">Pricing</a><a href="#">About</a><a class="on"
+                href="#">Contact</a></nav>
+        <div class="act"><a class="btn" href="#">Login</a><a class="btn g" href="#">Create Account <svg class="ic">
+                    <use href="#ar" />
+                </svg></a></div>
+    </header>
+
+    <main>
+        <section class="w hero">
+            <div class="rv"><span class="eb">Contact</span>
+                <h1>Let’s <span class="gt">talk.</span></h1>
+                <p class="sub">Questions, ideas or something not working? Send us a message and we’ll take it from
+                    there.</p>
+                <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap"><a class="btn g" href="#form">Send a
+                        message <svg class="ic">
+                            <use href="#sd" />
+                        </svg></a><a class="btn" href="#ch"><svg class="ic">
+                            <use href="#wa" />
+                        </svg>Chat on WhatsApp</a></div>
+            </div>
+            <div class="vis rv" style="--d:.15s"><svg class="scn" viewBox="0 0 470 380" aria-hidden="true">
+                    <path id="pt" class="tr" d="M20 330C130 345 150 130 250 170S390 70 440 40" />
+                    <circle cx="20" cy="330" r="5" fill="#ffd65f" />
+                    <circle cx="440" cy="40" r="6" fill="#ffd65f" />
+                    <circle cx="440" cy="40" r="5" fill="none" stroke="#f7b92c" stroke-width="2">
+                        <animate attributeName="r" values="5;5;5;32" keyTimes="0;.8;.82;1" dur="5s"
+                            repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0;0;.9;0" keyTimes="0;.8;.82;1" dur="5s"
+                            repeatCount="indefinite" />
+                    </circle>
+                    <g style="filter:drop-shadow(0 0 10px #f7b92c)">
+                        <path d="M18 0L-14-13-7 0-14 13z" fill="url(#f1)" />
+                        <path d="M18 0L-7 0" stroke="#b9780a" stroke-width="1.2" />
+                        <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+                            <mpath href="#pt" />
+                        </animateMotion>
+                    </g>
+                </svg>
+                <i class="sp" style="left:18%;top:20%;--t:0s">✦</i><i class="sp"
+                    style="right:16%;bottom:22%;--t:-1s;font-size:22px">✦</i><i class="sp"
+                    style="right:24%;top:14%;--t:-1.8s;font-size:12px">✦</i>
+                <div class="tile" style="left:2%;top:4%"><svg class="ic">
+                        <use href="#wa" />
+                    </svg></div>
+                <div class="tile" style="right:4%;bottom:8%;animation-delay:-2s"><svg class="ic">
+                        <use href="#ig" />
+                    </svg></div>
+                <div class="tile"
+                    style="left:44%;bottom:0;width:54px;height:54px;border-radius:17px;animation-delay:-3.5s"><svg
+                        class="ic">
+                        <use href="#ml" />
+                    </svg></div>
+            </div>
+        </section>
+
+        <div class="mq">
+            <div><span>Ask a question</span><span>Share an idea</span><span>Say hello</span><span>Ask a
+                    question</span><span>Share an idea</span><span>Say hello</span></div>
+        </div>
+
+        <section class="w" id="ch">
+            <div class="main">
+                <div class="chn">
+                    <div class="rv"><span class="eb">Reach us directly</span>
+                        <h2 style="font-size:32px">Pick your <span class="gt">favourite way</span></h2>
+                    </div>
+                    <a class="bc rv" href="#">
+                        <div class="ch2"><span class="ico"><svg class="ic">
+                                    <use href="#wa" />
+                                </svg></span>
+                            <div>
+                                <h3>WhatsApp</h3>
+                                <p>Quick questions and setup help</p>
+                            </div><svg class="ic ar" style="width:20px">
+                                <use href="#ar" />
+                            </svg>
+                        </div>
+                    </a>
+                    <a class="bc rv" style="--d:.1s" href="#">
+                        <div class="ch2"><span class="ico"><svg class="ic">
+                                    <use href="#ig" />
+                                </svg></span>
+                            <div>
+                                <h3>Instagram</h3>
+                                <p>@studioindex · slide into the DMs</p>
+                            </div><svg class="ic ar" style="width:20px">
+                                <use href="#ar" />
+                            </svg>
+                        </div>
+                    </a>
+                    <a class="bc rv" style="--d:.2s" href="#">
+                        <div class="ch2"><span class="ico"><svg class="ic">
+                                    <use href="#ml" />
+                                </svg></span>
+                            <div>
+                                <h3>Email</h3>
+                                <p>hello@studioindex.app</p>
+                            </div><svg class="ic ar" style="width:20px">
+                                <use href="#ar" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="fm rv" id="form" style="--d:.1s">
+                    <div class="fmc">
+                        <h3>Send us a message</h3>
+                        <p class="d">Fill this in and we’ll get back to you as soon as we can.</p>
+                        <div class="fr">
+                            <div class="fl" id="f1"><input id="nm" placeholder=" "><label for="nm">Your name</label>
+                            </div>
+                            <div class="fl" id="f2"><input id="ct" placeholder=" "><label for="ct">WhatsApp or
+                                    email</label></div>
+                        </div>
+                        <div class="tl">WHAT’S THIS ABOUT?</div>
+                        <div class="cp" id="cp"><button class="on">Getting started</button><button>Pro &amp; WhatsApp
+                                bot</button><button>Feedback or idea</button><button>Something’s broken</button></div>
+                        <div class="fl ta" id="f3"><textarea id="ms" maxlength="500" placeholder=" "></textarea><label
+                                for="ms">Your message</label><span class="ct"><b id="cn" style="font-weight:400">0</b> /
+                                500</span></div>
+                        <button class="btn g sb" id="sb"><svg class="ic">
+                                <use href="#sd" />
+                            </svg><span>Send Message</span></button>
+                    </div>
+                    <div class="ok"><svg viewBox="0 0 96 96">
+                            <circle pathLength="1" cx="48" cy="48" r="42" />
+                            <path pathLength="1" d="M30 50l13 13 24-28" />
+                        </svg>
+                        <h3>Message sent!</h3>
+                        <p>Thank you for reaching out. We’ll be in touch soon.</p><button class="btn" id="again">Send
+                            another</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="w"><span>© 2025 Studio Index. All rights reserved.</span><span>Privacy Policy &nbsp;|&nbsp; Terms of
+                Service &nbsp;|&nbsp; Contact</span></div>
+    </footer>
+    <script>
+        var io = new IntersectionObserver(function (a) { a.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target) } }) }, { threshold: .12 });
+        document.querySelectorAll('.rv').forEach(function (e) { io.observe(e) });
+        document.querySelectorAll('.bc').forEach(function (c) { c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(); c.style.setProperty('--x', e.clientX - r.left + 'px'); c.style.setProperty('--y', e.clientY - r.top + 'px') }) });
+        var chips = document.querySelectorAll('#cp button'); chips.forEach(function (b) { b.addEventListener('click', function () { chips.forEach(function (x) { x.classList.remove('on') }); b.classList.add('on') }) });
+        var ms = document.getElementById('ms'); ms.addEventListener('input', function () { document.getElementById('cn').textContent = ms.value.length });
+        function chk(id, ok) { var f = document.getElementById(id); f.classList.remove('er'); if (!ok) { void f.offsetWidth; f.classList.add('er') } return ok }
+        document.getElementById('sb').addEventListener('click', function () {
+            var a = chk('f1', document.getElementById('nm').value.trim().length > 1), b = chk('f2', document.getElementById('ct').value.trim().length > 3), c = chk('f3', ms.value.trim().length > 9);
+            if (!(a && b && c)) return; var s = this; s.classList.add('ld'); s.querySelector('span').textContent = 'Sending…';
+            setTimeout(function () { s.classList.remove('ld'); s.querySelector('span').textContent = 'Send Message'; document.getElementById('form').classList.add('done') }, 1400)
+        });
+        document.getElementById('again').addEventListener('click', function () { document.getElementById('form').classList.remove('done');['nm', 'ct', 'ms'].forEach(function (i) { document.getElementById(i).value = '' }); document.getElementById('cn').textContent = '0' });
+    </script>
+</body>
+
+</html>

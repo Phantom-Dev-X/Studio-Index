@@ -18,12 +18,13 @@ export default function Storefront() {
 
 
   function updateCount() {
-    const finalCount = JSON.parse(localStorage.getItem('cart'));
+    const cartStr = localStorage.getItem('cart');
+    const finalCount = cartStr ? JSON.parse(cartStr) : null;
     if (!finalCount) {
       setCount(0)
     } else {
       let localCount = 0
-      finalCount.map((item: { quantity?: number }) => localCount += item.quantity)
+      finalCount.map((item: { quantity?: number }) => localCount += (item.quantity || 0))
       setCount(localCount)
     }
     return (() => {
@@ -32,10 +33,10 @@ export default function Storefront() {
   }
 
   useEffect(() => {
-
-    getStoreByUserName(setProductsArray, username)
-
-  }, [])
+    if (username) {
+      getStoreByUserName(setProductsArray, username)
+    }
+  }, [username])
 
 
   return (

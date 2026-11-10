@@ -1,10 +1,15 @@
-export function addToCart(ProductProp: { id: string, image_url: string, name: string, price: number, quantity: number }, aim = 'add', setReload = null, reload = null) {
-    const rawCart = JSON.parse(localStorage.getItem('cart')) || [];
+export function addToCart(
+    ProductProp: { id: string, image_url: string, name: string, price: number, quantity: number },
+    aim = 'add',
+    setReload?: ((val: any) => void) | null,
+    reload?: any
+) {
+    const rawCart: any[] = JSON.parse(localStorage.getItem('cart') || '[]') || [];
     if (!rawCart) {
         return;
     } else {
         if (aim === 'add') {
-            const existingCartIndex = rawCart.findIndex((item) => item.id === ProductProp.id)
+            const existingCartIndex = rawCart.findIndex((item: any) => item.id === ProductProp.id)
             if (existingCartIndex !== -1) {
                 rawCart[existingCartIndex].quantity += 1
 
@@ -18,7 +23,7 @@ export function addToCart(ProductProp: { id: string, image_url: string, name: st
                 console.log('finished')
             }
         } else if (aim === 'subtract') {
-            const existingCartIndex = rawCart.findIndex((item) => item.id === ProductProp.id)
+            const existingCartIndex = rawCart.findIndex((item: any) => item.id === ProductProp.id)
             if (existingCartIndex !== -1) {
                 rawCart[existingCartIndex].quantity > 0 ? rawCart[existingCartIndex].quantity -= 1 : null
 

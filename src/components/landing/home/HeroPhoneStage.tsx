@@ -159,7 +159,7 @@ export function HeroPhoneStage() {
           {/* iOS Status Bar */}
           <div className="flex justify-between items-center px-4 pt-1 pb-0.5 text-[8.5px] font-semibold bg-white text-black h-[28px] shrink-0">
             <span>9:01</span>
-            <span className="tracking-tighter">▂▄▆ ▭</span>
+            <span className="tracking-tighter">▂▄ ▆ ▭</span>
           </div>
 
           {/* In-App Store Header Bar */}

@@ -1,13 +1,17 @@
 import { BagIcon } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function FloatingBag({ onClick, updateCount, count }: { onClick?: () => void, updateCount?: () => void, count?: number, setCount?: () => void } = {}) {
 
     useEffect(() => {
-        window.addEventListener('cartUpdated', updateCount)
-
-        updateCount()
-    }, [])
+        if (updateCount) {
+            window.addEventListener('cartUpdated', updateCount)
+            updateCount()
+            return () => {
+                window.removeEventListener('cartUpdated', updateCount)
+            }
+        }
+    }, [updateCount])
     return (
         <button
             type="button"

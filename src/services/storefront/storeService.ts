@@ -2,7 +2,7 @@ import supabase from "../../lib/supabase";
 
 
 const reuseableResponseHandlers = (data: any, error: any) => {
-  const handleError = (err: any) => {
+  const handleError = (_err: any) => {
     return null;
   };
   const res = (!(error === null)) ? handleError(error) : data;
@@ -35,7 +35,7 @@ export const supabaseFunctions = {
 
     return data?.avatar_url || null;
   },
-  async getSellerInfo(username) {
+  async getSellerInfo(username: string) {
     const { data, error } = await supabase.rpc('get_store_by_username', {
       'p_username': username.trim()
     }).single();

@@ -1,8 +1,10 @@
 import { ArrowRightIcon, ShieldCheckIcon } from "@phosphor-icons/react/dist/ssr";
 import { AnonymousCard } from "./AnonymousCard";
+import { useNavigate } from "react-router-dom";
 
 
 export function Footer() {
+    const navigate = useNavigate();
     return (
         <footer id="grand-anon-footer" className="w-screen bg-footer-glow tmq:border-t-2 tmq:border-[#362f2f] mt-9 flex justify-center">
             <div className="w-full max-w-[1000px] py-8 rounded-2xl relative flex flex-col items-center gap-6">
@@ -44,7 +46,9 @@ export function Footer() {
                                 </div>
                                 <div className="w-full flex">
                                     <button
-                                        className="w-full flex-1 sm:w-auto px-4 py-2 sm:py-1.5 rounded-[8px] font-bold text-[12.5px] whitespace-nowrap shrink-0"
+                                        type="button"
+                                        onClick={() => { navigate('/'); console.log('done') }}
+                                        className="w-full flex-1 sm:w-auto px-4 py-2 sm:py-1.5 rounded-[8px] font-bold text-[12.5px] whitespace-nowrap shrink-0 cursor-pointer"
                                         style={{
                                             background: "#f59e0b", color: "#0a0a0a",
                                         }}

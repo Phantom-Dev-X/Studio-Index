@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Pricing – Studio Index</title>
+    <script>document.documentElement.className = 'js'</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: #fff;
+            --mut: #a9a9a9;
+            --card: #0d0d0d;
+            --line: #ffffff1a;
+            --gold: #f7b92c;
+            --g1: #ffd65f;
+            --g2: #f3a81a;
+            color-scheme: dark;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            scroll-behavior: smooth
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+            margin: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font: 400 15px/1.55 Poppins, system-ui, -apple-system, "Segoe UI", sans-serif;
+            overflow-x: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        svg {
+            display: block
+        }
+
+        .w {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 40px
+        }
+
+        .ic {
+            width: 1em;
+            height: 1em;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .gt {
+            background: linear-gradient(90deg, #ffd65f, #f3a81a, #fff1b8, #ffd65f);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: sh 6s linear infinite
+        }
+
+        @keyframes sh {
+            to {
+                background-position: 200% 0
+            }
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden
+        }
+
+        .bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(#ffffff09 1px, transparent 1px), linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+            background-size: 56px 56px;
+            -webkit-mask: radial-gradient(75% 65% at 50% 25%, #000, transparent);
+            mask: radial-gradient(75% 65% at 50% 25%, #000, transparent)
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            background: radial-gradient(circle, #f7b92c4d, transparent 70%);
+            animation: fl 16s ease-in-out infinite alternate
+        }
+
+        @keyframes fl {
+            to {
+                transform: translate(70px, 90px) scale(1.25)
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            font: 600 14px Poppins, sans-serif;
+            padding: 14px 26px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--fg);
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .btn .ic {
+            width: 14px;
+            height: 14px
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: #f7b92c80
+        }
+
+        .btn.g {
+            background: linear-gradient(180deg, var(--g1), var(--g2));
+            color: #1a1204;
+            border: 0;
+            box-shadow: 0 6px 24px #f7b92c40
+        }
+
+        .btn.g:hover {
+            box-shadow: 0 10px 34px #f7b92c70
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 22px 40px
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: .3px
+        }
+
+        .logo svg {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 4px 12px #f7b92c55)
+        }
+
+        .logo i {
+            font-style: normal;
+            background: linear-gradient(180deg, #ffe58a, #f0a31a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .nav nav {
+            display: flex;
+            gap: 36px;
+            font-size: 13.5px;
+            font-weight: 500
+        }
+
+        .nav nav a {
+            padding: 8px 0;
+            border-bottom: 2px solid transparent
+        }
+
+        .nav nav a.on {
+            border-color: var(--gold)
+        }
+
+        .act {
+            display: flex;
+            gap: 12px
+        }
+
+        .act .btn {
+            padding: 10px 22px;
+            font-size: 13px
+        }
+
+        .js .rv {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity .9s, transform .9s cubic-bezier(.2, .7, .2, 1);
+            transition-delay: var(--d, 0s)
+        }
+
+        .js .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .eb {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .eb::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        h1 {
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.08;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin: 18px 0
+        }
+
+        h2 {
+            font-size: clamp(26px, 3.6vw, 40px);
+            line-height: 1.15;
+            font-weight: 600;
+            margin: 14px 0 12px
+        }
+
+        .sub {
+            color: var(--mut);
+            max-width: 520px
+        }
+
+        .hd {
+            text-align: center
+        }
+
+        .hd .sub {
+            margin: auto
+        }
+
+        .sec {
+            padding-top: 90px
+        }
+
+        .hero {
+            text-align: center;
+            padding-top: 50px
+        }
+
+        .hero .sub {
+            margin: auto;
+            font-size: 16px
+        }
+
+        .chips {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 26px
+        }
+
+        .chips span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            font-size: 12.5px;
+            background: #ffffff08
+        }
+
+        .chips .ic {
+            color: var(--gold);
+            width: 14px;
+            height: 14px;
+            stroke-width: 3
+        }
+
+        .plans {
+            display: grid;
+            grid-template-columns: 1fr 1.08fr;
+            gap: 26px;
+            max-width: 860px;
+            margin: 64px auto 0;
+            align-items: stretch
+        }
+
+        .tilt {
+            height: 100%;
+            transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+            transition: transform .25s ease-out
+        }
+
+        .pc {
+            position: relative;
+            height: 100%;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            padding: 34px 30px;
+            background: linear-gradient(160deg, #ffffff0e, var(--card) 60%)
+        }
+
+        .pc h3 {
+            font-size: 24px;
+            font-weight: 600
+        }
+
+        .pc .d {
+            font-size: 13px;
+            color: var(--mut)
+        }
+
+        .pp {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 22px 0 4px;
+            letter-spacing: -1px
+        }
+
+        .pp small {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--mut);
+            letter-spacing: 0
+        }
+
+        .pc hr {
+            border: 0;
+            height: 1px;
+            background: var(--line);
+            margin: 22px 0
+        }
+
+        .ls {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 14px;
+            margin-bottom: 30px;
+            font-size: 14px
+        }
+
+        .ls li {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .ck {
+            flex: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #1a1204;
+            display: grid;
+            place-items: center
+        }
+
+        .ck .ic {
+            width: 12px;
+            height: 12px;
+            stroke-width: 3.4
+        }
+
+        .pc .btn {
+            width: 100%
+        }
+
+        .pro {
+            border: 0;
+            background: radial-gradient(110% 70% at 100% 0, #f7b92c33, transparent 60%), radial-gradient(80% 60% at 0 100%, #f7b92c1a, transparent 60%), #0c0a05;
+            box-shadow: 0 0 80px #f7b92c30
+        }
+
+        .pro::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            padding: 1.5px;
+            background: conic-gradient(from var(--a, 0deg), #f7b92c55, #ffe58a, #f7b92c55 40%, #f7b92c55);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: sp 5s linear infinite
+        }
+
+        @property --a {
+            syntax: "<angle>";
+            inherits: false;
+            initial-value: 0deg
+        }
+
+        @keyframes sp {
+            to {
+                --a: 360deg
+            }
+        }
+
+        .rib {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            white-space: nowrap;
+            background: linear-gradient(180deg, var(--g1), var(--g2));
+            color: #1a1204;
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 7px 18px;
+            border-radius: 99px;
+            box-shadow: 0 6px 20px #f7b92c55
+        }
+
+        .rib .ic {
+            width: 15px;
+            height: 15px;
+            fill: currentColor
+        }
+
+        .dm {
+            position: absolute;
+            right: 22px;
+            top: 26px;
+            width: 96px;
+            overflow: visible;
+            animation: fy 5s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 22px #f7b92c99)
+        }
+
+        @keyframes fy {
+            to {
+                transform: translateY(-12px) rotate(4deg)
+            }
+        }
+
+        .sp {
+            position: absolute;
+            color: var(--g1);
+            font-style: normal;
+            font-size: 14px;
+            animation: tw 2.4s ease-in-out infinite;
+            animation-delay: var(--t)
+        }
+
+        @keyframes tw {
+            50% {
+                opacity: .1;
+                transform: scale(.4)
+            }
+        }
+
+        .note {
+            text-align: center;
+            color: var(--mut);
+            font-size: 12.5px;
+            margin-top: 22px
+        }
+
+        .calc {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 44px;
+            padding: 44px;
+            border: 1px solid #f7b92c4d;
+            border-radius: 30px;
+            background: radial-gradient(70% 100% at 100% 0, #f7b92c1f, transparent 60%), var(--card);
+            box-shadow: 0 0 60px #f7b92c14;
+            text-align: left
+        }
+
+        .calc label {
+            font-size: 14px;
+            color: var(--mut)
+        }
+
+        .calc label b {
+            display: block;
+            font-size: 40px;
+            color: var(--fg);
+            line-height: 1.2;
+            margin-bottom: 18px
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, var(--g2) var(--p, 20%), #ffffff1f var(--p, 20%));
+            outline: 0;
+            cursor: pointer
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #fff3c0, var(--gold));
+            box-shadow: 0 0 0 7px #f7b92c33, 0 4px 14px #000a
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 7px #f7b92c33
+        }
+
+        .res {
+            text-align: center;
+            padding: 26px;
+            border-radius: 22px;
+            background: #ffffff08;
+            border: 1px solid var(--line)
+        }
+
+        .res small {
+            color: var(--mut);
+            font-size: 13px
+        }
+
+        .res strong {
+            display: block;
+            font-size: 54px;
+            line-height: 1.1;
+            margin: 6px 0
+        }
+
+        .res p {
+            font-size: 13px;
+            color: var(--mut)
+        }
+
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 44px
+        }
+
+        .bc {
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 28px;
+            background: linear-gradient(160deg, #ffffff0d, var(--card) 55%);
+            transition: border-color .3s, transform .3s
+        }
+
+        .bc:hover {
+            border-color: #f7b92c80;
+            transform: translateY(-4px)
+        }
+
+        .bc::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(320px circle at var(--x, 50%) var(--y, 0), #f7b92c24, transparent 60%);
+            opacity: 0;
+            transition: .3s;
+            pointer-events: none
+        }
+
+        .bc:hover::before {
+            opacity: 1
+        }
+
+        .bc .ic {
+            width: 34px;
+            height: 34px;
+            color: var(--gold);
+            stroke-width: 1.6;
+            margin-bottom: 14px
+        }
+
+        .bc h3 {
+            font-size: 18px
+        }
+
+        .bc p {
+            font-size: 13.5px;
+            color: var(--mut);
+            margin-top: 6px
+        }
+
+        .tbl {
+            margin-top: 44px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--card);
+            text-align: left
+        }
+
+        .r {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr 1fr;
+            align-items: center;
+            font-size: 14px
+        }
+
+        .r>* {
+            padding: 15px 22px
+        }
+
+        .r+.r {
+            border-top: 1px solid var(--line)
+        }
+
+        .r>:nth-child(n+2) {
+            display: grid;
+            place-items: center
+        }
+
+        .r>:nth-child(3) {
+            background: #f7b92c12
+        }
+
+        .r.h {
+            font-weight: 600;
+            background: #ffffff08
+        }
+
+        .r.h>:nth-child(3) {
+            color: var(--gold)
+        }
+
+        .r.g {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: #ffffff05
+        }
+
+        .r.g>* {
+            padding: 10px 22px
+        }
+
+        .r .ic {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+            stroke-width: 3
+        }
+
+        .no {
+            color: #555
+        }
+
+        .fq {
+            max-width: 760px;
+            margin: 44px auto 0;
+            text-align: left
+        }
+
+        details {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #ffffff0a;
+            margin-bottom: 12px;
+            transition: border-color .3s
+        }
+
+        details[open] {
+            border-color: #f7b92c66
+        }
+
+        summary {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 22px;
+            font-weight: 500;
+            cursor: pointer
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        summary .ic {
+            flex: none;
+            width: 18px;
+            height: 18px;
+            color: var(--gold);
+            transition: .25s
+        }
+
+        details[open] summary .ic {
+            transform: rotate(45deg)
+        }
+
+        details p {
+            padding: 0 22px 20px;
+            color: var(--mut);
+            font-size: 14px
+        }
+
+        .cb {
+            margin: 90px 0 40px;
+            text-align: center;
+            border: 1px solid #f7b92c70;
+            border-radius: 32px;
+            padding: 56px 30px;
+            background: radial-gradient(80% 120% at 50% 140%, #f7b92c50, transparent 70%), var(--card);
+            box-shadow: 0 0 50px #f7b92c22
+        }
+
+        .cb .btn {
+            margin-top: 26px
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 28px 0;
+            font-size: 12.5px;
+            color: var(--mut)
+        }
+
+        footer .w {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .js .rv {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        @media(max-width:900px) {
+            .nav nav {
+                display: none
+            }
+
+            .plans,
+            .calc {
+                grid-template-columns: 1fr
+            }
+
+            .bento {
+                grid-template-columns: 1fr
+            }
+
+            .calc {
+                padding: 28px 22px
+            }
+
+            .plans {
+                margin-top: 50px
+            }
+        }
+
+        @media(max-width:560px) {
+
+            .w,
+            .nav {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .act .btn:not(.g) {
+                display: none
+            }
+
+            .r>* {
+                padding: 13px 10px;
+                font-size: 12.5px
+            }
+
+            .pc {
+                padding: 30px 22px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"><i class="orb" style="width:480px;height:480px;left:-120px;top:-60px"></i><i class="orb"
+            style="width:520px;height:520px;right:-160px;top:30%;animation-delay:-6s"></i><i class="orb"
+            style="width:420px;height:420px;left:25%;bottom:-160px;animation-delay:-11s"></i></div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff1b8" />
+                <stop offset=".45" stop-color="#f7b92c" />
+                <stop offset="1" stop-color="#a86a08" />
+            </linearGradient>
+            <linearGradient id="f1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff3c0" />
+                <stop offset="1" stop-color="#f7b92c" />
+            </linearGradient>
+            <linearGradient id="f2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f7b92c" />
+                <stop offset="1" stop-color="#b9780a" />
+            </linearGradient>
+            <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#d9960f" />
+                <stop offset="1" stop-color="#7a4c04" />
+            </linearGradient>
+            <symbol id="logo" viewBox="0 0 64 64">
+                <polygon points="32,3 57.1,17.5 32,32 6.9,17.5" fill="url(#f1)" />
+                <polygon points="6.9,17.5 32,32 32,61 6.9,46.5" fill="url(#f2)" />
+                <polygon points="57.1,17.5 32,32 32,61 57.1,46.5" fill="url(#f3)" />
+                <polygon points="32,3 57.1,17.5 57.1,46.5 32,61 6.9,46.5 6.9,17.5" fill="none" stroke="#fff3c0"
+                    stroke-width="1.2" stroke-linejoin="round" opacity=".85" />
+                <path d="M32 32L6.9 17.5M32 32L57.1 17.5M32 32V61" stroke="#fff3c0" stroke-width=".6" opacity=".5" />
+                <g fill="none" stroke-linecap="round" transform="translate(32 32) scale(.84) translate(-33 -33.5)">
+                    <path d="M45 22C42 12 19 12 19 25c0 13 28 6 28 19 0 12-24 11-28 2" stroke="#ffe9a8"
+                        stroke-width="7.5" opacity=".6" transform="translate(1 1)" />
+                    <path d="M45 22C42 12 19 12 19 25c0 13 28 6 28 19 0 12-24 11-28 2" stroke="#0b0804"
+                        stroke-width="7.5" />
+                </g>
+                <path d="M55 4.5l1.6 3.9 3.9 1.6-3.9 1.6-1.6 3.9-1.6-3.9-3.9-1.6 3.9-1.6z" fill="url(#lg)" />
+            </symbol>
+            <symbol id="ar" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+            </symbol>
+            <symbol id="ck" viewBox="0 0 24 24">
+                <path d="M5 12.5l4.5 4.5L19 7.5" />
+            </symbol>
+            <symbol id="pl" viewBox="0 0 24 24">
+                <path d="M12 4v16M4 12h16" />
+            </symbol>
+            <symbol id="cr" viewBox="0 0 24 24">
+                <path d="M3 18L2 7l6 5 4-8 4 8 6-5-1 11z" />
+            </symbol>
+            <symbol id="bolt" viewBox="0 0 24 24">
+                <path d="M13 2L4 14h7l-1 8 9-12h-7z" />
+            </symbol>
+            <symbol id="wa" viewBox="0 0 24 24">
+                <path d="M3 21l1.6-4.6A9 9 0 1 1 8 19.6z" />
+                <path d="M9 8c0 4 3 7 7 7l1-1.5-2.2-1-1 .8c-1-.4-1.8-1.2-2.3-2.3l.8-1-1-2.2z" />
+            </symbol>
+            <symbol id="hs" viewBox="0 0 24 24">
+                <path
+                    d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H5a1 1 0 0 1-1-1zM20 14h-3v5h2a1 1 0 0 0 1-1zM17 19c0 1.500-2 2-5 2" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <header class="nav"><a class="logo" href="#"><svg>
+                <use href="#logo" />
+            </svg><span>Studio <i>Index</i></span></a>
+        <nav><a href="#">Home</a><a href="#">Features</a><a class="on" href="#">Pricing</a><a href="#">FAQs</a><a
+                href="#">Contact</a></nav>
+        <div class="act"><a class="btn" href="#">Login</a><a class="btn g" href="#cta">Create Account <svg class="ic">
+                    <use href="#ar" />
+                </svg></a></div>
+    </header>
+
+    <main>
+        <section class="w hero rv"><span class="eb">Simple &amp; flexible pricing</span>
+            <h1>Pick a plan that <span class="gt">grows with you</span></h1>
+            <p class="sub">Start free and upgrade anytime for more power and automation.</p>
+            <div class="chips"><span><svg class="ic">
+                        <use href="#ck" />
+                    </svg>Free plan, forever</span><span><svg class="ic">
+                        <use href="#ck" />
+                    </svg>Upgrade anytime</span><span><svg class="ic">
+                        <use href="#ck" />
+                    </svg>Prices in Naira (₦)</span></div>
+            <div class="plans">
+                <div class="rv">
+                    <div class="tilt">
+                        <div class="pc">
+                            <h3>Free Plan</h3>
+                            <div class="d">Perfect for getting started</div>
+                            <div class="pp">₦<span class="cnt" data-to="0">0</span> <small>/ forever</small></div>
+                            <hr>
+                            <ul class="ls">
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>Create your online store</li>
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>Add products &amp; manage cart</li>
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>Get a unique store link</li>
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>Manual order lookup</li>
+                            </ul><a class="btn" href="#cta">Start Free</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv" style="--d:.15s">
+                    <div class="tilt">
+                        <div class="pc pro"><span class="rib"><svg class="ic">
+                                    <use href="#cr" />
+                                </svg>Most Popular</span>
+                            <svg class="dm" viewBox="-12 0 124 92">
+                                <polygon points="12,28 28,6 38,28" fill="#e7a017" />
+                                <polygon points="38,28 28,6 50,6" fill="#ffd66b" />
+                                <polygon points="38,28 50,6 62,28" fill="#f7be3a" />
+                                <polygon points="62,28 50,6 72,6" fill="#ffe29a" />
+                                <polygon points="62,28 72,6 88,28" fill="#d68e10" />
+                                <polygon points="12,28 38,28 50,84" fill="#c9800b" />
+                                <polygon points="38,28 62,28 50,84" fill="#f5b52a" />
+                                <polygon points="62,28 88,28 50,84" fill="#a96a06" />
+                            </svg>
+                            <i class="sp" style="right:130px;top:34px;--t:0s">✦</i><i class="sp"
+                                style="right:14px;top:120px;--t:-.8s">✦</i><i class="sp"
+                                style="right:150px;top:100px;--t:-1.6s;font-size:9px">✦</i>
+                            <h3>Pro Plan</h3>
+                            <div class="d">Automate &amp; grow your business</div>
+                            <div class="pp">₦<span class="cnt" data-to="5000">5,000</span> <small>/ month</small></div>
+                            <hr>
+                            <ul class="ls">
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>All Free features</li>
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>Automatic WhatsApp notifications</li>
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>Manage orders via WhatsApp</li>
+                                <li><span class="ck"><svg class="ic">
+                                            <use href="#ck" />
+                                        </svg></span>Priority support</li>
+                            </ul><a class="btn g" href="#cta">Upgrade to Pro <svg class="ic">
+                                    <use href="#ar" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec hd"><span class="eb rv">Value check</span>
+            <h2 class="rv">See what Pro <span class="gt">really costs you</span></h2>
+            <p class="sub rv">Slide to your expected orders per month and see the cost of Pro for each one.</p>
+            <div class="calc rv">
+                <div><label for="n">Orders per month<b><span id="nv">40</span> orders</b></label><input id="n"
+                        type="range" min="5" max="200" value="40"></div>
+                <div class="res"><small>Pro works out to about</small><strong class="gt">₦<span
+                            id="cpo">125</span></strong>
+                    <p>per order, with automatic WhatsApp alerts and order management included.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec hd"><span class="eb rv">Why upgrade</span>
+            <h2 class="rv">What you unlock <span class="gt">with Pro</span></h2>
+            <div class="bento">
+                <div class="bc rv"><svg class="ic">
+                        <use href="#bolt" />
+                    </svg>
+                    <h3>Instant order alerts</h3>
+                    <p>Get a WhatsApp message the moment a customer places an order. No more refreshing your dashboard.
+                    </p>
+                </div>
+                <div class="bc rv" style="--d:.12s"><svg class="ic">
+                        <use href="#wa" />
+                    </svg>
+                    <h3>Orders from WhatsApp</h3>
+                    <p>Confirm and manage orders by simply replying to the bot, right from the app you already use.</p>
+                </div>
+                <div class="bc rv" style="--d:.24s"><svg class="ic">
+                        <use href="#hs" />
+                    </svg>
+                    <h3>Priority support</h3>
+                    <p>Stuck or have a question? Pro sellers get to the front of the line.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec hd"><span class="eb rv">Compare plans</span>
+            <h2 class="rv">Everything, <span class="gt">side by side</span></h2>
+            <div class="tbl rv">
+                <div class="r h">
+                    <div>Feature</div>
+                    <div>Free</div>
+                    <div>Pro</div>
+                </div>
+                <div class="r g">
+                    <div>Store</div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="r">
+                    <div>Online storefront</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Unique store link</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Add products &amp; manage cart</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r g">
+                    <div>Orders</div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="r">
+                    <div>Manual order lookup</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Automatic WhatsApp notifications</div>
+                    <div class="no">—</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Manage orders via WhatsApp</div>
+                    <div class="no">—</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r g">
+                    <div>Support</div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="r">
+                    <div>Priority support</div>
+                    <div class="no">—</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec hd"><span class="eb rv">Pricing FAQs</span>
+            <h2 class="rv">Questions <span class="gt">before you start?</span></h2>
+            <div class="fq rv">
+                <details open>
+                    <summary>Is Studio Index really free to use?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>Yes. The Free plan costs ₦0 and lets you create a store, add products, share your unique link and
+                        look up orders.</p>
+                </details>
+                <details>
+                    <summary>Can I upgrade to Pro later?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>Absolutely. Start on Free and upgrade whenever you want to add WhatsApp automation.</p>
+                </details>
+                <details>
+                    <summary>What does the WhatsApp bot do?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>It sends you automatic notifications when orders come in and lets you manage those orders right
+                        from WhatsApp.</p>
+                </details>
+                <details>
+                    <summary>What’s the difference between Free and Pro?<svg class="ic">
+                            <use href="#pl" />
+                        </svg></summary>
+                    <p>Free gives you the full storefront. Pro adds automatic WhatsApp notifications, order management
+                        via WhatsApp and priority support.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="w" id="cta">
+            <div class="cb rv">
+                <h2>Start free today, <span class="gt">go Pro when you grow</span></h2>
+                <p class="sub" style="margin:auto">Create your store in minutes and share your link on Instagram.</p><a
+                    class="btn g" href="#">Create Your Account <svg class="ic">
+                        <use href="#ar" />
+                    </svg></a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="w"><span>© 2025 Studio Index. All rights reserved.</span><span>Privacy Policy &nbsp;|&nbsp; Terms of
+                Service &nbsp;|&nbsp; Contact</span></div>
+    </footer>
+    <script>
+        var io = new IntersectionObserver(function (a) { a.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target) } }) }, { threshold: .12 });
+        document.querySelectorAll('.rv').forEach(function (e) { io.observe(e) });
+        document.querySelectorAll('.cnt').forEach(function (el) { var to = +el.dataset.to, t0 = null; if (!to) return; function f(t) { t0 = t0 || t; var p = Math.min((t - t0) / 1400, 1), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(to * e).toLocaleString('en-US'); if (p < 1) requestAnimationFrame(f) } el.textContent = '0'; setTimeout(function () { requestAnimationFrame(f) }, 500) });
+        document.querySelectorAll('.tilt').forEach(function (c) { c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; c.style.setProperty('--ry', x * 8 + 'deg'); c.style.setProperty('--rx', -y * 8 + 'deg') }); c.addEventListener('pointerleave', function () { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg') }) });
+        document.querySelectorAll('.bc').forEach(function (c) { c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(); c.style.setProperty('--x', e.clientX - r.left + 'px'); c.style.setProperty('--y', e.clientY - r.top + 'px') }) });
+        var n = document.getElementById('n'); function up() { var v = +n.value; document.getElementById('nv').textContent = v; document.getElementById('cpo').textContent = Math.round(5000 / v).toLocaleString('en-US'); n.style.setProperty('--p', (v - 5) / 195 * 100 + '%') } n.addEventListener('input', up); up();
+    </script>
+</body>
+
+</html>

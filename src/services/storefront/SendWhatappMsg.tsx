@@ -1,6 +1,6 @@
 
 
-export function SendWhatappMsg(sessionId, phoneNumber: string, selected = null, selectedlga = null) {
+export function SendWhatappMsg(sessionId: string, phoneNumber: string, selected: string | null = null, selectedlga: string | null = null) {
     if (selected === 'Select State') {
         console.log('state empty')
         return

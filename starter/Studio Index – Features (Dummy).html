@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Features – Studio Index</title>
+    <script>document.documentElement.className = 'js'</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: #fff;
+            --mut: #a9a9a9;
+            --card: #0d0d0d;
+            --line: #ffffff1a;
+            --gold: #f7b92c;
+            --g1: #ffd65f;
+            --g2: #f3a81a;
+            color-scheme: dark;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            scroll-behavior: smooth
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+            margin: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font: 400 15px/1.55 Poppins, system-ui, -apple-system, "Segoe UI", sans-serif;
+            overflow-x: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        svg {
+            display: block
+        }
+
+        .w {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 40px
+        }
+
+        .ic {
+            width: 1em;
+            height: 1em;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .gt {
+            background: linear-gradient(90deg, #ffd65f, #f3a81a, #fff1b8, #ffd65f);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: sh 6s linear infinite
+        }
+
+        @keyframes sh {
+            to {
+                background-position: 200% 0
+            }
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden
+        }
+
+        .bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(#ffffff09 1px, transparent 1px), linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+            background-size: 56px 56px;
+            -webkit-mask: radial-gradient(75% 65% at 50% 25%, #000, transparent);
+            mask: radial-gradient(75% 65% at 50% 25%, #000, transparent)
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            background: radial-gradient(circle, #f7b92c4d, transparent 70%);
+            animation: fl 16s ease-in-out infinite alternate
+        }
+
+        @keyframes fl {
+            to {
+                transform: translate(70px, 90px) scale(1.25)
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            font: 600 14px Poppins, sans-serif;
+            padding: 14px 26px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--fg);
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .btn .ic {
+            width: 14px;
+            height: 14px
+        }
+
+        .btn:hover {
+            transform: translateY(-2px)
+        }
+
+        .btn.g {
+            background: linear-gradient(180deg, var(--g1), var(--g2));
+            color: #1a1204;
+            border: 0;
+            box-shadow: 0 6px 24px #f7b92c40
+        }
+
+        .btn.g:hover {
+            box-shadow: 0 10px 34px #f7b92c70
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 22px 40px
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: .3px
+        }
+
+        .logo svg {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 4px 12px #f7b92c55)
+        }
+
+        .logo i {
+            font-style: normal;
+            background: linear-gradient(180deg, #ffe58a, #f0a31a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .nav nav {
+            display: flex;
+            gap: 36px;
+            font-size: 13.5px;
+            font-weight: 500
+        }
+
+        .nav nav a {
+            padding: 8px 0;
+            border-bottom: 2px solid transparent
+        }
+
+        .nav nav a.on {
+            border-color: var(--gold)
+        }
+
+        .act {
+            display: flex;
+            gap: 12px
+        }
+
+        .act .btn {
+            padding: 10px 22px;
+            font-size: 13px
+        }
+
+        .js .rv {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity .9s, transform .9s cubic-bezier(.2, .7, .2, 1);
+            transition-delay: var(--d, 0s)
+        }
+
+        .js .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .eb {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .eb::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        h1 {
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.08;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin: 18px 0
+        }
+
+        h2 {
+            font-size: clamp(26px, 3.6vw, 40px);
+            line-height: 1.15;
+            font-weight: 600;
+            margin: 14px 0 12px
+        }
+
+        .sub {
+            color: var(--mut);
+            max-width: 520px
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 30px;
+            align-items: center;
+            padding-top: 50px;
+            padding-bottom: 50px
+        }
+
+        .vis {
+            position: relative;
+            height: 400px
+        }
+
+        .gl {
+            border: 1px solid #ffffff22;
+            border-radius: 22px;
+            background: linear-gradient(160deg, #ffffff16, #ffffff05);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 20px 60px #0008, inset 0 1px #ffffff22
+        }
+
+        .main {
+            position: absolute;
+            inset: 30px 20px 30px 40px;
+            padding: 24px;
+            animation: fy 7s ease-in-out infinite alternate
+        }
+
+        .main::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 22px;
+            padding: 1px;
+            background: conic-gradient(from var(--a, 0deg), transparent 60%, #f7b92c, transparent);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: sp 6s linear infinite
+        }
+
+        @property --a {
+            syntax: "<angle>";
+            inherits: false;
+            initial-value: 0deg
+        }
+
+        @keyframes sp {
+            to {
+                --a: 360deg
+            }
+        }
+
+        @keyframes fy {
+            to {
+                transform: translateY(-16px)
+            }
+        }
+
+        .main h4 {
+            font-size: 13px;
+            color: var(--mut);
+            font-weight: 500
+        }
+
+        .main b {
+            font-size: 30px;
+            display: block;
+            margin: 2px 0 18px
+        }
+
+        .bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            height: 130px
+        }
+
+        .bars i {
+            flex: 1;
+            height: var(--h);
+            border-radius: 8px 8px 3px 3px;
+            background: linear-gradient(var(--g1), #a86a0866);
+            transform-origin: bottom;
+            animation: gr 2.6s ease-in-out infinite alternate;
+            animation-delay: var(--t)
+        }
+
+        @keyframes gr {
+            from {
+                transform: scaleY(.35)
+            }
+        }
+
+        .chip {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 16px;
+            animation: fy 5s ease-in-out infinite alternate
+        }
+
+        .chip .ic {
+            width: 22px;
+            height: 22px;
+            color: var(--gold)
+        }
+
+        .c1 {
+            top: 0;
+            right: 0
+        }
+
+        .c2 {
+            bottom: 6px;
+            left: 0;
+            animation-delay: -2s
+        }
+
+        .c2 .wa {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #25d366;
+            display: grid;
+            place-items: center
+        }
+
+        .c2 .wa .ic {
+            width: 18px;
+            height: 18px;
+            color: #fff
+        }
+
+        .mq {
+            overflow: hidden;
+            border-block: 1px solid var(--line);
+            padding: 16px 0;
+            margin: 30px 0 20px;
+            -webkit-mask: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+            mask: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent)
+        }
+
+        .mq div {
+            display: flex;
+            gap: 50px;
+            width: max-content;
+            animation: mq 28s linear infinite;
+            color: var(--mut);
+            font-weight: 500;
+            font-size: 14px;
+            white-space: nowrap
+        }
+
+        .mq span::before {
+            content: "✦";
+            color: var(--gold);
+            margin-right: 50px
+        }
+
+        @keyframes mq {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .sec {
+            padding-top: 90px
+        }
+
+        .hd {
+            text-align: center
+        }
+
+        .hd .sub {
+            margin: auto
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 44px;
+            position: relative
+        }
+
+        .steps::before {
+            content: "";
+            position: absolute;
+            left: 12%;
+            right: 12%;
+            top: 34px;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 20px);
+            opacity: .5;
+            animation: dash 1.5s linear infinite;
+            background-size: 20px 2px
+        }
+
+        @keyframes dash {
+            to {
+                background-position: 20px 0
+            }
+        }
+
+        .st {
+            position: relative;
+            text-align: center;
+            padding: 0 12px
+        }
+
+        .st em {
+            font-style: normal;
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1204;
+            background: linear-gradient(var(--g1), var(--g2));
+            box-shadow: 0 0 0 8px #050505, 0 0 40px #f7b92c66
+        }
+
+        .st h3 {
+            font-size: 18px
+        }
+
+        .st p {
+            color: var(--mut);
+            font-size: 13.5px;
+            margin-top: 6px
+        }
+
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+            margin-top: 44px
+        }
+
+        .bc {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 26px;
+            background: linear-gradient(160deg, #ffffff0d, var(--card) 55%);
+            grid-column: span 4;
+            transition: border-color .3s, transform .3s
+        }
+
+        .bc:hover {
+            border-color: #f7b92c80;
+            transform: translateY(-4px)
+        }
+
+        .bc::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(320px circle at var(--x, 50%) var(--y, 0), #f7b92c24, transparent 60%);
+            opacity: 0;
+            transition: .3s;
+            pointer-events: none
+        }
+
+        .bc:hover::before {
+            opacity: 1
+        }
+
+        .bc.s7 {
+            grid-column: span 7
+        }
+
+        .bc.s5 {
+            grid-column: span 5
+        }
+
+        .bc>.ic {
+            width: 34px;
+            height: 34px;
+            color: var(--gold);
+            stroke-width: 1.6;
+            margin-bottom: 14px
+        }
+
+        .bc h3 {
+            font-size: 18px;
+            font-weight: 600
+        }
+
+        .bc p {
+            font-size: 13.5px;
+            color: var(--mut);
+            margin-top: 6px
+        }
+
+        .url {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: #000a;
+            border: 1px solid var(--line);
+            font: 13px ui-monospace, Menlo, Consolas, monospace
+        }
+
+        .url .ic {
+            color: #4ade80;
+            width: 15px;
+            height: 15px;
+            flex: none
+        }
+
+        .url span {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            border-right: 2px solid var(--gold);
+            animation: ty 3.6s steps(26) infinite alternate
+        }
+
+        @keyframes ty {
+            to {
+                width: 26ch
+            }
+        }
+
+        .tiles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px
+        }
+
+        .tiles i {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            background: linear-gradient(120deg, #2a2a2a, #555, #2a2a2a);
+            background-size: 250% 100%;
+            animation: sm 3s linear infinite;
+            animation-delay: var(--t);
+            position: relative
+        }
+
+        .tiles i::after {
+            content: attr(data-p);
+            position: absolute;
+            left: 5px;
+            bottom: 5px;
+            font: 600 9px Poppins;
+            font-style: normal;
+            background: #000b;
+            padding: 2px 6px;
+            border-radius: 99px
+        }
+
+        @keyframes sm {
+            to {
+                background-position: -250% 0
+            }
+        }
+
+        .qty {
+            margin-top: 18px;
+            display: grid;
+            gap: 8px;
+            font-size: 12.5px
+        }
+
+        .qty div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #ffffff0a
+        }
+
+        .qty b {
+            color: var(--gold)
+        }
+
+        .ping {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #4ade80;
+            margin-right: 8px;
+            box-shadow: 0 0 0 0 #4ade80aa;
+            animation: pg 1.8s infinite
+        }
+
+        @keyframes pg {
+            to {
+                box-shadow: 0 0 0 12px #4ade8000
+            }
+        }
+
+        .wa {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding: 50px;
+            border: 1px solid #f7b92c55;
+            border-radius: 32px;
+            background: radial-gradient(70% 90% at 100% 0, #25d36620, transparent 60%), radial-gradient(60% 80% at 0 100%, #f7b92c26, transparent 60%), var(--card);
+            box-shadow: 0 0 70px #f7b92c1a
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(var(--g1), var(--g2));
+            color: #1a1204;
+            padding: 3px 10px;
+            border-radius: 99px;
+            vertical-align: middle;
+            margin-left: 8px
+        }
+
+        .ls {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 14px;
+            margin: 26px 0 30px
+        }
+
+        .ls li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 14px
+        }
+
+        .ls .ck {
+            flex: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #1a1204;
+            display: grid;
+            place-items: center
+        }
+
+        .ls .ck .ic {
+            width: 12px;
+            height: 12px;
+            stroke-width: 3.4
+        }
+
+        .chat {
+            max-width: 340px;
+            margin: auto;
+            width: 100%;
+            border-radius: 28px;
+            background: #0b141a;
+            border: 1px solid #ffffff22;
+            padding: 0 0 18px;
+            box-shadow: 0 30px 70px #000b;
+            overflow: hidden;
+            transform: rotate(3deg)
+        }
+
+        .ch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            background: #202c33;
+            font-size: 13px;
+            font-weight: 600
+        }
+
+        .ch .wa2 {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(var(--g1), var(--g2));
+            display: grid;
+            place-items: center
+        }
+
+        .ch small {
+            display: block;
+            font-weight: 400;
+            color: #8696a0;
+            font-size: 10.5px
+        }
+
+        .m {
+            margin: 12px 14px 0;
+            max-width: 82%;
+            padding: 9px 12px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            line-height: 1.4;
+            background: #202c33;
+            opacity: 0
+        }
+
+        .m.me {
+            margin-left: auto;
+            background: #005c4b;
+            border-top-right-radius: 3px
+        }
+
+        .m:not(.me) {
+            border-top-left-radius: 3px
+        }
+
+        .chat.in .m {
+            animation: pop .5s forwards;
+            animation-delay: calc(var(--i)*1s)
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(.95)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .tbl {
+            margin-top: 44px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--card)
+        }
+
+        .r {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr 1fr;
+            align-items: center;
+            font-size: 14px
+        }
+
+        .r>* {
+            padding: 15px 22px
+        }
+
+        .r+.r {
+            border-top: 1px solid var(--line)
+        }
+
+        .r>:nth-child(n+2) {
+            text-align: center;
+            display: grid;
+            place-items: center
+        }
+
+        .r>:nth-child(3) {
+            background: #f7b92c12
+        }
+
+        .r.h {
+            font-weight: 600;
+            background: #ffffff08
+        }
+
+        .r.h>:nth-child(3) {
+            color: var(--gold)
+        }
+
+        .r .ic {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+            stroke-width: 3
+        }
+
+        .no {
+            color: #555
+        }
+
+        .soon {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 34px
+        }
+
+        .soon span {
+            padding: 12px 22px;
+            border-radius: 99px;
+            border: 1px dashed #f7b92c80;
+            font-size: 13.5px;
+            font-weight: 500;
+            background: linear-gradient(100deg, transparent 30%, #f7b92c26, transparent 70%) 0 0/250% 100%;
+            animation: sm 3.5s linear infinite;
+            animation-delay: var(--t)
+        }
+
+        .cb {
+            margin: 90px 0 40px;
+            text-align: center;
+            border: 1px solid #f7b92c70;
+            border-radius: 32px;
+            padding: 56px 30px;
+            background: radial-gradient(80% 120% at 50% 140%, #f7b92c50, transparent 70%), var(--card);
+            box-shadow: 0 0 50px #f7b92c22
+        }
+
+        .cb .btn {
+            margin-top: 26px
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 28px 0;
+            font-size: 12.5px;
+            color: var(--mut)
+        }
+
+        footer .w {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .js .rv,
+            .m {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        @media(max-width:900px) {
+            .nav nav {
+                display: none
+            }
+
+            .hero,
+            .wa {
+                grid-template-columns: 1fr
+            }
+
+            .vis {
+                height: 360px
+            }
+
+            .steps {
+                grid-template-columns: 1fr
+            }
+
+            .steps::before {
+                display: none
+            }
+
+            .bc,
+            .bc.s7,
+            .bc.s5 {
+                grid-column: span 12
+            }
+
+            .wa {
+                padding: 30px 22px
+            }
+        }
+
+        @media(max-width:560px) {
+
+            .w,
+            .nav {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .act .btn:not(.g) {
+                display: none
+            }
+
+            .r>* {
+                padding: 13px 10px;
+                font-size: 12.5px
+            }
+
+            .chat {
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"><i class="orb" style="width:480px;height:480px;left:-120px;top:-60px"></i><i class="orb"
+            style="width:520px;height:520px;right:-160px;top:30%;animation-delay:-6s"></i><i class="orb"
+            style="width:420px;height:420px;left:25%;bottom:-160px;animation-delay:-11s"></i>
+    </div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff1b8" />
+                <stop offset=".45" stop-color="#f7b92c" />
+                <stop offset="1" stop-color="#a86a08" />
+            </linearGradient>
+            <linearGradient id="f1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff3c0" />
+                <stop offset="1" stop-color="#f7b92c" />
+            </linearGradient>
+            <linearGradient id="f2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f7b92c" />
+                <stop offset="1" stop-color="#b9780a" />
+            </linearGradient>
+            <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#d9960f" />
+                <stop offset="1" stop-color="#7a4c04" />
+            </linearGradient>
+            <symbol id="logo" viewBox="0 0 64 64">
+                <polygon points="32,3 57.1,17.5 32,32 6.9,17.5" fill="url(#f1)" />
+                <polygon points="6.9,17.5 32,32 32,61 6.9,46.5" fill="url(#f2)" />
+                <polygon points="57.1,17.5 32,32 32,61 57.1,46.5" fill="url(#f3)" />
+                <polygon points="32,3 57.1,17.5 57.1,46.5 32,61 6.9,46.5 6.9,17.5" fill="none" stroke="#fff3c0"
+                    stroke-width="1.2" stroke-linejoin="round" opacity=".85" />
+                <path d="M32 32L6.9 17.5M32 32L57.1 17.5M32 32V61" stroke="#fff3c0" stroke-width=".6" opacity=".5" />
+                <g fill="none" stroke-linecap="round" transform="translate(32 32) scale(.84) translate(-33 -33.5)">
+                    <path d="M45 22C42 12 19 12 19 25c0 13 28 6 28 19 0 12-24 11-28 2" stroke="#ffe9a8"
+                        stroke-width="7.5" opacity=".6" transform="translate(1 1)" />
+                    <path d="M45 22C42 12 19 12 19 25c0 13 28 6 28 19 0 12-24 11-28 2" stroke="#0b0804"
+                        stroke-width="7.5" />
+                </g>
+                <path d="M55 4.5l1.6 3.9 3.9 1.6-3.9 1.6-1.6 3.9-1.6-3.9-3.9-1.6 3.9-1.6z" fill="url(#lg)" />
+            </symbol>
+            <symbol id="ar" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+            </symbol>
+            <symbol id="ck" viewBox="0 0 24 24">
+                <path d="M5 12.5l4.5 4.5L19 7.5" />
+            </symbol>
+            <symbol id="wa" viewBox="0 0 24 24">
+                <path d="M3 21l1.6-4.6A9 9 0 1 1 8 19.6z" />
+                <path d="M9 8c0 4 3 7 7 7l1-1.5-2.2-1-1 .8c-1-.4-1.8-1.2-2.300-2.3l.8-1-1-2.2z" />
+            </symbol>
+            <symbol id="bag" viewBox="0 0 24 24">
+                <path d="M5 8h14l1 12H4zM9 8V6a3 3 0 0 1 6 0v2" />
+            </symbol>
+            <symbol id="lk" viewBox="0 0 24 24">
+                <path
+                    d="M10 14a4 4 0 0 0 5.700 0l3-3a4 4 0 0 0-5.700-5.700l-1 1M14 10a4 4 0 0 0-5.700 0l-3 3a4 4 0 0 0 5.700 5.700l1-1" />
+            </symbol>
+            <symbol id="cr" viewBox="0 0 24 24">
+                <path d="M3 4h3l2.500 11h10l2-8H7" />
+                <circle cx="9.500" cy="19.500" r="1.300" />
+                <circle cx="17" cy="19.500" r="1.300" />
+            </symbol>
+            <symbol id="ch" viewBox="0 0 24 24">
+                <path d="M4 21v-6M10 21V9M16 21v-9M22 21V3M2 21h20" />
+            </symbol>
+            <symbol id="ph" viewBox="0 0 24 24">
+                <rect x="6" y="2" width="12" height="20" rx="3" />
+                <path d="M10.500 18.500h3" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <header class="nav"><a class="logo" href="#"><svg>
+                <use href="#logo" />
+            </svg><span>Studio <i>Index</i></span></a>
+        <nav><a href="#">Home</a><a class="on" href="#">Features</a><a href="#">Pricing</a><a href="#">FAQs</a><a
+                href="#">Contact</a></nav>
+        <div class="act"><a class="btn" href="#">Login</a><a class="btn g" href="#cta">Create Account <svg class="ic">
+                    <use href="#ar" />
+                </svg></a></div>
+    </header>
+
+    <main>
+        <section class="w hero">
+            <div class="rv"><span class="eb">Features</span>
+                <h1>Everything You Need to <span class="gt">Sell on Instagram</span></h1>
+                <p class="sub">Studio Index turns your products into a beautiful online store with one shareable link,
+                    and a WhatsApp bot that handles your orders for you.</p>
+                <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap"><a class="btn g" href="#cta">Get
+                        Started Free <svg class="ic">
+                            <use href="#ar" />
+                        </svg></a><a class="btn" href="#whatsapp">See the WhatsApp Bot</a></div>
+            </div>
+            <div class="vis rv" style="--d:.15s">
+                <div class="gl main">
+                    <h4>Today’s orders</h4><b>12 new</b>
+                    <div class="bars"><i style="--h:45%;--t:0s"></i><i style="--h:70%;--t:-.4s"></i><i
+                            style="--h:55%;--t:-.8s"></i><i style="--h:90%;--t:-1.2s"></i><i
+                            style="--h:65%;--t:-1.6s"></i><i style="--h:100%;--t:-2s"></i><i
+                            style="--h:80%;--t:-2.4s"></i></div>
+                </div>
+                <div class="gl chip c1"><svg class="ic">
+                        <use href="#bag" />
+                    </svg>New order · ₦27,000</div>
+                <div class="gl chip c2"><span class="wa"><svg class="ic">
+                            <use href="#wa" />
+                        </svg></span>Order confirmed ✓</div>
+            </div>
+        </section>
+
+        <div class="mq">
+            <div><span>Fashion</span><span>Beauty</span><span>Food &amp;
+                    Snacks</span><span>Thrift</span><span>Gadgets</span><span>Home
+                    Decor</span><span>Jewelry</span><span>Fashion</span><span>Beauty</span><span>Food &amp;
+                    Snacks</span><span>Thrift</span><span>Gadgets</span><span>Home Decor</span><span>Jewelry</span>
+            </div>
+        </div>
+
+        <section class="w sec hd"><span class="eb rv">How it works</span>
+            <h2 class="rv">From first product to first order <span class="gt">in three steps</span></h2>
+            <p class="sub rv">No design skills and no code. Just you, your products and your Instagram.</p>
+            <div class="steps">
+                <div class="st rv"><em>1</em>
+                    <h3>Create your store</h3>
+                    <p>Sign up free and set up your store name in a few minutes.</p>
+                </div>
+                <div class="st rv" style="--d:.15s"><em>2</em>
+                    <h3>Add your products</h3>
+                    <p>Upload photos, set prices and write short descriptions.</p>
+                </div>
+                <div class="st rv" style="--d:.3s"><em>3</em>
+                    <h3>Share your link</h3>
+                    <p>Paste your unique link in your Instagram bio and start getting orders.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec">
+            <div class="hd"><span class="eb rv">Core features</span>
+                <h2 class="rv">A complete store, <span class="gt">built for Instagram</span></h2>
+            </div>
+            <div class="bento">
+                <div class="bc s7 rv"><svg class="ic">
+                        <use href="#lk" />
+                    </svg>
+                    <h3>Your own unique store link</h3>
+                    <p>Every seller gets one link to rule them all. Put it in your bio, stories or DMs and customers
+                        land straight in your store.</p>
+                    <div class="url"><svg class="ic">
+                            <use href="#ck" />
+                        </svg><span>studioindex.app/your-store</span></div>
+                </div>
+                <div class="bc s5 rv" style="--d:.1s"><svg class="ic">
+                        <use href="#bag" />
+                    </svg>
+                    <h3>Beautiful product catalogue</h3>
+                    <p>Show off your products with photos, prices and descriptions.</p>
+                    <div class="tiles"><i data-p="₦15,000" style="--t:0s"></i><i data-p="₦12,000"
+                            style="--t:-.6s"></i><i data-p="₦8,500" style="--t:-1.2s"></i><i data-p="₦20,000"
+                            style="--t:-1.8s"></i></div>
+                </div>
+                <div class="bc rv"><svg class="ic">
+                        <use href="#cr" />
+                    </svg>
+                    <h3>Seamless cart</h3>
+                    <p>Customers add to cart and confirm their order in a few taps.</p>
+                    <div class="qty">
+                        <div>Premium Hoodie × 1<b>₦15,000</b></div>
+                        <div>Black Cap × 1<b>₦12,000</b></div>
+                    </div>
+                </div>
+                <div class="bc rv" style="--d:.1s"><svg class="ic">
+                        <use href="#ch" />
+                    </svg>
+                    <h3>Order dashboard</h3>
+                    <p>See every order and its status in one clean place, and look up any order fast.</p>
+                    <div class="bars" style="height:70px;margin-top:16px"><i style="--h:40%;--t:0s"></i><i
+                            style="--h:75%;--t:-.5s"></i><i style="--h:55%;--t:-1s"></i><i
+                            style="--h:95%;--t:-1.5s"></i><i style="--h:70%;--t:-2s"></i></div>
+                </div>
+                <div class="bc rv" style="--d:.2s"><svg class="ic">
+                        <use href="#ph" />
+                    </svg>
+                    <h3>Made for phones</h3>
+                    <p>Most of your customers come from Instagram on mobile, so your store is designed for small screens
+                        first.</p>
+                    <p style="margin-top:16px;color:var(--fg)"><span class="ping"></span>Fast &amp; smooth on any phone
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec" id="whatsapp">
+            <div class="wa rv">
+                <div><span class="eb">The Studio Index difference</span>
+                    <h2>Meet your <span class="gt">WhatsApp order bot</span><span class="tag">PRO</span></h2>
+                    <p class="sub">Stop chasing orders in your DMs. The bot tells you the moment an order lands and lets
+                        you manage it right from WhatsApp.</p>
+                    <ul class="ls">
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Instant WhatsApp alerts for every new order</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Confirm or decline orders by replying to the bot</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Customers get automatic updates, no typing needed</li>
+                        <li><span class="ck"><svg class="ic">
+                                    <use href="#ck" />
+                                </svg></span>Works on the WhatsApp you already use</li>
+                    </ul><a class="btn g" href="#cta">Upgrade to Pro <svg class="ic">
+                            <use href="#ar" />
+                        </svg></a>
+                </div>
+                <div class="chat">
+                    <div class="ch"><span class="wa2"><svg class="ic" style="width:18px;color:#1a1204">
+                                <use href="#wa" />
+                            </svg></span>
+                        <div>Studio Index Bot<small>online</small></div>
+                    </div>
+                    <div class="m" style="--i:1">New order #1024<br>2 items · ₦27,000</div>
+                    <div class="m" style="--i:2">Reply 1 to confirm or 2 to decline.</div>
+                    <div class="m me" style="--i:3">1</div>
+                    <div class="m" style="--i:4">Order confirmed ✓ Your customer has been notified.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec hd"><span class="eb rv">Compare plans</span>
+            <h2 class="rv">Start free. <span class="gt">Upgrade when you’re ready.</span></h2>
+            <div class="tbl rv" style="text-align:left">
+                <div class="r h">
+                    <div>Feature</div>
+                    <div>Free</div>
+                    <div>Pro</div>
+                </div>
+                <div class="r">
+                    <div>Online storefront</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Unique store link</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Add products &amp; manage cart</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Manual order lookup</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Automatic WhatsApp notifications</div>
+                    <div class="no">—</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Manage orders via WhatsApp</div>
+                    <div class="no">—</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+                <div class="r">
+                    <div>Priority support</div>
+                    <div class="no">—</div>
+                    <div><svg class="ic">
+                            <use href="#ck" />
+                        </svg></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w sec hd"><span class="eb rv">Coming soon</span>
+            <h2 class="rv">We’re just getting <span class="gt">started</span></h2>
+            <p class="sub rv">More tools are on the way to help your store grow.</p>
+            <div class="soon rv"><span style="--t:0s">Online payments</span><span style="--t:-.7s">Discount
+                    codes</span><span style="--t:-1.4s">Sales analytics</span><span style="--t:-2.1s">Custom
+                    domain</span><span style="--t:-2.8s">Delivery tracking</span></div>
+        </section>
+
+        <section class="w" id="cta">
+            <div class="cb rv">
+                <h2>Ready to take your business to <span class="gt">the next level?</span></h2>
+                <p class="sub" style="margin:auto">Join thousands of sellers already using Studio Index.</p><a
+                    class="btn g" href="#">Create Your Account <svg class="ic">
+                        <use href="#ar" />
+                    </svg></a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="w"><span>© 2025 Studio Index. All rights reserved.</span><span>Privacy Policy &nbsp;|&nbsp; Terms of
+                Service &nbsp;|&nbsp; Contact</span></div>
+    </footer>
+    <script>
+        var io = new IntersectionObserver(function (a) { a.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target) } }) }, { threshold: .15 });
+        document.querySelectorAll('.rv,.chat').forEach(function (e) { io.observe(e) });
+        document.querySelectorAll('.bc').forEach(function (c) { c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(); c.style.setProperty('--x', e.clientX - r.left + 'px'); c.style.setProperty('--y', e.clientY - r.top + 'px') }) });
+    </script>
+</body>
+
+</html>

@@ -11,10 +11,11 @@ import p10Img from './assets/products/p10-gold-necklace.jpg';
 import p11Img from './assets/products/p11-perfume-oil.jpg';
 import p12Img from './assets/products/p12-lip-gloss-set.jpg';
 
+export const productImages = [
+    p1Img, p2Img, p3Img, p4Img, p5Img, p6Img,
+    p7Img, p8Img, p9Img, p10Img, p11Img, p12Img
+];
+
 export function getImagesImport() {
-
-
-    return (
-        p1Img
-    )
+    return p1Img;
 }

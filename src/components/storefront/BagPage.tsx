@@ -1,6 +1,6 @@
 import { BagIcon, XIcon } from "@phosphor-icons/react";
 import { addToCart } from "../../services/storefront/cartService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SendWhatappMsg } from "../../services/storefront/SendWhatappMsg";
 import { formatMoney } from "../../utils/formatCurrency";
 import { naijaData } from "../../lib/nigeriaData";
@@ -17,7 +17,7 @@ export function BagPage({ isOpen = true, onClose }: BagPageProps) {
     function getTotal(): number {
         let total = 0;
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        cart.forEach(item => {
+        cart.forEach((item: any) => {
             total += (item.quantity * item.price)
         });
         window.dispatchEvent(new Event('totalUpdated'))
@@ -25,7 +25,8 @@ export function BagPage({ isOpen = true, onClose }: BagPageProps) {
     }
 
     if (!isOpen) return null;
-    const cart = JSON.parse(localStorage.getItem('cart'));
+    const cartStr = localStorage.getItem('cart');
+    const cart: any[] = cartStr ? JSON.parse(cartStr) : [];
 
 
     return (
@@ -59,13 +60,13 @@ export function BagPage({ isOpen = true, onClose }: BagPageProps) {
                     {/* Scrollable Content Area */}
                     <div className="flex-1 overflow-y-auto px-3 py-4 pb-[140px] flex flex-col gap-3">
                         {/* Bag Item Main Div */}
-                        {cart && cart.map((item) => {
+                        {cart && cart.map((item: any) => {
                             return (item.quantity !== 0 &&
-                                (<div className="flex w-full mr-9 h-fit p-4 border border-[#27272a] bg-[#141418] rounded-xl items-center">
+                                (<div key={item.id} className="flex w-full mr-9 h-fit p-4 border border-[#27272a] bg-[#141418] rounded-xl items-center">
                                     {/* Product Image */}
                                     <img
                                         src={item.image_url}
-                                        alt="Silk Ankara Wrap Dress"
+                                        alt={item.name}
                                         className="w-[60px] h-[60px] object-cover rounded-lg shrink-0"
                                     />
 
@@ -126,7 +127,7 @@ export function BagPage({ isOpen = true, onClose }: BagPageProps) {
                                     <option value="Select State">Select State</option>
                                     {Object.keys(naijaData).map((item) => {
                                         return (
-                                            <option value={item} onClick={() => { setSelected(item); console.log('done') }}>{item}</option>
+                                            <option key={item} value={item}>{item}</option>
                                         )
                                     })}
                                 </select>
@@ -135,9 +136,9 @@ export function BagPage({ isOpen = true, onClose }: BagPageProps) {
                                     onChange={(e) => { setSelectedLga(e.target.value) }}
                                     className="w-1/2 px-3 py-2 text-xs bg-[#0a0a0a] border border-[#27272a] rounded-lg text-white focus:outline-none focus:border-amber-400 transition-colors cursor-pointer">
                                     <option value="Select Local Govt / City">Select Local Govt / City</option>
-                                    {naijaData[selected]?.map((item) => {
+                                    {(naijaData as Record<string, string[]>)[selected]?.map((item: string) => {
                                         return (
-                                            <option value={item}>{item}</option>
+                                            <option key={item} value={item}>{item}</option>
                                         )
                                     })}
                                 </select>

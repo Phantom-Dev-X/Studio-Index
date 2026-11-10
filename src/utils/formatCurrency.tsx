@@ -1,5 +1,5 @@
 
 
-export function formatMoney(amount) {
+export function formatMoney(amount: number | string) {
     return Number(amount).toLocaleString()
 }

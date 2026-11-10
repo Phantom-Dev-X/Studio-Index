@@ -6,21 +6,23 @@ import { useEffect, useState } from "react";
 import { formatMoney } from "../../utils/formatCurrency";
 
 
-export function SellersInfo({ username, setIsBagOpen, count }) {
-    let [profilePic, setProfilePic] = useState(userPic);
-    let [total, setTotal] = useState(0)
-    let [SellersInfo, setSellersInfo] = useState(null)
+export function SellersInfo({ username, setIsBagOpen, count }: { username?: string, setIsBagOpen?: (val: boolean) => void, count?: number }) {
+    let [profilePic] = useState(userPic);
+    let [, setTotal] = useState(0)
+    let [SellersInfo, setSellersInfo] = useState<any>(null)
     function UpdateTotal() {
         let amount = 0;
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        cart.forEach(item => {
+        cart.forEach((item: any) => {
             amount += (item.quantity * item.price)
         });
+        setTotal(amount);
         return amount
     }
-    async function getSellersInfo(username) {
-        const SellersInfo = await supabaseFunctions.getSellerInfo(username);
-        setSellersInfo(SellersInfo)
+    async function getSellersInfo(uName?: string) {
+        if (!uName) return;
+        const info = await supabaseFunctions.getSellerInfo(uName);
+        setSellersInfo(info)
         window.addEventListener('totalUpdated', UpdateTotal)
 
     }
@@ -28,21 +30,19 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
         getSellersInfo(username)
 
     }, []);
-    if (!SellersInfo) {
-        SellersInfo = {
-            avatar_url: "/src/assets/products/amaka-avatar.jpg",
-            bio: "Luxury Ankara prints, ready-to-wear dresses & custom fittings in Lagos.",
-            business_tags: ['Womenswear', 'Luxury Thrifts', 'Ready-to-Wear'],
-            created_at: "2026-10-27T19:29:22.084802+00:00",
-            id: "11111111-1111-1111-1111-111111111111",
-            store_name: "Amaka Wears & Boutique",
-            username: "amaka_wears",
-            whatsapp_number: "2348012345678"
-        }
-    }
+    const infoData = SellersInfo || {
+        avatar_url: profilePic || "/src/assets/products/amaka-avatar.jpg",
+        bio: "Luxury Ankara prints, ready-to-wear dresses & custom fittings in Lagos.",
+        business_tags: ['Womenswear', 'Luxury Thrifts', 'Ready-to-Wear'],
+        created_at: "2026-10-27T19:29:22.084802+00:00",
+        id: "11111111-1111-1111-1111-111111111111",
+        store_name: "Amaka Wears & Boutique",
+        username: "amaka_wears",
+        whatsapp_number: "2348012345678"
+    };
 
 
-    function Image({ profilePic }) {
+    function Image() {
 
         const imageStyles = () => {
             return ("rounded-full object-cover object-top size-20")
@@ -51,7 +51,7 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
         function GetImage() {
             return (
                 <img
-                    src={SellersInfo.avatar_url}
+                    src={infoData.avatar_url}
                     alt="your profile picture" className={imageStyles()}
                 />
 
@@ -122,7 +122,7 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
 
         function GetName() {
             return (
-                <p className={nameStyles()} style={{ color: "#f9fafb" }}>{SellersInfo.store_name}</p>
+                <p className={nameStyles()} style={{ color: "#f9fafb" }}>{infoData.store_name}</p>
             )
         };
 
@@ -152,7 +152,7 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
             }
             return (
                 <p className={UsernameStyles()} style={{ color: "#fbbf24" }}>
-                    @{SellersInfo.username}
+                    @{infoData.username}
                 </p>
             )
         }
@@ -178,7 +178,7 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
             }
             return (
                 <p className={DescriptionStyles()} style={{ color: "#a3a3a3" }}>
-                    {SellersInfo.bio}
+                    {infoData.bio}
                 </p>
             )
         }
@@ -190,7 +190,7 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
     };
 
     function Pills() {
-        const tagsArray = [...SellersInfo.business_tags];
+        const tagsArray = [...infoData.business_tags];
         (tagsArray.length === 1 ? tagsArray.push('Verified Merchant', 'Standard User') : tagsArray.length === 2 ? tagsArray.push('Verified Merchant') : null)
         return (
             (tagsArray.map((prop) => {
@@ -257,7 +257,7 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
                             (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
                             (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
                         }}
-                        onClick={() => { setIsBagOpen(true) }}
+                        onClick={() => { setIsBagOpen?.(true) }}
                     >OPEN BAG</button>
                     <div
                         className="py-1 px-1.5 rounded-[5px] cursor-pointer transition-all duration-200"
@@ -293,7 +293,7 @@ export function SellersInfo({ username, setIsBagOpen, count }) {
                     background: "linear-gradient(to right, rgba(255, 255, 255, 0.05) 0%, #fbbe248c 30%, #fbbe248c 60%, rgba(255, 255, 255, 0.05) 100%)"
                 }}></div>
                 <div className="flex sm:pt-5 sm:items-center flex-col sm:flex-row sm:flex-wrap w-[90%] sm:w-[97%] items-center">
-                    <Image profilePic={profilePic} />
+                    <Image />
                     <div className="flex sm:flex-1 flex-col items-center sm:flex-row">
                         <div className="sm:w-[60%] sm:mx-4 sm:max-w-[250px]">
                             <StoreName />
