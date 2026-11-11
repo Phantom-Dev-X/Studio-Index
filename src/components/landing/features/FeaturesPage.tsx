@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import {
     ArrowRightIcon,
     ShoppingBagIcon,
@@ -9,10 +9,10 @@ import {
     DeviceMobileIcon,
     CheckIcon,
 } from "@phosphor-icons/react";
-import { LandingHeader } from "../components/landing/home/LandingHeader";
-import { LandingFooter } from "../components/landing/home/LandingFooter";
-import { AnimatedGrowthBars } from "../components/landing/features/AnimatedGrowthBars";
-import { useViewportAnimation } from "../hooks/useViewportAnimation";
+import { LandingHeader } from "../../publicComponets/LandingHeader";
+import { LandingFooter } from "../home/LandingFooter";
+import { AnimatedGrowthBars } from "./AnimatedGrowthBars";
+import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
 const planFeatures = [
     { feature: "Online storefront", free: true, pro: true },
@@ -102,10 +102,10 @@ export function FeaturesPage() {
     ];
 
     const catalogTiles = [
-        { price: "₦15,000", delay: "0s" },
-        { price: "₦12,000", delay: "-0.6s" },
-        { price: "₦8,500", delay: "-1.2s" },
-        { price: "₦20,000", delay: "-1.8s" },
+        { price: "â‚¦15,000", delay: "0s" },
+        { price: "â‚¦12,000", delay: "-0.6s" },
+        { price: "â‚¦8,500", delay: "-1.2s" },
+        { price: "â‚¦20,000", delay: "-1.8s" },
     ];
 
     // ============================================================
@@ -219,7 +219,7 @@ export function FeaturesPage() {
                         {/* Floating Chip 1: New order (Top-Right) */}
                         <div className="absolute top-0 right-0 z-20 flex items-center gap-2.5 px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium text-white border border-white/[0.14] rounded-2xl bg-[#16161b] md:bg-transparent md:bg-gradient-to-br md:from-white/[0.12] md:to-white/[0.03] md:backdrop-blur-[14px] shadow-[0_8px_20px_rgba(0,0,0,0.45)] md:shadow-[0_12px_36px_rgba(0,0,0,0.45),inset_0_1px_rgba(255,255,255,0.18)] animate-float-chip">
                             <ShoppingBagIcon size={20} weight="bold" className="text-landing-gold shrink-0" />
-                            <span>New order · ₦27,000</span>
+                            <span>New order Â· â‚¦27,000</span>
                         </div>
 
                         {/* Floating Chip 2: Order confirmed (Bottom-Left) */}
@@ -230,7 +230,7 @@ export function FeaturesPage() {
                             <span className="w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full bg-[#25d366] flex items-center justify-center shrink-0 shadow-[0_2px_8px_rgba(37,211,102,0.35)]">
                                 <WhatsappLogoIcon size={17} weight="fill" className="text-white" />
                             </span>
-                            <span>Order confirmed ✓</span>
+                            <span>Order confirmed âœ“</span>
                         </div>
                     </div>
                 </section>
@@ -244,7 +244,7 @@ export function FeaturesPage() {
                                 className="inline-flex items-center gap-10 sm:gap-12 text-xs sm:text-sm font-medium text-landing-mut hover:text-white transition-colors duration-200 cursor-default"
                             >
                                 <span>{item}</span>
-                                <span className="text-landing-gold text-[10px] sm:text-xs">✦</span>
+                                <span className="text-landing-gold text-[10px] sm:text-xs">âœ¦</span>
                             </span>
                         ))}
                     </div>
@@ -389,11 +389,11 @@ export function FeaturesPage() {
                             <div className="flex flex-col gap-2 mt-auto">
                                 <div className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/5 text-xs text-landing-fg">
                                     <span>Premium Hoodie x 1</span>
-                                    <span className="text-landing-gold font-semibold">₦15,000</span>
+                                    <span className="text-landing-gold font-semibold">â‚¦15,000</span>
                                 </div>
                                 <div className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/5 text-xs text-landing-fg">
                                     <span>Black Cap x 1</span>
-                                    <span className="text-landing-gold font-semibold">₦12,000</span>
+                                    <span className="text-landing-gold font-semibold">â‚¦12,000</span>
                                 </div>
                             </div>
                         </div>
@@ -510,7 +510,7 @@ export function FeaturesPage() {
                                     <div className="bg-[#202c33] text-white text-[12px] p-2.5 rounded-xl rounded-tl-sm max-w-[85%] leading-relaxed border border-white/5 shadow-sm">
                                         <span className="font-semibold text-landing-gold">New order #1024</span>
                                         <br />
-                                        <span>2 items · ₦27,000</span>
+                                        <span>2 items Â· â‚¦27,000</span>
                                     </div>
 
                                     {/* Bot message 2 */}
@@ -525,14 +525,14 @@ export function FeaturesPage() {
 
                                     {/* Bot message 4 */}
                                     <div className="bg-[#202c33] text-white text-[12px] p-2.5 rounded-xl rounded-tl-sm max-w-[88%] leading-relaxed border border-white/5 shadow-sm">
-                                        Order confirmed ✓ Your customer has been notified.
+                                        Order confirmed âœ“ Your customer has been notified.
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                {/* ── Compare Plans Section ── */}
+                {/* â”€â”€ Compare Plans Section â”€â”€ */}
                 <section className="w-full max-w-5xl mx-auto px-4 md:px-8 mt-24 md:mt-32 text-center">
                     <span className="inline-block text-xs font-semibold uppercase tracking-wider text-landing-gold/90 px-3 py-1 rounded-full bg-landing-gold/10 border border-landing-gold/20 mb-3">
                         Compare plans
@@ -569,14 +569,14 @@ export function FeaturesPage() {
                                     {row.free ? (
                                         <CheckIcon weight="bold" className="w-5 h-5 text-landing-gold" />
                                     ) : (
-                                        <span className="text-[#555] font-light text-base select-none">—</span>
+                                        <span className="text-[#555] font-light text-base select-none">â€”</span>
                                     )}
                                 </div>
                                 <div className="p-3.5 sm:p-5 flex items-center justify-center bg-landing-gold/[0.07] h-full">
                                     {row.pro ? (
                                         <CheckIcon weight="bold" className="w-5 h-5 text-landing-gold" />
                                     ) : (
-                                        <span className="text-[#555] font-light text-base select-none">—</span>
+                                        <span className="text-[#555] font-light text-base select-none">â€”</span>
                                     )}
                                 </div>
                             </div>
@@ -584,7 +584,7 @@ export function FeaturesPage() {
                     </div>
                 </section>
 
-                {/* ── Coming Soon Section ── */}
+                {/* â”€â”€ Coming Soon Section â”€â”€ */}
                 <section className="w-full max-w-5xl mx-auto px-4 md:px-8 mt-24 md:mt-32 text-center">
                     <span className="inline-block text-xs font-semibold uppercase tracking-wider text-landing-gold/90 px-3 py-1 rounded-full bg-landing-gold/10 border border-landing-gold/20 mb-3">
                         Coming soon
@@ -613,7 +613,7 @@ export function FeaturesPage() {
                     </div>
                 </section>
 
-                {/* ── Bottom CTA Banner ── */}
+                {/* â”€â”€ Bottom CTA Banner â”€â”€ */}
                 <section id="cta" className="w-full max-w-6xl mx-auto px-4 md:px-8 mt-24 md:mt-32 mb-16">
                     <div className="relative text-center border border-[#f7b92c]/40 rounded-[32px] py-14 px-6 md:px-12 bg-landing-card shadow-lg md:shadow-[0_0_50px_rgba(247,185,44,0.14)] overflow-hidden">
                         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(80%_120%_at_50%_140%,rgba(247,185,44,0.32),transparent_70%)]" />

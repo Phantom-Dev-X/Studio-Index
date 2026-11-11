@@ -127,7 +127,7 @@ export function LandingHeader() {
 
                         {/* Login Gold Button */}
                         <a
-                            href="#login"
+                            href="/login"
                             className="bg-gradient-gold text-[#1a1204] font-semibold text-[clamp(11px,2.6vw,13px)] px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full shadow-gold-glow hover:shadow-gold-hover hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer shrink-0"
                         >
                             <span>Login</span>

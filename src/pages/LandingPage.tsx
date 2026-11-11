@@ -1,4 +1,4 @@
-import { LandingHeader } from "../components/landing/home/LandingHeader";
+import { LandingHeader } from "../components/publicComponets/LandingHeader";
 import { LandingHero } from "../components/landing/home/LandingHero";
 import { LandingFeatures } from "../components/landing/home/LandingFeatures";
 import { LandingPricing } from "../components/landing/home/LandingPricing";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import {
     Check,
     ArrowRight,
@@ -8,24 +8,24 @@ import {
     Headphones,
     Plus,
 } from "@phosphor-icons/react";
-import { LandingHeader } from "../home/LandingHeader";
+import { LandingHeader } from "../../publicComponets/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
 import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
-// ─── Config — change these two numbers to update pricing everywhere ──────────
-const PRO_PRICE  = 5_000; // ₦ / month
+// â”€â”€â”€ Config â€” change these two numbers to update pricing everywhere â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+const PRO_PRICE  = 5_000; // â‚¦ / month
 const SLIDER_MIN = 5;
 const SLIDER_MAX = 200;
 
-// ─── Value Check Section ─────────────────────────────────────────────────────
+// â”€â”€â”€ Value Check Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function ValueCheck() {
     const [orders, setOrders] = useState(40);
     const sectionRef = useViewportAnimation<HTMLElement>();
 
-    // PRO_PRICE ÷ how many orders → cost per order. Updates on every drag tick.
+    // PRO_PRICE Ã· how many orders â†’ cost per order. Updates on every drag tick.
     const costPerOrder = Math.round(PRO_PRICE / orders);
 
-    // Gold fill % for the track (maps SLIDER_MIN→SLIDER_MAX to 0%→100%)
+    // Gold fill % for the track (maps SLIDER_MINâ†’SLIDER_MAX to 0%â†’100%)
     const fillPct = ((orders - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
 
     return (
@@ -47,7 +47,7 @@ function ValueCheck() {
             </p>
 
             {/*
-                .calc — the card itself carries the border + background + shadow.
+                .calc â€” the card itself carries the border + background + shadow.
                 Grid: left (1.2fr) = label + slider, right (1fr) = result box.
                 text-left so the label text isn't centered.
             */}
@@ -58,7 +58,7 @@ function ValueCheck() {
                     background: "radial-gradient(70% 100% at 100% 0, #f7b92c1f, transparent 60%), #0d0d0d",
                 }}
             >
-                {/* ── Left: label + slider ── */}
+                {/* â”€â”€ Left: label + slider â”€â”€ */}
                 <div>
                     {/*
                         label structure matches the prototype exactly:
@@ -74,9 +74,9 @@ function ValueCheck() {
                     </label>
 
                     {/*
-                        Controlled input — React owns the value.
-                        onChange fires on every drag movement → setOrders(newValue)
-                        → React re-renders → orders updates → costPerOrder recalculates.
+                        Controlled input â€” React owns the value.
+                        onChange fires on every drag movement â†’ setOrders(newValue)
+                        â†’ React re-renders â†’ orders updates â†’ costPerOrder recalculates.
                         --p is the CSS custom property that fills gold up to the thumb.
                     */}
                     <input
@@ -91,7 +91,7 @@ function ValueCheck() {
                     />
                 </div>
 
-                {/* ── Right: result box (.res) ── */}
+                {/* â”€â”€ Right: result box (.res) â”€â”€ */}
                 <div
                     className="text-center rounded-[22px] p-[26px]"
                     style={{ background: "#ffffff08", border: "1px solid rgba(255,255,255,0.1)" }}
@@ -103,7 +103,7 @@ function ValueCheck() {
                         toLocaleString puts a comma in e.g. "1,250"
                     */}
                     <strong className="block text-[54px] leading-[1.1] my-1.5 bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
-                        ₦{costPerOrder.toLocaleString("en-US")}
+                        â‚¦{costPerOrder.toLocaleString("en-US")}
                     </strong>
 
                     <p className="text-[13px] text-[#a9a9a9]">
@@ -115,7 +115,7 @@ function ValueCheck() {
     );
 }
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const planFeatures = [
     { feature: "Online storefront",                    free: true,  pro: true  },
     { feature: "Unique store link",                    free: true,  pro: true  },
@@ -126,7 +126,7 @@ const planFeatures = [
     { feature: "Priority support",                     free: false, pro: true  },
 ];
 
-// ─── Shared: Gold gradient text ───────────────────────────────────────────────
+// â”€â”€â”€ Shared: Gold gradient text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function GoldText({ children }: { children: React.ReactNode }) {
     const ref = useViewportAnimation<HTMLSpanElement>();
     return (
@@ -136,7 +136,7 @@ function GoldText({ children }: { children: React.ReactNode }) {
     );
 }
 
-// ─── Shared: Eyebrow label ────────────────────────────────────────────────────
+// â”€â”€â”€ Shared: Eyebrow label â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function Eyebrow({ children }: { children: React.ReactNode }) {
     return (
         <span className="inline-flex items-center gap-2.5 text-[#f7b92c] text-[12px] font-semibold tracking-[2px] uppercase before:content-[''] before:w-7 before:h-px before:bg-[#f7b92c]">
@@ -145,7 +145,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
     );
 }
 
-// ─── Shared: Gold check bubble ────────────────────────────────────────────────
+// â”€â”€â”€ Shared: Gold check bubble â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function CheckBubble() {
     return (
         <span className="flex-none w-[22px] h-[22px] rounded-full bg-[#f7b92c] text-[#1a1204] grid place-items-center">
@@ -154,7 +154,7 @@ function CheckBubble() {
     );
 }
 
-// ─── FAQ Accordion Item ───────────────────────────────────────────────────────
+// â”€â”€â”€ FAQ Accordion Item â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function FaqItem({ q, a, defaultOpen = false }: { q: string; a: string; defaultOpen?: boolean }) {
     const [open, setOpen] = useState(defaultOpen);
     return (
@@ -178,7 +178,7 @@ function FaqItem({ q, a, defaultOpen = false }: { q: string; a: string; defaultO
     );
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Main Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function PricingPage() {
     const proCardRef = useViewportAnimation<HTMLDivElement>();
 
@@ -188,9 +188,9 @@ export function PricingPage() {
 
             <main className="w-full flex flex-col items-center relative z-10">
 
-                {/* ══════════════════════════════════════════
+                {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                     HERO
-                ══════════════════════════════════════════ */}
+                â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                 <section className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 pt-[50px] text-center">
 
                     <Eyebrow>Simple &amp; flexible pricing</Eyebrow>
@@ -205,7 +205,7 @@ export function PricingPage() {
 
                     {/* Pills */}
                     <div className="flex gap-3 justify-center flex-wrap mt-[26px]">
-                        {["Free plan, forever", "Upgrade anytime", "Prices in Naira (₦)"].map((label) => (
+                        {["Free plan, forever", "Upgrade anytime", "Prices in Naira (â‚¦)"].map((label) => (
                             <span
                                 key={label}
                                 className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full text-[12.5px] bg-white/[0.03] text-white"
@@ -216,7 +216,7 @@ export function PricingPage() {
                         ))}
                     </div>
 
-                    {/* ── Plan Cards ── */}
+                    {/* â”€â”€ Plan Cards â”€â”€ */}
                     <div className="grid grid-cols-[1fr_1.08fr] gap-[26px] max-w-[860px] mx-auto mt-16 items-stretch max-[900px]:grid-cols-1 max-[900px]:mt-[50px]">
 
                         {/* Free Plan */}
@@ -238,7 +238,7 @@ export function PricingPage() {
                                 <div className="text-[13px] text-[#a9a9a9] mt-0.5">Perfect for getting started</div>
 
                                 <div className="text-[48px] font-bold tracking-[-1px] mt-[22px] mb-1 text-white leading-none">
-                                    ₦0{" "}
+                                    â‚¦0{" "}
                                     <small className="text-sm font-normal text-[#a9a9a9] tracking-normal">/ forever</small>
                                 </div>
 
@@ -296,15 +296,15 @@ export function PricingPage() {
                                 </svg>
 
                                 {/* Sparkles */}
-                                <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 130, top: 34, animationDelay: "0s" }}>✦</i>
-                                <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 14, top: 120, animationDelay: "-.8s" }}>✦</i>
-                                <i className="absolute not-italic text-[#ffd65f] text-[9px] animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 150, top: 100, animationDelay: "-1.6s" }}>✦</i>
+                                <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 130, top: 34, animationDelay: "0s" }}>âœ¦</i>
+                                <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 14, top: 120, animationDelay: "-.8s" }}>âœ¦</i>
+                                <i className="absolute not-italic text-[#ffd65f] text-[9px] animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: 150, top: 100, animationDelay: "-1.6s" }}>âœ¦</i>
 
                                 <h3 className="text-2xl font-semibold text-white">Pro Plan</h3>
                                 <div className="text-[13px] text-[#a9a9a9] mt-0.5">Automate &amp; grow your business</div>
 
                                 <div className="text-[48px] font-bold tracking-[-1px] mt-[22px] mb-1 text-white leading-none">
-                                    ₦5,000{" "}
+                                    â‚¦5,000{" "}
                                     <small className="text-sm font-normal text-[#a9a9a9] tracking-normal">/ month</small>
                                 </div>
 
@@ -331,24 +331,24 @@ export function PricingPage() {
                     </div>
 
                     <p className="text-center text-[#a9a9a9] text-[12.5px] mt-[22px] mb-16">
-                        No credit card required · Cancel anytime
+                        No credit card required Â· Cancel anytime
                     </p>
                 </section>
 
-                {/* ══════════════════════════════════════════
+                {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                     VALUE CHECK
-                ══════════════════════════════════════════ */}
+                â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                 <div className="w-full flex justify-center">
                     <ValueCheck />
                 </div>
 
-                {/* ══════════════════════════════════════════
-                    WHY UPGRADE  +  COMPARE PLANS  — side by side
-                ══════════════════════════════════════════ */}
+                {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                    WHY UPGRADE  +  COMPARE PLANS  â€” side by side
+                â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                 <section className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 pt-[90px]">
                     <div className="grid grid-cols-[1fr_1fr] gap-10 items-start max-[900px]:grid-cols-1">
 
-                        {/* ── Left: Why Upgrade bento ── */}
+                        {/* â”€â”€ Left: Why Upgrade bento â”€â”€ */}
                         <div>
                             <Eyebrow>Why upgrade</Eyebrow>
                             <h2 className="text-[clamp(22px,2.6vw,34px)] leading-[1.15] font-semibold mt-[14px] mb-8 text-white">
@@ -356,16 +356,16 @@ export function PricingPage() {
                             </h2>
 
                             {/*
-                                3D TILT — how it works:
+                                3D TILT â€” how it works:
                                 onPointerMove tracks where your cursor is inside the card.
                                 x/y = cursor position as a fraction of the card size, centered at 0.
-                                  e.g. cursor at far right edge → x ≈ +0.5
-                                       cursor at far left edge  → x ≈ -0.5
+                                  e.g. cursor at far right edge â†’ x â‰ˆ +0.5
+                                       cursor at far left edge  â†’ x â‰ˆ -0.5
                                 We multiply by 10 to get degrees, then set CSS custom props
                                 --rx (rotateX = tilt up/down) and --ry (rotateY = tilt left/right).
                                 The CSS transform: perspective(900px) rotateX(--rx) rotateY(--ry)
                                 makes it look 3D. transition: transform .25s eases it smoothly.
-                                onPointerLeave resets both to 0deg → card returns flat.
+                                onPointerLeave resets both to 0deg â†’ card returns flat.
                             */}
                             <div className="flex flex-col gap-[14px]">
                                 {[
@@ -398,7 +398,7 @@ export function PricingPage() {
                             </div>
                         </div>
 
-                        {/* ── Right: Compare Plans table ── */}
+                        {/* â”€â”€ Right: Compare Plans table â”€â”€ */}
                         <div>
                             <span className="inline-block text-xs font-semibold uppercase tracking-wider text-landing-gold/90 px-3 py-1 rounded-full bg-landing-gold/10 border border-landing-gold/20 mb-3">
                                 Compare plans
@@ -426,10 +426,10 @@ export function PricingPage() {
                                     >
                                         <div className="p-3.5 text-landing-fg/90 font-medium">{row.feature}</div>
                                         <div className="p-3.5 flex items-center justify-center">
-                                            {row.free ? <Check weight="bold" className="w-4 h-4 text-landing-gold" /> : <span className="text-[#555]">—</span>}
+                                            {row.free ? <Check weight="bold" className="w-4 h-4 text-landing-gold" /> : <span className="text-[#555]">â€”</span>}
                                         </div>
                                         <div className="p-3.5 flex items-center justify-center bg-landing-gold/[0.07] h-full">
-                                            {row.pro ? <Check weight="bold" className="w-4 h-4 text-landing-gold" /> : <span className="text-[#555]">—</span>}
+                                            {row.pro ? <Check weight="bold" className="w-4 h-4 text-landing-gold" /> : <span className="text-[#555]">â€”</span>}
                                         </div>
                                     </div>
                                 ))}
@@ -439,13 +439,13 @@ export function PricingPage() {
                     </div>
                 </section>
 
-                {/* ══════════════════════════════════════════
-                    FAQ  +  CTA  —  side by side
-                ══════════════════════════════════════════ */}
+                {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                    FAQ  +  CTA  â€”  side by side
+                â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                 <section className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 pt-[90px] mb-16">
                     <div className="grid grid-cols-[1.1fr_1fr] gap-8 items-start max-[900px]:grid-cols-1">
 
-                        {/* ── Left: FAQ ── */}
+                        {/* â”€â”€ Left: FAQ â”€â”€ */}
                         <div>
                             <Eyebrow>Pricing FAQs</Eyebrow>
                             <h2 className="text-[clamp(22px,3vw,36px)] leading-[1.15] font-semibold mt-[14px] mb-8 text-white">
@@ -453,14 +453,14 @@ export function PricingPage() {
                             </h2>
 
                             <div className="text-left border border-white/10 rounded-[22px] overflow-hidden bg-[#0d0d0d]">
-                                <FaqItem q="Is Studio Index really free to use?" a="Yes. The Free plan costs ₦0 and lets you create a store, add products, share your unique link and look up orders." defaultOpen />
+                                <FaqItem q="Is Studio Index really free to use?" a="Yes. The Free plan costs â‚¦0 and lets you create a store, add products, share your unique link and look up orders." defaultOpen />
                                 <FaqItem q="Can I upgrade to Pro later?" a="Absolutely. Start on Free and upgrade whenever you want to add WhatsApp automation." />
                                 <FaqItem q="What does the WhatsApp bot do?" a="It sends you automatic notifications when orders come in and lets you manage those orders right from WhatsApp." />
                                 <FaqItem q="What's the difference between Free and Pro?" a="Free gives you the full storefront. Pro adds automatic WhatsApp notifications, order management via WhatsApp and priority support." />
                             </div>
                         </div>
 
-                        {/* ── Right: CTA banner ── */}
+                        {/* â”€â”€ Right: CTA banner â”€â”€ */}
                         <div className="min-[901px]:sticky min-[901px]:top-10" id="cta">
                             <div
                                 className="relative text-center border border-[#f7b92c]/40 rounded-[32px] py-14 px-8 bg-landing-card overflow-hidden h-full flex flex-col items-center justify-center shadow-lg md:shadow-[0_0_50px_rgba(247,185,44,0.14)]"
@@ -494,9 +494,9 @@ export function PricingPage() {
 
             </main>
 
-            {/* ══════════════════════════════════════════
-                FOOTER — exact same as FeaturesPage
-            ══════════════════════════════════════════ */}
+            {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+                FOOTER â€” exact same as FeaturesPage
+            â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
             <LandingFooter />
         </div>
     );

@@ -1,11 +1,11 @@
-import { lazy, Suspense } from "react";
+﻿import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AutoScroll } from "./utils/autoSxroll";
 import { LandingPage } from "./pages/LandingPage";
 
 const Storefront = lazy(() => import("./pages/Storefront"));
 const FeaturesPage = lazy(() =>
-  import("./pages/FeaturesPage").then((m) => ({ default: m.FeaturesPage }))
+  import("./components/landing/features/FeaturesPage").then((m) => ({ default: m.FeaturesPage }))
 );
 const PricingPage = lazy(() =>
   import("./components/landing/pricing/PricingPage").then((m) => ({
@@ -22,6 +22,9 @@ const ContactPage = lazy(() =>
     default: m.ContactPage,
   }))
 );
+const LoginPage = lazy(() => {
+  return import("./pages/LoginPage")
+})
 
 export default function App() {
   return (
@@ -37,6 +40,7 @@ export default function App() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

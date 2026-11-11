@@ -1,15 +1,15 @@
-import { useEffect, useRef, type ReactNode } from "react";
+﻿import { useEffect, useRef, type ReactNode } from "react";
 import {
     ArrowRight,
     Lock,
     Heart,
     WhatsappLogo,
 } from "@phosphor-icons/react";
-import { LandingHeader } from "../home/LandingHeader";
+import { LandingHeader } from "../../publicComponets/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
 import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
-// ─── Shared: Gold gradient text ───────────────────────────────────────────────
+// â”€â”€â”€ Shared: Gold gradient text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function GoldText({ children }: { children: ReactNode }) {
     const ref = useViewportAnimation<HTMLSpanElement>();
     return (
@@ -19,7 +19,7 @@ function GoldText({ children }: { children: ReactNode }) {
     );
 }
 
-// ─── Shared: Eyebrow label ────────────────────────────────────────────────────
+// â”€â”€â”€ Shared: Eyebrow label â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function Eyebrow({ children }: { children: ReactNode }) {
     return (
         <span className="inline-flex items-center gap-2.5 text-[#f7b92c] text-[12px] font-semibold tracking-[2px] uppercase before:content-[''] before:w-7 before:h-px before:bg-[#f7b92c]">
@@ -28,7 +28,7 @@ function Eyebrow({ children }: { children: ReactNode }) {
     );
 }
 
-// ─── Hero section ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ Hero section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function HeroSection() {
     const heroVisualRef = useViewportAnimation<HTMLDivElement>();
 
@@ -67,7 +67,7 @@ function HeroSection() {
                 </div>
             </div>
 
-            {/* Right visual — founder ID card */}
+            {/* Right visual â€” founder ID card */}
             <div
                 ref={heroVisualRef}
                 className="relative h-[420px] grid place-items-center max-[560px]:h-[380px]"
@@ -264,7 +264,7 @@ function HeroSection() {
     );
 }
 
-// ─── Letter from founder ──────────────────────────────────────────────────────
+// â”€â”€â”€ Letter from founder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function FounderLetterSection() {
     return (
         <section
@@ -382,7 +382,7 @@ function FounderLetterSection() {
     );
 }
 
-// ─── What I stand for ─────────────────────────────────────────────────────────
+// â”€â”€â”€ What I stand for â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const promises = [
     {
         icon: (
@@ -418,7 +418,7 @@ const promises = [
             </svg>
         ),
         title: "Honest, simple pricing",
-        desc: "A Free plan that stays free, and one Pro plan at ₦5,000 a month. No confusing tiers.",
+        desc: "A Free plan that stays free, and one Pro plan at â‚¦5,000 a month. No confusing tiers.",
         delay: "0.1s",
     },
     {
@@ -503,7 +503,7 @@ function WhatIStandForSection() {
     );
 }
 
-// ─── Journey / Timeline ───────────────────────────────────────────────────────
+// â”€â”€â”€ Journey / Timeline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const journeyItems = [
     {
         label: "The problem",
@@ -618,7 +618,7 @@ function JourneySection() {
     );
 }
 
-// ─── CTA / Contact banner ─────────────────────────────────────────────────────
+// â”€â”€â”€ CTA / Contact banner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function CTASection() {
     return (
         <section

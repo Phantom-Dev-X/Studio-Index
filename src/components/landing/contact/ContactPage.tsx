@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import {
     PaperPlaneTilt,
     WhatsappLogo,
@@ -6,12 +6,12 @@ import {
     EnvelopeSimple,
     ArrowRight,
 } from "@phosphor-icons/react";
-import { LandingHeader } from "../home/LandingHeader";
+import { LandingHeader } from "../../publicComponets/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
 import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 import { isHighPerfTier } from "../../../utils/adaptivePerformance";
 
-// ─── Contact Channels ────────────────────────────────────────────────────────
+// â”€â”€â”€ Contact Channels â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const channels = [
     {
         title: "WhatsApp",
@@ -22,7 +22,7 @@ const channels = [
     },
     {
         title: "Instagram",
-        desc: "@studioindex · slide into the DMs",
+        desc: "@studioindex Â· slide into the DMs",
         Icon: InstagramLogo,
         href: "#",
         delay: "0.1s",
@@ -36,7 +36,7 @@ const channels = [
     },
 ];
 
-// ─── Category Pills list with id 1, 2, 3, 4 ──────────────────────────────────
+// â”€â”€â”€ Category Pills list with id 1, 2, 3, 4 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const pillOptions = [
     { id: 1, label: "Getting started" },
     { id: 2, label: "Pro & WhatsApp bot" },
@@ -119,9 +119,9 @@ export function ContactPage() {
             <LandingHeader />
 
             <main className="w-full flex flex-col items-center relative z-10">
-                {/* ══════════════════════════════════════════
+                {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                     HERO SECTION
-                ══════════════════════════════════════════ */}
+                â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                 <section className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 pt-[50px] grid grid-cols-[1.1fr_1fr] gap-10 items-center max-[900px]:grid-cols-1">
                     {/* Left Hero Details */}
                     <div>
@@ -206,9 +206,9 @@ export function ContactPage() {
                         </svg>
 
                         {/* Sparkles */}
-                        <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ left: "18%", top: "20%" }}>✦</i>
-                        <i className="absolute not-italic text-[#ffd65f] text-[22px] animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: "16%", bottom: "22%", animationDelay: "-1s" }}>✦</i>
-                        <i className="absolute not-italic text-[#ffd65f] text-[12px] animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: "24%", top: "14%", animationDelay: "-1.8s" }}>✦</i>
+                        <i className="absolute not-italic text-[#ffd65f] text-sm animate-[tw_2.4s_ease-in-out_infinite]" style={{ left: "18%", top: "20%" }}>âœ¦</i>
+                        <i className="absolute not-italic text-[#ffd65f] text-[22px] animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: "16%", bottom: "22%", animationDelay: "-1s" }}>âœ¦</i>
+                        <i className="absolute not-italic text-[#ffd65f] text-[12px] animate-[tw_2.4s_ease-in-out_infinite]" style={{ right: "24%", top: "14%", animationDelay: "-1.8s" }}>âœ¦</i>
 
                         {/* Floating glass tiles matching starter */}
                         <div className="floating-tile" style={{ left: "2%", top: "4%" }}>
@@ -223,9 +223,9 @@ export function ContactPage() {
                     </div>
                 </section>
 
-                {/* ══════════════════════════════════════════
+                {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                     TICKER / MARQUEE
-                ══════════════════════════════════════════ */}
+                â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                 <div
                     ref={marqueeRef}
                     className="w-full overflow-hidden my-[60px] select-none pointer-events-none [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)] [-webkit-mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]"
@@ -241,19 +241,19 @@ export function ContactPage() {
                         ].map((txt, idx) => (
                             <span key={idx} className="flex items-center">
                                 {txt}
-                                <span className="ml-10 text-[#f7b92c] font-normal not-italic">✦</span>
+                                <span className="ml-10 text-[#f7b92c] font-normal not-italic">âœ¦</span>
                             </span>
                         ))}
                     </div>
                 </div>
 
-                {/* ══════════════════════════════════════════
+                {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
                     MAIN SECTION: DIRECT CHANNELS & FORM
-                ══════════════════════════════════════════ */}
+                â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
                 <section id="ch" className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 mb-16">
                     <div className="grid grid-cols-[0.85fr_1.15fr] gap-[30px] items-start max-[900px]:grid-cols-1">
                         
-                        {/* ── Left: Direct Channels ── */}
+                        {/* â”€â”€ Left: Direct Channels â”€â”€ */}
                         <div className="grid gap-4">
                             <div>
                                 <span className="inline-flex items-center gap-2.5 text-[#f7b92c] text-[12px] font-semibold tracking-[2px] uppercase before:content-[''] before:w-7 before:h-px before:bg-[#f7b92c]">
@@ -306,7 +306,7 @@ export function ContactPage() {
                             ))}
                         </div>
 
-                        {/* ── Right: Message Form with Floating Labels (.fl) ── */}
+                        {/* â”€â”€ Right: Message Form with Floating Labels (.fl) â”€â”€ */}
                         <div
                             id="form"
                             style={{

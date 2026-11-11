@@ -1,4 +1,4 @@
-import {
+﻿import {
   LightningIcon,
   ShoppingBagIcon,
   TrendUpIcon,
@@ -80,7 +80,7 @@ export function HeroPhoneStage() {
           {/* iOS Status Bar */}
           <div className="flex justify-between items-center px-4 pt-1 pb-0.5 text-[8.5px] font-semibold bg-white text-black h-[28px] shrink-0">
             <span>9:01</span>
-            <span className="tracking-tighter">▂▄ ▆ ▭</span>
+            <span className="tracking-tighter">aaaa­</span>
           </div>
 
           {/* In-App Store Header Bar */}
@@ -128,7 +128,7 @@ export function HeroPhoneStage() {
                 Shop the latest trends
               </p>
               <span className="inline-block bg-gradient-gold text-[#1a1204] text-[7.5px] font-bold px-2.5 py-1 rounded-full shadow-sm">
-                Shop Now →
+                Shop Now â†’
               </span>
             </div>
           </div>
@@ -146,7 +146,7 @@ export function HeroPhoneStage() {
                 <circle cx="30" cy="22" r="3" fill="#222" />
               </svg>
               <span className="text-[8px] text-black font-semibold">
-                ₦15,000
+                â‚¦15,000
               </span>
               <span className="w-full mt-1 bg-[#161616] text-white text-[6.5px] py-0.5 rounded-full font-medium">
                 Add to Cart
@@ -172,7 +172,7 @@ export function HeroPhoneStage() {
                 />
               </svg>
               <span className="text-[8px] text-black font-semibold">
-                ₦12,000
+                â‚¦12,000
               </span>
               <span className="w-full mt-1 bg-[#161616] text-white text-[6.5px] py-0.5 rounded-full font-medium">
                 Add to Cart

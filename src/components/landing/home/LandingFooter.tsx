@@ -1,4 +1,4 @@
-import {
+﻿import {
   ArrowRightIcon,
   InstagramLogoIcon,
   WhatsappLogoIcon,
@@ -68,7 +68,7 @@ export function LandingFooter() {
             ============================================================ */}
         <div className="pt-5 sm:pt-6 border-t border-landing-line flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 text-xs text-landing-mut">
           {/* Copyright */}
-          <span>© 2026 Studio Index. All rights reserved.</span>
+          <span>Â© 2026 Studio Index. All rights reserved.</span>
 
           {/* Legal / Policy Links */}
           <div className="flex items-center gap-6 text-landing-mut">
