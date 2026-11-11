@@ -22,8 +22,7 @@ export function detectInitialTier(): PerformanceTier {
   }
 
   const nav = navigator as NavigatorWithHints;
-  const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-  if (reducedMotion || nav.connection?.saveData) {
+  if (nav.connection?.saveData) {
     return "low";
   }
 
@@ -33,7 +32,7 @@ export function detectInitialTier(): PerformanceTier {
     (window.matchMedia?.("(pointer: coarse)").matches ?? false) ||
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  if ((memory !== undefined && memory <= 2) || (cores !== undefined && cores <= 2)) {
+  if ((memory !== undefined && memory <= 1) || (cores !== undefined && cores <= 2)) {
     return "low";
   }
 
@@ -57,17 +56,11 @@ export function initAdaptivePerformance(): void {
   let currentTier = detectInitialTier();
   applyTier(currentTier);
 
-  const motionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
-  motionQuery?.addEventListener?.("change", (event) => {
-    currentTier = event.matches ? "low" : detectInitialTier();
-    applyTier(currentTier);
-  });
-
   if (currentTier === "low" || typeof requestAnimationFrame !== "function") {
     return;
   }
 
-  // Lightweight 1.2s runtime frame check (runs once after initial paint, then stops)
+  // Gentle runtime frame check ONLY after initial hydration/fonts settle (2.4s)
   let rafId = 0;
   let startTime = 0;
   let lastFrameTime = 0;
@@ -98,7 +91,6 @@ export function initAdaptivePerformance(): void {
     }
 
     if (startTime === 0) {
-      // Skip the very first frame right after startup
       startTime = now;
       lastFrameTime = now;
       rafId = requestAnimationFrame(sampleFrame);
@@ -108,14 +100,14 @@ export function initAdaptivePerformance(): void {
     const delta = now - lastFrameTime;
     lastFrameTime = now;
     frameCount += 1;
-    if (delta > 50) {
+    if (delta > 65) {
       slowFrames += 1;
     }
 
     const elapsed = now - startTime;
-    if (elapsed >= 1200) {
+    if (elapsed >= 1400) {
       const avgFps = (frameCount * 1000) / elapsed;
-      if (frameCount >= 18 && (avgFps < 32 || slowFrames >= 8)) {
+      if (frameCount >= 18 && avgFps < 22 && slowFrames >= 14) {
         const nextTier = stepDownTier(currentTier);
         if (nextTier !== currentTier) {
           currentTier = nextTier;
@@ -130,10 +122,9 @@ export function initAdaptivePerformance(): void {
     rafId = requestAnimationFrame(sampleFrame);
   };
 
-  // Start after initial mount settles
   window.setTimeout(() => {
     if (!stopped && document.visibilityState === "visible") {
       rafId = requestAnimationFrame(sampleFrame);
     }
-  }, 450);
+  }, 2400);
 }

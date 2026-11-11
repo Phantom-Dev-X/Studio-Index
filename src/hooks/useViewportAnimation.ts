@@ -15,7 +15,7 @@ function getSharedObserver(): IntersectionObserver | null {
           el.dataset.animPaused = entry.isIntersecting ? "false" : "true";
         }
       },
-      { rootMargin: "180px 0px", threshold: 0 }
+      { rootMargin: "350px 0px", threshold: 0 }
     );
   }
 
@@ -29,6 +29,7 @@ export function useViewportAnimation<T extends HTMLElement = HTMLDivElement>() {
     const el = ref.current;
     if (!el) return;
 
+    el.dataset.animPaused = "false";
     const observer = getSharedObserver();
     if (!observer) return;
 

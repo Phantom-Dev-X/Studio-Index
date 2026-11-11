@@ -1112,44 +1112,32 @@ body::-webkit-scrollbar {
     animation-play-state: paused !important;
 }
 
-html[data-perf="balanced"] .backdrop-blur-md,
-html[data-perf="balanced"] [class*="backdrop-blur"],
+/* Keep frosted glass active on the thin top navbar on balanced devices,
+   while disabling expensive backdrop-blur on scrolling cards/chips/overlays */
+html[data-perf="balanced"] .backdrop-blur-md:not(.landing-header-glass),
+html[data-perf="balanced"] [class*="backdrop-blur"]:not(.landing-header-glass) {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
 html[data-perf="low"] .backdrop-blur-md,
 html[data-perf="low"] [class*="backdrop-blur"] {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
 }
 
-html[data-perf="low"] [class*="animate-"],
-html[data-perf="low"] .flight-track,
-html[data-perf="low"] .floating-tile,
+html[data-perf="low"] .landing-header-glass {
+    background: linear-gradient(180deg, rgba(18, 18, 22, 0.94) 0%, rgba(8, 8, 11, 0.90) 100%) !important;
+}
+
+/* On low tier, pause subtle decorative shimmer/ping loops while keeping hero,
+   marquees, and AnonymousCard spinning smoothly on all devices */
+html[data-perf="low"] .animate-float-orb,
+html[data-perf="low"] .animate-shimmer,
+html[data-perf="low"] .animate-pill-shimmer,
+html[data-perf="low"] .animate-radar-ping,
 html[data-perf="low"] .verified-badge-seal {
     animation-play-state: paused !important;
-}
-
-html[data-perf="low"] .animate-spin,
-html[data-perf="low"] [class*="menuReveal"] {
-    animation-play-state: running !important;
-}
-
-html[data-perf="low"] .animate-float-phone {
-    animation: none !important;
-    transform: perspective(800px) rotateZ(6deg) rotateY(-10deg) rotateX(2deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html *,
-    html *::before,
-    html *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    html .animate-float-phone {
-        transform: perspective(800px) rotateZ(6deg) rotateY(-10deg) rotateX(2deg);
-    }
 }
 
 

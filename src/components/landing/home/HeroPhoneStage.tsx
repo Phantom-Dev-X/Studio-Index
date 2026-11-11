@@ -5,6 +5,7 @@ import {
   WhatsappLogoIcon,
 } from "@phosphor-icons/react";
 import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
+import heroPhoneAura from "../../../assets/hero-phone-aura.webp";
 
 export function HeroPhoneStage() {
   const stageRef = useViewportAnimation<HTMLDivElement>();
@@ -12,118 +13,18 @@ export function HeroPhoneStage() {
   return (
     <div ref={stageRef} className="relative w-full h-[450px] sm:h-[460px] flex items-center justify-center select-none overflow-visible">
       {/* ============================================================
-          LAYER 1: Ambient Golden Aura & Celestial Rays
-          (Zero SVG <feGaussianBlur> filters — uses layered radial/linear
-          gradients & soft concentric strokes for identical glow on all devices)
+          LAYER 1: Pre-rendered Studio Golden Aura & Light Streams
+          (Single decoded WebP replaces multi-layer SVG radial/ray blurs)
           ============================================================ */}
-      <svg
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] sm:w-[640px] h-[520px] sm:h-[600px] z-0 overflow-visible opacity-90"
-        viewBox="0 0 640 600"
+      <img
+        src={heroPhoneAura}
+        alt=""
+        width={520}
+        height={488}
+        decoding="async"
         aria-hidden="true"
-      >
-        <defs>
-          <radialGradient id="ah">
-            <stop offset="0" stopColor="#f7b92c" stopOpacity=".55" />
-            <stop offset=".55" stopColor="#f7b92c" stopOpacity=".16" />
-            <stop offset="1" stopColor="#f7b92c" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="ab" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#f7b92c" stopOpacity=".1" />
-            <stop offset=".45" stopColor="#ffe7a0" />
-            <stop offset=".75" stopColor="#ffc83d" />
-            <stop offset="1" stopColor="#f3a81a" stopOpacity=".5" />
-          </linearGradient>
-          <linearGradient id="rg" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0" stopColor="#ffd65f" stopOpacity=".34" />
-            <stop offset=".55" stopColor="#ffd65f" stopOpacity=".12" />
-            <stop offset="1" stopColor="#ffd65f" stopOpacity="0" />
-          </linearGradient>
-          <radialGradient id="bk">
-            <stop offset="0" stopColor="#ffe7a0" stopOpacity=".85" />
-            <stop offset=".45" stopColor="#f7b92c" stopOpacity=".35" />
-            <stop offset="1" stopColor="#f7b92c" stopOpacity="0" />
-          </radialGradient>
-          <polygon id="rr" points="0,0 -26,-310 26,-310" fill="url(#rg)" />
-        </defs>
-
-        {/* Central Ambient Glow */}
-        <ellipse cx="320" cy="300" rx="310" ry="290" fill="url(#ah)" />
-
-        {/* Radiating Light Beams */}
-        <g transform="translate(320 300)">
-          <use href="#rr" transform="rotate(-72)" />
-          <use href="#rr" transform="rotate(-44) scale(.6 1)" />
-          <use href="#rr" transform="rotate(-14)" />
-          <use href="#rr" transform="rotate(20) scale(.5 1)" />
-          <use href="#rr" transform="rotate(52)" />
-          <use href="#rr" transform="rotate(112) scale(.6 1)" />
-          <use href="#rr" transform="rotate(158)" />
-          <use href="#rr" transform="rotate(206) scale(.5 1)" />
-          <use href="#rr" transform="rotate(252)" />
-        </g>
-
-        {/* Dynamic Curved Energy Streams (soft concentric glow without feGaussianBlur) */}
-        <g fill="none" stroke="url(#ab)" strokeLinecap="round">
-          <path
-            d="M30 500C170 430 250 545 380 400S540 250 615 105"
-            strokeWidth="52"
-            opacity=".07"
-          />
-          <path
-            d="M30 500C170 430 250 545 380 400S540 250 615 105"
-            strokeWidth="32"
-            opacity=".13"
-          />
-          <path
-            d="M30 500C170 430 250 545 380 400S540 250 615 105"
-            strokeWidth="16"
-            opacity=".22"
-          />
-          <path
-            d="M30 500C170 430 250 545 380 400S540 250 615 105"
-            strokeWidth="7"
-            opacity=".36"
-          />
-          <path
-            d="M30 500C170 430 250 545 380 400S540 250 615 105"
-            strokeWidth="2.5"
-          />
-          <path
-            d="M15 440C150 390 270 505 400 340S560 200 630 70"
-            strokeWidth="1.5"
-            opacity=".6"
-          />
-        </g>
-
-        {/* Glowing Spheres & Particles (pure radialGradient falloff) */}
-        <g>
-          <circle cx="120" cy="260" r="22" fill="url(#bk)" />
-          <circle cx="525" cy="205" r="28" fill="url(#bk)" />
-          <circle cx="175" cy="405" r="14" fill="url(#bk)" />
-          <circle cx="505" cy="385" r="16" fill="url(#bk)" />
-          <circle cx="262" cy="72" r="13" fill="url(#bk)" />
-        </g>
-
-        {/* Starburst Crosses */}
-        <path
-          d="M566 432l6 20 20 6-20 6-6 20-6-20-20-6 20-6z"
-          fill="#f7b92c"
-          opacity=".28"
-        />
-        <path
-          d="M566 440l4 14 14 4-14 4-4 14-4-14-14-4 14-4z"
-          fill="#ffd65f"
-          opacity=".7"
-        />
-        <path
-          d="M566 440l3 11 11 3-11 3-3 11-3-11-11-3 11-3z"
-          fill="#fff3c4"
-        />
-        <circle cx="110" cy="170" r="2.5" fill="#ffe7a0" />
-        <circle cx="150" cy="470" r="2" fill="#ffd65f" />
-        <circle cx="540" cy="120" r="2" fill="#ffe7a0" />
-        <circle cx="485" cy="520" r="1.5" fill="#ffd65f" />
-      </svg>
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] sm:w-[640px] h-[520px] sm:h-[600px] max-w-none object-contain z-0 opacity-95 select-none"
+      />
 
       {/* ============================================================
           LAYER 3: Floating Badges

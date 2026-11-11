@@ -55,7 +55,7 @@ export function LandingHeader() {
 
     return (
         <>
-            <header className="w-full fixed top-0 left-0 right-0 z-50 [transform:translate3d(0,0,0)] bg-landing-bg/95 md:bg-landing-bg/90 md:backdrop-blur-md border-b border-landing-line">
+            <header className="landing-header-glass w-full fixed top-0 left-0 right-0 z-50 [transform:translate3d(0,0,0)] bg-landing-bg/75 backdrop-blur-md border-b border-landing-line shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
                 <div className="max-w-[1100px] w-full mx-auto px-3 sm:px-6 md:px-10 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-3">
                     {/* Brand Logo & Name */}
                     <NavLink
