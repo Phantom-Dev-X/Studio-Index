@@ -13,6 +13,7 @@ import { LandingHeader } from "../components/landing/home/LandingHeader";
 import { LandingFooter } from "../components/landing/home/LandingFooter";
 import { FeaturesBackground } from "../components/landing/features/FeaturesBackground";
 import { AnimatedGrowthBars } from "../components/landing/features/AnimatedGrowthBars";
+import { useViewportAnimation } from "../hooks/useViewportAnimation";
 
 const planFeatures = [
     { feature: "Online storefront", free: true, pro: true },
@@ -33,6 +34,11 @@ const comingSoonPills = [
 ];
 
 export function FeaturesPage() {
+    const heroVisualRef = useViewportAnimation<HTMLDivElement>();
+    const marqueeRef = useViewportAnimation<HTMLDivElement>();
+    const bentoRef = useViewportAnimation<HTMLDivElement>();
+    const pillsRef = useViewportAnimation<HTMLDivElement>();
+
     const handleCardPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -184,7 +190,7 @@ export function FeaturesPage() {
                     </div>
 
                     {/* Right Column: Hero Visual Container with Floating Main Card and Chips */}
-                    <div className="relative w-full h-[360px] sm:h-[400px] select-none">
+                    <div ref={heroVisualRef} className="relative w-full h-[360px] sm:h-[400px] select-none">
                         {/* Main Card (Orders Dashboard) - Outer Box + Rotating Conic Beam + Inner Box */}
                         <div className="absolute inset-[24px_12px_24px_24px] sm:inset-[30px_20px_30px_40px] rounded-[22px] p-[1px] overflow-hidden isolate [clip-path:inset(0_round_22px)] animate-float-main z-10 shadow-[0_10px_28px_rgba(0,0,0,0.5)] md:shadow-[0_20px_60px_rgba(0,0,0,0.55)]">
                             {/* Rotating Conic Gradient Beam (clipped cleanly inside rounded card on all sizes) */}
@@ -233,7 +239,7 @@ export function FeaturesPage() {
                 </section>
 
                 {/* Infinite Scrolling Category Marquee Ticker */}
-                <div className="w-full overflow-hidden border-y border-landing-line py-3.5 sm:py-4 my-2 sm:my-6 relative select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                <div ref={marqueeRef} className="w-full overflow-hidden border-y border-landing-line py-3.5 sm:py-4 my-2 sm:my-6 relative select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                     <div className="flex items-center gap-10 sm:gap-12 w-max whitespace-nowrap animate-marquee">
                         {[...categories, ...categories, ...categories, ...categories].map((item, index) => (
                             <span
@@ -316,7 +322,7 @@ export function FeaturesPage() {
                     </h2>
 
                     {/* Bento Grid */}
-                    <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5 mt-8 sm:mt-12 text-left">
+                    <div ref={bentoRef} className="w-full grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5 mt-8 sm:mt-12 text-left">
                         {/* ----------------------------------------------------
                             CARD 1: Unique Store Link (Span 7)
                             ---------------------------------------------------- */}
@@ -597,7 +603,7 @@ export function FeaturesPage() {
                     </p>
 
                     {/* Shimmering dashed pills */}
-                    <div className="flex flex-wrap gap-3 justify-center mt-9">
+                    <div ref={pillsRef} className="flex flex-wrap gap-3 justify-center mt-9">
                         {comingSoonPills.map((pill) => (
                             <span
                                 key={pill.label}

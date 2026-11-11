@@ -9,6 +9,7 @@ import {
 import { FeaturesBackground } from "../features/FeaturesBackground";
 import { LandingHeader } from "../home/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
+import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
 // ─── Contact Channels ────────────────────────────────────────────────────────
 const channels = [
@@ -46,6 +47,10 @@ const pillOptions = [
 export function ContactPage() {
     const [selectedPill, setSelectedPill] = useState(1);
     const [messageText, setMessageText] = useState("");
+    const planeStageRef = useViewportAnimation<HTMLDivElement>();
+    const marqueeRef = useViewportAnimation<HTMLDivElement>();
+    const heroGoldRef = useViewportAnimation<HTMLSpanElement>();
+    const channelsGoldRef = useViewportAnimation<HTMLSpanElement>();
 
     function getPillStyle(currentSelected: number, pillId: number): React.CSSProperties {
         if (currentSelected === pillId) {
@@ -115,7 +120,7 @@ export function ContactPage() {
 
                         <h1 className="text-[clamp(34px,5vw,56px)] leading-[1.08] font-bold tracking-[-1px] my-[18px] text-white">
                             Let's{" "}
-                            <span className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
+                            <span ref={heroGoldRef} className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
                                 talk.
                             </span>
                         </h1>
@@ -149,6 +154,7 @@ export function ContactPage() {
 
                     {/* Right Hero: Flying Plane Animation & Path Scene */}
                     <div
+                        ref={planeStageRef}
                         className="relative w-full h-[340px] sm:h-[380px] grid place-items-center"                        style={{ ["--d" as string]: "0.15s" }}
                     >
                         {/* Interactive SVG Stage */}
@@ -210,6 +216,7 @@ export function ContactPage() {
                     TICKER / MARQUEE
                 ══════════════════════════════════════════ */}
                 <div
+                    ref={marqueeRef}
                     className="w-full overflow-hidden my-[60px] select-none pointer-events-none [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)] [-webkit-mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]"
                 >
                     <div className="flex gap-10 w-max animate-[contactMarquee_30s_linear_infinite] text-[clamp(28px,6vw,72px)] font-bold tracking-[-1px] whitespace-nowrap text-transparent text-stroke-gold">
@@ -243,7 +250,7 @@ export function ContactPage() {
                                 </span>
                                 <h2 className="text-[28px] sm:text-[32px] font-semibold text-white mt-2.5 mb-4">
                                     Pick your{" "}
-                                    <span className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
+                                    <span ref={channelsGoldRef} className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
                                         favourite way
                                     </span>
                                 </h2>

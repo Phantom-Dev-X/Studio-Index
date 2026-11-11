@@ -4,10 +4,13 @@ import {
   TrendUpIcon,
   WhatsappLogoIcon,
 } from "@phosphor-icons/react";
+import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
 export function HeroPhoneStage() {
+  const stageRef = useViewportAnimation<HTMLDivElement>();
+
   return (
-    <div className="relative w-full h-[450px] sm:h-[460px] flex items-center justify-center select-none overflow-visible">
+    <div ref={stageRef} className="relative w-full h-[450px] sm:h-[460px] flex items-center justify-center select-none overflow-visible">
       {/* ============================================================
           LAYER 1: Ambient Golden Aura & Celestial Rays
           (Zero SVG <feGaussianBlur> filters — uses layered radial/linear

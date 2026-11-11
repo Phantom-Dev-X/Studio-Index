@@ -8,11 +8,13 @@ import {
 import { FeaturesBackground } from "../features/FeaturesBackground";
 import { LandingHeader } from "../home/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
+import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
 // ─── Shared: Gold gradient text ───────────────────────────────────────────────
 function GoldText({ children }: { children: ReactNode }) {
+    const ref = useViewportAnimation<HTMLSpanElement>();
     return (
-        <span className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
+        <span ref={ref} className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
             {children}
         </span>
     );
@@ -29,6 +31,8 @@ function Eyebrow({ children }: { children: ReactNode }) {
 
 // ─── Hero section ─────────────────────────────────────────────────────────────
 function HeroSection() {
+    const heroVisualRef = useViewportAnimation<HTMLDivElement>();
+
     return (
         <section className="max-w-[1100px] w-full mx-auto px-4 sm:px-6 md:px-10 pt-[50px] grid grid-cols-[1.1fr_1fr] gap-10 items-center max-[900px]:grid-cols-1">
             {/* Left text */}
@@ -66,6 +70,7 @@ function HeroSection() {
 
             {/* Right visual — founder ID card */}
             <div
+                ref={heroVisualRef}
                 className="relative h-[420px] grid place-items-center max-[560px]:h-[380px]"
                 style={{ ["--d" as string]: "0.15s" }}
             >
@@ -537,6 +542,7 @@ const comingPills = [
 
 function JourneySection() {
     const timelineRef = useRef<HTMLDivElement>(null);
+    const pillsRef = useViewportAnimation<HTMLDivElement>();
     useEffect(() => {
         const el = timelineRef.current;
         if (!el) return;
@@ -595,7 +601,7 @@ function JourneySection() {
             </div>
 
             {/* Coming soon pills */}
-            <div className="flex flex-wrap gap-3 justify-center mt-[30px]">
+            <div ref={pillsRef} className="flex flex-wrap gap-3 justify-center mt-[30px]">
                 {comingPills.map(({ label, delay }) => (
                     <span
                         key={label}

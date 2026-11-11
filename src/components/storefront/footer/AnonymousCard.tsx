@@ -1,8 +1,12 @@
 import { CrownSimpleIcon } from "@phosphor-icons/react";
+import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
 export function AnonymousCard() {
+    const cardRef = useViewportAnimation<HTMLDivElement>();
+
     return (
         <div
+            ref={cardRef}
             className="relative isolate w-full max-w-[456px] min-h-[250px] rounded-2xl border border-[#ffd23060] p-[2px] overflow-hidden [clip-path:inset(0_round_1rem)] shadow-md md:shadow-[0_0_28px_rgba(251,191,36,0.12)]"
             style={{
                 background: "radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.12) 0%, #09090c 65%)",

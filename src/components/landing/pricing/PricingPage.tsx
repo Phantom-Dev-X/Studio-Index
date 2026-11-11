@@ -11,6 +11,7 @@ import {
 import { FeaturesBackground } from "../features/FeaturesBackground";
 import { LandingHeader } from "../home/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
+import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
 
 // ─── Config — change these two numbers to update pricing everywhere ──────────
 const PRO_PRICE  = 5_000; // ₦ / month
@@ -20,6 +21,7 @@ const SLIDER_MAX = 200;
 // ─── Value Check Section ─────────────────────────────────────────────────────
 function ValueCheck() {
     const [orders, setOrders] = useState(40);
+    const sectionRef = useViewportAnimation<HTMLElement>();
 
     // PRO_PRICE ÷ how many orders → cost per order. Updates on every drag tick.
     const costPerOrder = Math.round(PRO_PRICE / orders);
@@ -28,7 +30,7 @@ function ValueCheck() {
     const fillPct = ((orders - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
 
     return (
-        <section className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 pt-[90px] text-center">
+        <section ref={sectionRef} className="max-w-[1100px] w-full px-4 sm:px-6 md:px-10 pt-[90px] text-center">
             {/* Eyebrow */}
             <span className="inline-flex items-center gap-2.5 text-[#f7b92c] text-[12px] font-semibold tracking-[2px] uppercase before:content-[''] before:w-7 before:h-px before:bg-[#f7b92c]">
                 Value check
@@ -127,8 +129,9 @@ const planFeatures = [
 
 // ─── Shared: Gold gradient text ───────────────────────────────────────────────
 function GoldText({ children }: { children: React.ReactNode }) {
+    const ref = useViewportAnimation<HTMLSpanElement>();
     return (
-        <span className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
+        <span ref={ref} className="bg-[linear-gradient(90deg,#ffd65f,#f3a81a,#fff1b8,#ffd65f)] bg-[length:200%_100%] bg-clip-text text-transparent animate-[sh_6s_linear_infinite]">
             {children}
         </span>
     );
@@ -178,6 +181,8 @@ function FaqItem({ q, a, defaultOpen = false }: { q: string; a: string; defaultO
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export function PricingPage() {
+    const proCardRef = useViewportAnimation<HTMLDivElement>();
+
     return (
         <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-[#050505] text-white font-[Poppins,sans-serif]">
             <FeaturesBackground />
@@ -257,7 +262,7 @@ export function PricingPage() {
                         </div>
 
                         {/* Pro Plan */}
-                        <div className="h-full">
+                        <div ref={proCardRef} className="h-full">
                             <div
                                 style={{
                                     background: "radial-gradient(110% 70% at 100% 0, #f7b92c33, transparent 60%), radial-gradient(80% 60% at 0 100%, #f7b92c1a, transparent 60%), #0c0a05",

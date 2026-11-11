@@ -1104,4 +1104,52 @@ body::-webkit-scrollbar {
     /* Chrome, Safari, Opera */
 }
 
+/* ============================================================
+   VIEWPORT PAUSING & ADAPTIVE PERFORMANCE TIERS
+   ============================================================ */
+[data-anim-paused="true"],
+[data-anim-paused="true"] * {
+    animation-play-state: paused !important;
+}
+
+html[data-perf="balanced"] .backdrop-blur-md,
+html[data-perf="balanced"] [class*="backdrop-blur"],
+html[data-perf="low"] .backdrop-blur-md,
+html[data-perf="low"] [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+html[data-perf="low"] [class*="animate-"],
+html[data-perf="low"] .flight-track,
+html[data-perf="low"] .floating-tile,
+html[data-perf="low"] .verified-badge-seal {
+    animation-play-state: paused !important;
+}
+
+html[data-perf="low"] .animate-spin,
+html[data-perf="low"] [class*="menuReveal"] {
+    animation-play-state: running !important;
+}
+
+html[data-perf="low"] .animate-float-phone {
+    animation: none !important;
+    transform: perspective(800px) rotateZ(6deg) rotateY(-10deg) rotateX(2deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html *,
+    html *::before,
+    html *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    html .animate-float-phone {
+        transform: perspective(800px) rotateZ(6deg) rotateY(-10deg) rotateX(2deg);
+    }
+}
+
 
