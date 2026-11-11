@@ -16,6 +16,13 @@ function applyTier(tier: PerformanceTier): void {
   }
 }
 
+export function isHighPerfTier(): boolean {
+  if (typeof document === "undefined") {
+    return false;
+  }
+  return document.documentElement.dataset.perf === "high";
+}
+
 export function detectInitialTier(): PerformanceTier {
   if (typeof window === "undefined" || typeof navigator === "undefined") {
     return "balanced";

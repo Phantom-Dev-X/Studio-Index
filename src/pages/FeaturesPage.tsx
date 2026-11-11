@@ -14,6 +14,7 @@ import { LandingFooter } from "../components/landing/home/LandingFooter";
 import { FeaturesBackground } from "../components/landing/features/FeaturesBackground";
 import { AnimatedGrowthBars } from "../components/landing/features/AnimatedGrowthBars";
 import { useViewportAnimation } from "../hooks/useViewportAnimation";
+import { isHighPerfTier } from "../utils/adaptivePerformance";
 
 const planFeatures = [
     { feature: "Online storefront", free: true, pro: true },
@@ -32,6 +33,8 @@ const comingSoonPills = [
     { label: "Custom domain", delay: "-2.1s" },
     { label: "Delivery tracking", delay: "-2.8s" },
 ];
+
+const STORE_HANDLES = ["your-store", "chioma-styles", "glow-beauty", "thrift-hub"];
 
 export function FeaturesPage() {
     const heroVisualRef = useViewportAnimation<HTMLDivElement>();
@@ -108,15 +111,19 @@ export function FeaturesPage() {
     ];
 
     // ============================================================
-    // DYNAMIC TYPEWRITER LOGIC (Types, Pauses, Deletes, Loops)
+    // DYNAMIC TYPEWRITER LOGIC (Types, Pauses, Deletes, Loops on high-spec only)
     // ============================================================
-    const storeHandles = ["your-store", "chioma-styles", "glow-beauty", "thrift-hub"];
     const [handleIndex, setHandleIndex] = useState(0);
-    const [charIndex, setCharIndex] = useState(0);
+    const [charIndex, setCharIndex] = useState(() =>
+        isHighPerfTier() ? 0 : STORE_HANDLES[0].length
+    );
     const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
-        const currentHandle = storeHandles[handleIndex];
+        if (!isHighPerfTier()) {
+            return;
+        }
+        const currentHandle = STORE_HANDLES[handleIndex];
 
         if (!isDeleting && charIndex < currentHandle.length) {
             const timer = setTimeout(() => setCharIndex((prev) => prev + 1), 110);
@@ -135,7 +142,7 @@ export function FeaturesPage() {
 
         if (isDeleting && charIndex === 0) {
             setIsDeleting(false);
-            setHandleIndex((prev) => (prev + 1) % storeHandles.length);
+            setHandleIndex((prev) => (prev + 1) % STORE_HANDLES.length);
         }
     }, [charIndex, isDeleting, handleIndex]);
 
@@ -190,7 +197,7 @@ export function FeaturesPage() {
                     </div>
 
                     {/* Right Column: Hero Visual Container with Floating Main Card and Chips */}
-                    <div ref={heroVisualRef} className="relative w-full h-[360px] sm:h-[400px] select-none">
+                    <div ref={heroVisualRef} className="keep-anim-scope relative w-full h-[360px] sm:h-[400px] select-none">
                         {/* Main Card (Orders Dashboard) - Outer Box + Rotating Conic Beam + Inner Box */}
                         <div className="absolute inset-[24px_12px_24px_24px] sm:inset-[30px_20px_30px_40px] rounded-[22px] p-[1px] overflow-hidden isolate [clip-path:inset(0_round_22px)] animate-float-main z-10 shadow-[0_10px_28px_rgba(0,0,0,0.5)] md:shadow-[0_20px_60px_rgba(0,0,0,0.55)]">
                             {/* Rotating Conic Gradient Beam (clipped cleanly inside rounded card on all sizes) */}
@@ -240,7 +247,7 @@ export function FeaturesPage() {
 
                 {/* Infinite Scrolling Category Marquee Ticker */}
                 <div ref={marqueeRef} className="w-full overflow-hidden border-y border-landing-line py-3.5 sm:py-4 my-2 sm:my-6 relative select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                    <div className="flex items-center gap-10 sm:gap-12 w-max whitespace-nowrap animate-marquee">
+                    <div className="flex items-center gap-10 sm:gap-12 w-max whitespace-nowrap animate-marquee keep-anim">
                         {[...categories, ...categories, ...categories, ...categories].map((item, index) => (
                             <span
                                 key={index}
@@ -340,7 +347,7 @@ export function FeaturesPage() {
                                 <CheckIcon size={16} weight="bold" className="text-emerald-400 shrink-0" />
                                 <span className="text-landing-mut">studioindex.app/</span>
                                 <span className="text-white font-medium tracking-wide">
-                                    {storeHandles[handleIndex].slice(0, charIndex)}
+                                    {STORE_HANDLES[handleIndex].slice(0, charIndex)}
                                 </span>
                                 <span className="w-[2px] h-4 bg-landing-gold animate-pulse shrink-0" />
                             </div>

@@ -180,7 +180,7 @@ export function LandingHeader() {
                     <nav
                         aria-label="Mobile navigation"
                         onClick={(e) => e.stopPropagation()}
-                        className="relative w-full max-w-[400px] rounded-2xl border border-white/[0.12] overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.94),0_0_0_1px_rgba(247,185,44,0.14)] animate-[menuReveal_0.18s_cubic-bezier(0.16,1,0.3,1)]"
+                        className="relative w-full max-w-[400px] rounded-2xl border border-white/[0.12] overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.94),0_0_0_1px_rgba(247,185,44,0.14)] animate-[menuReveal_0.18s_cubic-bezier(0.16,1,0.3,1)] keep-anim"
                         style={{
                             background:
                                 "radial-gradient(95% 55% at 100% 0%, rgba(247, 185, 44, 0.14) 0%, transparent 65%), #0a0a0d",

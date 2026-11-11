@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     PaperPlaneTilt,
     WhatsappLogo,
@@ -10,6 +10,7 @@ import { FeaturesBackground } from "../features/FeaturesBackground";
 import { LandingHeader } from "../home/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
 import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
+import { isHighPerfTier } from "../../../utils/adaptivePerformance";
 
 // ─── Contact Channels ────────────────────────────────────────────────────────
 const channels = [
@@ -51,6 +52,18 @@ export function ContactPage() {
     const marqueeRef = useViewportAnimation<HTMLDivElement>();
     const heroGoldRef = useViewportAnimation<HTMLSpanElement>();
     const channelsGoldRef = useViewportAnimation<HTMLSpanElement>();
+    const planeSvgRef = useRef<SVGSVGElement | null>(null);
+
+    useEffect(() => {
+        const svg = planeSvgRef.current;
+        if (!svg || isHighPerfTier()) return;
+        try {
+            svg.setCurrentTime?.(2.35);
+            svg.pauseAnimations?.();
+        } catch {
+            // Safe fallback if browser omits SVG SMIL controller methods
+        }
+    }, []);
 
     function getPillStyle(currentSelected: number, pillId: number): React.CSSProperties {
         if (currentSelected === pillId) {
@@ -158,7 +171,7 @@ export function ContactPage() {
                         className="relative w-full h-[340px] sm:h-[380px] grid place-items-center"                        style={{ ["--d" as string]: "0.15s" }}
                     >
                         {/* Interactive SVG Stage */}
-                        <svg className="w-full max-w-[470px] h-auto overflow-hidden" viewBox="-10 0 490 380" aria-hidden="true">
+                        <svg ref={planeSvgRef} className="w-full max-w-[470px] h-auto overflow-hidden" viewBox="-10 0 490 380" aria-hidden="true">
                             <defs>
                                 <linearGradient id="plane-grad" x1="0" y1="0" x2="1" y2="1">
                                     <stop offset="0" stopColor="#fff1b8" />
@@ -219,7 +232,7 @@ export function ContactPage() {
                     ref={marqueeRef}
                     className="w-full overflow-hidden my-[60px] select-none pointer-events-none [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)] [-webkit-mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]"
                 >
-                    <div className="flex gap-10 w-max animate-[contactMarquee_30s_linear_infinite] text-[clamp(28px,6vw,72px)] font-bold tracking-[-1px] whitespace-nowrap text-transparent text-stroke-gold">
+                    <div className="flex gap-10 w-max animate-[contactMarquee_30s_linear_infinite] keep-anim text-[clamp(28px,6vw,72px)] font-bold tracking-[-1px] whitespace-nowrap text-transparent text-stroke-gold">
                         {[
                             "Ask a question",
                             "Share an idea",

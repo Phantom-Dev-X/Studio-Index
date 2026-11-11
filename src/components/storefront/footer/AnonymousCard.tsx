@@ -15,7 +15,7 @@ export function AnonymousCard() {
             {/* Rotating Conic Beam (clipped cleanly inside rounded card on all screen sizes) */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div
-                    className="w-[560px] h-[560px] shrink-0 animate-beam-spin"
+                    className="w-[560px] h-[560px] shrink-0 animate-beam-spin keep-anim"
                     style={{
                         background:
                             "conic-gradient(from 0deg, transparent 0%, transparent 65%, #fbbf24 82%, #10b981 95%, transparent 100%)",

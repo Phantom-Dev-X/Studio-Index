@@ -1130,14 +1130,51 @@ html[data-perf="low"] .landing-header-glass {
     background: linear-gradient(180deg, rgba(18, 18, 22, 0.94) 0%, rgba(8, 8, 11, 0.90) 100%) !important;
 }
 
-/* On low tier, pause subtle decorative shimmer/ping loops while keeping hero,
-   marquees, and AnonymousCard spinning smoothly on all devices */
-html[data-perf="low"] .animate-float-orb,
-html[data-perf="low"] .animate-shimmer,
-html[data-perf="low"] .animate-pill-shimmer,
-html[data-perf="low"] .animate-radar-ping,
+/* On balanced (4GB / mid-range mobile) and low-end phones:
+   Pause ALL continuous animations EXCEPT the 3 allowed showcase animations
+   (.keep-anim: marquees, AnonymousCard; .keep-anim-scope: Features hero visual)
+   plus menu reveal. Keeps the 3D tilted phone cleanly angled & static. */
+html[data-perf="balanced"] [class*="animate-"]:not(.keep-anim):not(.keep-anim-scope *),
+html[data-perf="balanced"] .flight-track,
+html[data-perf="balanced"] .floating-tile,
+html[data-perf="balanced"] .verified-badge-seal,
+html[data-perf="low"] [class*="animate-"]:not(.keep-anim):not(.keep-anim-scope *),
+html[data-perf="low"] .flight-track,
+html[data-perf="low"] .floating-tile,
 html[data-perf="low"] .verified-badge-seal {
-    animation-play-state: paused !important;
+    animation: none !important;
+}
+
+html[data-perf="balanced"] .animate-float-phone,
+html[data-perf="low"] .animate-float-phone {
+    animation: none !important;
+    transform: perspective(1100px) rotateZ(11deg) rotateY(-18deg) rotateX(3deg) !important;
+}
+
+@media (max-width: 640px) {
+    html[data-perf="balanced"] .animate-float-phone,
+    html[data-perf="low"] .animate-float-phone {
+        transform: perspective(800px) rotateZ(6deg) rotateY(-10deg) rotateX(2deg) !important;
+    }
+}
+
+html[data-perf="balanced"] .animate-float-badge1,
+html[data-perf="balanced"] .animate-float-badge2,
+html[data-perf="balanced"] .animate-float-badge3,
+html[data-perf="low"] .animate-float-badge1,
+html[data-perf="low"] .animate-float-badge2,
+html[data-perf="low"] .animate-float-badge3 {
+    animation: none !important;
+    transform: perspective(700px) rotateY(-14deg) rotate(-4deg) !important;
+}
+
+html[data-perf="balanced"] .animate-shimmer,
+html[data-perf="low"] .animate-shimmer,
+html[data-perf="balanced"] [class*="aboutScan"],
+html[data-perf="low"] [class*="aboutScan"],
+html[data-perf="balanced"] [class*="aboutShimmer"],
+html[data-perf="low"] [class*="aboutShimmer"] {
+    opacity: 0 !important;
 }
 
 
