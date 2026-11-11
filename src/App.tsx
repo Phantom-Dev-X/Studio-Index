@@ -22,20 +22,16 @@ const ContactPage = lazy(() =>
     default: m.ContactPage,
   }))
 );
-const LoginPage = lazy(() => {
-  return import("./pages/LoginPage")
-})
+const LoginPage = lazy(() => import("./pages/LoginPage"));
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AutoScroll />
       <Suspense fallback={<div className="min-h-svh w-full bg-[#050505]" />}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
           <Route path="/:username" element={<Storefront />} />
-
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/about" element={<AboutPage />} />
