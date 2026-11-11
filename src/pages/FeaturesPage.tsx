@@ -13,7 +13,6 @@ import { LandingHeader } from "../components/landing/home/LandingHeader";
 import { LandingFooter } from "../components/landing/home/LandingFooter";
 import { AnimatedGrowthBars } from "../components/landing/features/AnimatedGrowthBars";
 import { useViewportAnimation } from "../hooks/useViewportAnimation";
-import { isHighPerfTier } from "../utils/adaptivePerformance";
 
 const planFeatures = [
     { feature: "Online storefront", free: true, pro: true },
@@ -110,18 +109,13 @@ export function FeaturesPage() {
     ];
 
     // ============================================================
-    // DYNAMIC TYPEWRITER LOGIC (Types, Pauses, Deletes, Loops on high-spec only)
+    // DYNAMIC TYPEWRITER LOGIC (Types, Pauses, Deletes, Loops)
     // ============================================================
     const [handleIndex, setHandleIndex] = useState(0);
-    const [charIndex, setCharIndex] = useState(() =>
-        isHighPerfTier() ? 0 : STORE_HANDLES[0].length
-    );
+    const [charIndex, setCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
-        if (!isHighPerfTier()) {
-            return;
-        }
         const currentHandle = STORE_HANDLES[handleIndex];
 
         if (!isDeleting && charIndex < currentHandle.length) {
@@ -345,7 +339,7 @@ export function FeaturesPage() {
                                 <span className="text-white font-medium tracking-wide">
                                     {STORE_HANDLES[handleIndex].slice(0, charIndex)}
                                 </span>
-                                <span className="w-[2px] h-4 bg-landing-gold animate-pulse shrink-0" />
+                                <span className="w-[2px] h-4 bg-landing-gold animate-pulse keep-anim shrink-0" />
                             </div>
                         </div>
 
