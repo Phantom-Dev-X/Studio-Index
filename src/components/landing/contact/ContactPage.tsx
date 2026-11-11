@@ -6,7 +6,6 @@ import {
     EnvelopeSimple,
     ArrowRight,
 } from "@phosphor-icons/react";
-import { FeaturesBackground } from "../features/FeaturesBackground";
 import { LandingHeader } from "../home/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
 import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
@@ -78,7 +77,7 @@ export function ContactPage() {
     }
 
     return (
-        <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-[#050505] text-white font-[Poppins,sans-serif]">
+        <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-landing-bg text-landing-fg font-[Poppins,sans-serif]">
             <style>{`
                 .text-stroke-gold {
                     -webkit-text-stroke: 1px rgba(247, 185, 44, 0.4);
@@ -117,7 +116,6 @@ export function ContactPage() {
                 }
             `}</style>
 
-            <FeaturesBackground />
             <LandingHeader />
 
             <main className="w-full flex flex-col items-center relative z-10">

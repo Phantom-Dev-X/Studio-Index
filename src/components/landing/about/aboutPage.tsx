@@ -5,7 +5,6 @@ import {
     Heart,
     WhatsappLogo,
 } from "@phosphor-icons/react";
-import { FeaturesBackground } from "../features/FeaturesBackground";
 import { LandingHeader } from "../home/LandingHeader";
 import { LandingFooter } from "../home/LandingFooter";
 import { useViewportAnimation } from "../../../hooks/useViewportAnimation";
@@ -667,8 +666,7 @@ function CTASection() {
 
 export function AboutPage() {
     return (
-        <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-[#050505] text-white font-[Poppins,sans-serif]">
-            <FeaturesBackground />
+        <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-landing-bg text-landing-fg font-[Poppins,sans-serif]">
             <LandingHeader />
 
             <main className="w-full flex flex-col items-center relative z-10">

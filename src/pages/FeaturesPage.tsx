@@ -11,7 +11,6 @@ import {
 } from "@phosphor-icons/react";
 import { LandingHeader } from "../components/landing/home/LandingHeader";
 import { LandingFooter } from "../components/landing/home/LandingFooter";
-import { FeaturesBackground } from "../components/landing/features/FeaturesBackground";
 import { AnimatedGrowthBars } from "../components/landing/features/AnimatedGrowthBars";
 import { useViewportAnimation } from "../hooks/useViewportAnimation";
 import { isHighPerfTier } from "../utils/adaptivePerformance";
@@ -148,9 +147,6 @@ export function FeaturesPage() {
 
     return (
         <div className="relative w-full min-h-svh flex flex-col overflow-x-clip bg-landing-bg text-landing-fg font-poppins selection:bg-landing-gold selection:text-black">
-            {/* Background 3 Radial Gradients & Grid */}
-            <FeaturesBackground />
-
             {/* Header */}
             <LandingHeader />
 
