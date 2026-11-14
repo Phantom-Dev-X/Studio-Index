@@ -1178,3 +1178,51 @@ html[data-perf="low"] [class*="aboutShimmer"] {
 }
 
 
+
+
+/* ============================================================
+   DASHBOARD NAVIGATION LINKS & ACTIVE STATE
+   ============================================================ */
+.dash-nav-link {
+    color: #b0aaa0;
+}
+
+.dash-nav-link:hover:not(.active) {
+    background-color: #14120e;
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.dash-nav-link .nav-icon {
+    color: #b0aaa0;
+}
+
+.dash-nav-link .dropdown-icon {
+    color: #7a7469;
+}
+
+.dash-nav-link .nav-badge {
+    background-color: #f6b91c;
+    color: #111111;
+}
+
+/* Active NavLink State */
+.dash-nav-link.active {
+    background: linear-gradient(to right, #8a6410, #f6b91c);
+    color: #111111;
+    font-weight: 600;
+    box-shadow: 0 0 20px rgba(246, 185, 28, 0.22);
+}
+
+.dash-nav-link.active .nav-icon {
+    color: #1a1200;
+}
+
+.dash-nav-link.active .dropdown-icon {
+    color: #1a1200;
+}
+
+.dash-nav-link.active .nav-badge {
+    background-color: #111111;
+    color: #f6b91c;
+}

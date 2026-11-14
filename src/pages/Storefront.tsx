@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom"
-import { Header } from "../components/storefront/header"
-import { SellersInfo } from "../components/storefront/SellersInfo";
-import { Products } from "../components/storefront/Products";
-import { FloatingBag } from "../components/storefront/FloatingBag";
-import { FloatingFooter } from "../components/storefront/FloatingFooter";
-import { Footer } from "../components/storefront/footer/Footer";
+import { Header } from "../components/privateComponets/storefront/header"
+import { SellersInfo } from "../components/privateComponets/storefront/SellersInfo";
+import { Products } from "../components/privateComponets/storefront/Products";
+import { FloatingBag } from "../components/privateComponets/storefront/FloatingBag";
+import { FloatingFooter } from "../components/privateComponets/storefront/FloatingFooter";
+import { Footer } from "../components/privateComponets/storefront/footer/Footer";
 import { useState, useEffect } from "react";
 import { getStoreByUserName } from '../services/storefront/getStoreByUsername';
-import BagPage from "../components/storefront/BagPage";
+import BagPage from "../components/privateComponets/storefront/BagPage";
 
 
 export default function Storefront() {

@@ -6,3 +6,6 @@ export default defineConfig({
   base: process.env.GITHUB_ACTIONS === 'true' ? '/Studio-Index/' : '/',
   plugins: [tailwindcss(), react()],
 })
+
+
+

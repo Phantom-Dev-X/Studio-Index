@@ -1,28 +1,45 @@
-﻿import { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AutoScroll } from "./utils/autoSxroll";
 import { LandingPage } from "./pages/LandingPage";
 
 const Storefront = lazy(() => import("./pages/Storefront"));
 const FeaturesPage = lazy(() =>
-  import("./components/landing/features/FeaturesPage").then((m) => ({ default: m.FeaturesPage }))
+  import("./components/privateComponets/landing/features/FeaturesPage").then(
+    (m) => ({
+      default: m.FeaturesPage,
+    }),
+  ),
 );
 const PricingPage = lazy(() =>
-  import("./components/landing/pricing/PricingPage").then((m) => ({
-    default: m.PricingPage,
-  }))
+  import("./components/privateComponets/landing/pricing/PricingPage").then(
+    (m) => ({
+      default: m.PricingPage,
+    }),
+  ),
 );
 const AboutPage = lazy(() =>
-  import("./components/landing/about/aboutPage").then((m) => ({
+  import("./components/privateComponets/landing/about/aboutPage").then((m) => ({
     default: m.AboutPage,
-  }))
+  })),
 );
 const ContactPage = lazy(() =>
-  import("./components/landing/contact/ContactPage").then((m) => ({
-    default: m.ContactPage,
-  }))
+  import("./components/privateComponets/landing/contact/ContactPage").then(
+    (m) => ({
+      default: m.ContactPage,
+    }),
+  ),
 );
 const LoginPage = lazy(() => import("./pages/LoginPage"));
+const DashboardPage = lazy(() => import("./pages/dashboardPage"));
+const DashboardProducts = lazy(
+  () =>
+    import("./components/privateComponets/dashboard/dashboardProducts/DashboardProduct"),
+);
+const DashboardOrders = lazy(
+  () =>
+    import("./components/privateComponets/dashboard/dasboardOrders/DashboardOrders"),
+);
 
 export default function App() {
   return (
@@ -37,6 +54,9 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/dashboard/products" element={<DashboardProducts />} />
+          <Route path="/dashboard/orders" element={<DashboardOrders />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
